@@ -6,7 +6,12 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 5.0f;
     public float horizontalLuanchSpeed = 30.0f;
     private bool isDodging = false;
+    private Vector3 myDirection;
 
+    private void Start()
+    {
+        myDirection = Vector3.forward;
+    }
     void Update()
     {
         Ray ray = new Ray(transform.position, Vector3.down);
@@ -26,7 +31,10 @@ public class PlayerController : MonoBehaviour
             transform.position += direction * moveSpeed * Time.deltaTime;
         }
     }
-
+    public Vector3 Direction()
+    {
+        return myDirection;
+    }
     void DodgeRoll(Vector3 dir)
     {
         isDodging = true;
