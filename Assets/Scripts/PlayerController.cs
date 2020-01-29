@@ -6,34 +6,37 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 225.0f;
     public float horizontalLaunchSpeed = 1777.0f;
 
-    private bool isDodging = false;
+    [SerializeField] private bool isDodging = false;
+    [SerializeField] private bool disableInput = false;
     private Vector3 myDirection;
     private new Rigidbody rigidbody;
 
     private void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rigidbody = GetComponentInChildren<Rigidbody>();
         myDirection = Vector3.forward;
     }
     void Update()
     {
-        Ray ray = new Ray(transform.position, Vector3.down);
-        if (Physics.Raycast(ray, 1.05f))
+        if (!disableInput)
         {
-            //stop the character movement
-            rigidbody.velocity = Vector3.zero;
-            isDodging = false;
-        }
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        Vector3 direction = new Vector3(x, 0.0f, z) * moveSpeed * Time.deltaTime;
-        if(Input.GetKeyDown(KeyCode.LeftShift) && !isDodging)
-        {
-            DodgeRoll(direction);
-        }
-        if(!isDodging)
-        {
-            transform.position += direction * moveSpeed * Time.deltaTime;
+            Ray ray = new Ray(rigidbody.transform.position, Vector3.down);
+            if (Physics.Raycast(ray, 1.05f))
+            {
+                rigidbody.velocity = Vector3.zero;
+                isDodging = false;
+            }
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+            Vector3 direction = new Vector3(x, 0.0f, z) * moveSpeed * Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !isDodging)
+            {
+                DodgeRoll(direction);
+            }
+            if (!isDodging)
+            {
+                transform.position += direction * moveSpeed * Time.deltaTime;
+            }
         }
     }
     public Vector3 Direction()
@@ -45,5 +48,14 @@ public class PlayerController : MonoBehaviour
         isDodging = true;
         rigidbody.velocity = Vector3.zero;
         rigidbody.AddForce(new Vector3(dir.x * horizontalLaunchSpeed, jumpHeight, dir.z * horizontalLaunchSpeed));
+        transform.position = rigidbody.transform.position;
+    }
+    public void DisableInput()
+    {
+        disableInput = true;
+    }
+    public void EnableInput()
+    {
+        disableInput = false;
     }
 }

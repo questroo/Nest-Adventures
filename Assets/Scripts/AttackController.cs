@@ -2,19 +2,18 @@
 
 public class AttackController : MonoBehaviour
 {
-    public AnimationClip animClip;
-    public Animator animator;
-    public AnimationEvent evt;
+    private Animator animator;
 
     private void Start()
     {
-        evt = new AnimationEvent();
+        animator = GetComponent<Animator>();
     }
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.F))
         {
             animator.SetTrigger("AttackKeyPressed");
+            animator.Play("Attack");
         }
     }
 }
