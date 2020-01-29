@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        rigidbody = GetComponentInChildren<Rigidbody>();
+        rigidbody = GetComponent<Rigidbody>();
         myDirection = Vector3.forward;
     }
     void Update()
@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
         isDodging = true;
         rigidbody.velocity = Vector3.zero;
         rigidbody.AddForce(new Vector3(dir.x * horizontalLaunchSpeed, jumpHeight, dir.z * horizontalLaunchSpeed));
-        transform.position = rigidbody.transform.position;
     }
     public void DisableInput()
     {

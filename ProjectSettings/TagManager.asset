@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - isHittable
+  - Tanjiro
+  - Bertha
   layers:
   - Default
   - TransparentFX
