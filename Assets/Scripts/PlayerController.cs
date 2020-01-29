@@ -2,14 +2,17 @@
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5.0f;
-    public float jumpHeight = 5.0f;
-    public float horizontalLuanchSpeed = 30.0f;
+    public float moveSpeed = 11.0f;
+    public float jumpHeight = 225.0f;
+    public float horizontalLaunchSpeed = 1777.0f;
+
     private bool isDodging = false;
     private Vector3 myDirection;
+    private new Rigidbody rigidbody;
 
     private void Start()
     {
+        rigidbody = GetComponent<Rigidbody>();
         myDirection = Vector3.forward;
     }
     void Update()
@@ -17,6 +20,8 @@ public class PlayerController : MonoBehaviour
         Ray ray = new Ray(transform.position, Vector3.down);
         if (Physics.Raycast(ray, 1.05f))
         {
+            //stop the character movement
+            rigidbody.velocity = Vector3.zero;
             isDodging = false;
         }
         float x = Input.GetAxis("Horizontal");
@@ -38,7 +43,7 @@ public class PlayerController : MonoBehaviour
     void DodgeRoll(Vector3 dir)
     {
         isDodging = true;
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        GetComponent<Rigidbody>().AddForce(new Vector3(dir.x * horizontalLuanchSpeed, jumpHeight, dir.z * horizontalLuanchSpeed));
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.AddForce(new Vector3(dir.x * horizontalLaunchSpeed, jumpHeight, dir.z * horizontalLaunchSpeed));
     }
 }
