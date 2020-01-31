@@ -2,7 +2,7 @@
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 11.0f;
+    public float moveSpeed = 20.0f;
     public float jumpHeight = 225.0f;
     public float horizontalLaunchSpeed = 1777.0f;
 
@@ -29,10 +29,10 @@ public class PlayerController : MonoBehaviour
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
             Vector3 direction = new Vector3(x, 0.0f, z) * moveSpeed * Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.LeftShift) && !isDodging)
-            {
-                DodgeRoll(direction);
-            }
+            //if (Input.GetKeyDown(KeyCode.LeftShift) && !isDodging)
+            //{
+            //    DodgeRoll(direction);
+            //}
             if (!isDodging)
             {
                 transform.position += direction * moveSpeed * Time.deltaTime;

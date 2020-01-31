@@ -15,6 +15,7 @@ public class WorldManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             CharacterSwap();
+            StartCoroutine(CharacterSwapping());
         }
     }
     private void CharacterSwap()
@@ -33,15 +34,15 @@ public class WorldManager : MonoBehaviour
     IEnumerator CharacterSwapping()
     {
         //disable input
-        Characters[m_CharacterIndex].GetComponent<PlayerController>().DisableInput();
+        Characters[m_CharacterIndex].GetComponentInParent<PlayerController>().DisableInput();
         //start IFrame
-        Characters[m_CharacterIndex].GetComponent<PlayerStats>().StartIFrame();
+        Characters[m_CharacterIndex].GetComponentInParent<PlayerStats>().StartIFrame();
         //start anim
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
         //enable input
-        Characters[m_CharacterIndex].GetComponent<PlayerController>().EnableInput();
+        Characters[m_CharacterIndex].GetComponentInParent<PlayerController>().EnableInput();
         //endIframe
-        Characters[m_CharacterIndex].GetComponent<PlayerStats>().EndIFrame();
+        Characters[m_CharacterIndex].GetComponentInParent<PlayerStats>().EndIFrame();
         //anim done
     }
 }
