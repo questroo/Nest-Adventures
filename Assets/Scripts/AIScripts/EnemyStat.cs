@@ -8,10 +8,12 @@ public class EnemyStat : MonoBehaviour
     public float bossCurrentHealth = 100f;
     public float bossDamage = 10f;
 
+    private PlayerStats player;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = FindObjectOfType<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -20,21 +22,31 @@ public class EnemyStat : MonoBehaviour
         
     }
 
-    private void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         bossCurrentHealth -= damage;
         if (bossCurrentHealth <= 0f)
         {
-            bossCurrentHealth = 0f;
+            bossCurrentHealth = 0.0f;
             Die();
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Tanjiro") || collision.gameObject.CompareTag("Bertha"))
+        {
+            player.GetComponentInParent<PlayerStats>().TakeDamage(bossDamage);
+        }
+        
+    }
     private void Die()
     {
         //Death Animation
         //Stop all movement
         //Remove collision
         //Model Disappear
+
+        Destroy(gameObject);
     }
 }
