@@ -5,41 +5,64 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    public float lookRadius = 10f;
-    public float attackRadius = 3f;
 
-    Transform target;
-    NavMeshAgent agent;
+    public float attackRadius = 3f;
+    public float minDistance = 1.0f;
+    public int points = 0;
+    public float speed = 2.0f; 
+    public GameObject[] waypoint;
+
+    private bool isMoving = false;
+    private Transform target;
+    private NavMeshAgent agent;
 
     void Start()
     {
-        target = PlayerManager.instance.player.transform;
-        agent = GetComponent<NavMeshAgent>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(target.position, transform.position);
+        float distance = Vector3.Distance(transform.position, waypoint[points].transform.position);
+        isMoving = true;
 
-        if(distance <= lookRadius)
+        if (isMoving)
         {
-            agent.SetDestination(target.position);
+            if(distance > minDistance)
+            {
+                Move();
+            }
+            else
+            {
+                if(points + 1 == waypoint.Length)
+                {
+                    points = 0;
+                }
+                else
+                {
+                    points++;
+                }
+            }
         }
-        else
-        {
-            agent.SetDestination(transform.position);
-        }
+        
+    }
 
+    private void Move()
+    {
+        transform.LookAt(waypoint[points].transform.position);
+        transform.position += transform.forward * speed * Time.deltaTime;
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, lookRadius);
-
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, attackRadius);
+    }
+
+    IEnumerator Attack()
+    {
+        yield return new WaitForSeconds(1f);
     }
 
 
