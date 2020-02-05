@@ -6,33 +6,24 @@ public class WorldManager : MonoBehaviour
     public GameObject[] Characters;
     private int m_CharacterIndex = 0;
 
+    private bool swapping = false;
+
     private void Start()
     {
         Characters[1].SetActive(false);
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !swapping)
         {
-            CharacterSwap();
             StartCoroutine(CharacterSwapping());
-        }
-    }
-    private void CharacterSwap()
-    {
-        m_CharacterIndex = ++m_CharacterIndex % 2;
-        Characters[m_CharacterIndex].SetActive(true);
-        if (m_CharacterIndex == 0)
-        {
-            Characters[1].SetActive(false);
-        }
-        else
-        {
-            Characters[0].SetActive(false);
         }
     }
     IEnumerator CharacterSwapping()
     {
+        swapping = true;
+        m_CharacterIndex = ++m_CharacterIndex % 2;
+        Characters[m_CharacterIndex].SetActive(true);
         //disable input
         Characters[m_CharacterIndex].GetComponentInParent<PlayerController>().DisableInput();
         //start IFrame
@@ -44,6 +35,15 @@ public class WorldManager : MonoBehaviour
         //endIframe
         Characters[m_CharacterIndex].GetComponentInParent<PlayerStats>().EndIFrame();
         //anim done
+        if (m_CharacterIndex == 0)
+        {
+            Characters[1].SetActive(false);
+        }
+        else
+        {
+            Characters[0].SetActive(false);
+        }
+        swapping = false;
     }
 }
 
