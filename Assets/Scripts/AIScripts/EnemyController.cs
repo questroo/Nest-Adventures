@@ -9,43 +9,42 @@ public class EnemyController : MonoBehaviour
     public float attackRadius = 3f;
     public float minDistance = 1.0f;
     public int points = 0;
-    public float speed = 2.0f; 
+    public float speed = 2.0f;
     public GameObject[] waypoint;
 
+    private float playerDistance;
+    private float distance;
     private bool isMoving = false;
-    private Transform target;
+    private GameObject target;
     private NavMeshAgent agent;
 
     void Start()
     {
-
+        target = GameObject.FindGameObjectWithTag("pseudoPlayer");
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(transform.position, waypoint[points].transform.position);
+        distance = Vector3.Distance(transform.position, waypoint[points].transform.position);
+        playerDistance = Vector3.Distance(target.transform.position, transform.position);
+
         isMoving = true;
 
         if (isMoving)
         {
-            if(distance > minDistance)
+            if (distance > minDistance + 0.001f)
             {
                 Move();
+
             }
             else
             {
-                if(points + 1 == waypoint.Length)
-                {
-                    points = 0;
-                }
-                else
-                {
-                    points++;
-                }
+                StartCoroutine("Pause");
             }
+
         }
-        
+
     }
 
     private void Move()
@@ -60,9 +59,14 @@ public class EnemyController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRadius);
     }
 
-    IEnumerator Attack()
+    IEnumerator Pause()
     {
-        yield return new WaitForSeconds(1f);
+
+        //transform.position.Set(waypoint[points].transform.position.x, waypoint[points].transform.position.y, waypoint[points].transform.position.z);
+        yield return new WaitForSeconds(0.5f);
+        ++points;
+        //points = Random.Range(0, waypoint.Length);
+
     }
 
 
