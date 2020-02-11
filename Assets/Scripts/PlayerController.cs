@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private bool weaponDrawn = false;
-    public GameObject Sword;
+    private Animator charAnimator;
+    private bool isMoving = false;
     public float moveSpeed = 20.0f;
     public float jumpHeight = 225.0f;
     public float horizontalLaunchSpeed = 1777.0f;
-    public GameObject weapon;
     [SerializeField] private bool isDodging = false;
     [SerializeField] private bool disableInput = false;
     private Vector3 myDirection;
@@ -17,9 +16,18 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         myDirection = Vector3.forward;
+        charAnimator = GetComponentInChildren<Animator>();
     }
     void Update()
     {
+        if(isMoving)
+        {
+            charAnimator.SetBool("IsRunning", true);
+        }
+        else
+        {
+            charAnimator.SetBool("IsRunning", false);
+        }
         if (!disableInput)
         {
             Ray ray = new Ray(transform.position, Vector3.down);
@@ -30,6 +38,14 @@ public class PlayerController : MonoBehaviour
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
 
+            if(x != 0 || z != 0)
+            {
+                isMoving = true;
+            }
+            else
+            {
+                isMoving = false;
+            }
             Vector3 direction = new Vector3(x, 0.0f, z) * moveSpeed * Time.deltaTime;
 
             float mouseDeltaX = Input.GetAxis("Mouse X");
@@ -41,16 +57,8 @@ public class PlayerController : MonoBehaviour
 
             if (!isDodging)
             {
-                transform.position += movement * moveSpeed * Time.deltaTime;
-            }
-            if (Input.GetKeyDown(KeyCode.C) && !isDodging)
-            {
-                Instantiate(weapon, transform.position, Quaternion.identity);
-            }
-            if (Input.GetKeyDown(KeyCode.F) && FindObjectOfType<WorldManager>().GetCurrentPlayerTag() == "Tanjiro")
-            {
-                weaponDrawn = !weaponDrawn;
-                Sword.SetActive(weaponDrawn);
+                transform.Translate(movement * moveSpeed * Time.deltaTime, Space.World);
+                transform.rotation = Quaternion.LookRotation(movement);
             }
         }
     }
