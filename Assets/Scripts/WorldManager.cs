@@ -4,13 +4,13 @@ using UnityEngine;
 public class WorldManager : MonoBehaviour
 {
     public GameObject[] Characters;
-    private int m_CharacterIndex = 0;
+    private int m_CharacterIndex = 1;
 
     private bool swapping = false;
 
     private void Start()
     {
-        Characters[1].SetActive(false);
+        Characters[0].SetActive(false);
     }
     void Update()
     {
@@ -44,6 +44,7 @@ public class WorldManager : MonoBehaviour
             Characters[0].SetActive(false);
         }
         swapping = false;
+        Characters[m_CharacterIndex].GetComponentInParent<PlayerController>().GetOtherAnimator();
     }
     public string GetCurrentPlayerTag()
     {

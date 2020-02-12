@@ -6,21 +6,23 @@ public class PlayerController : MonoBehaviour
 {
     private Animator charAnimator;
     private bool isMoving = false;
+    private bool isAttacking = false;
     public float moveSpeed = 20.0f;
     public float jumpHeight = 225.0f;
     public float horizontalLaunchSpeed = 1777.0f;
-    [SerializeField] private bool isDodging = false;
     [SerializeField] private bool disableInput = false;
     private Vector3 myDirection;
+    private Collider attackCollider;
 
     private void Start()
     {
         myDirection = Vector3.forward;
         charAnimator = GetComponentInChildren<Animator>();
+        attackCollider = GetComponent<Collider>();
     }
     void Update()
     {
-        if(isMoving)
+        if (isMoving)
         {
             charAnimator.SetBool("IsRunning", true);
         }
@@ -28,47 +30,39 @@ public class PlayerController : MonoBehaviour
         {
             charAnimator.SetBool("IsRunning", false);
         }
-        if (!disableInput)
+        if (Input.GetKeyDown(KeyCode.E) && !isAttacking)
         {
-            Ray ray = new Ray(transform.position, Vector3.down);
-            if (Physics.Raycast(ray, 1.05f))
-            {
-                isDodging = false;
-            }
+            isAttacking = true;
+            charAnimator.SetTrigger("Attack");
+            StartCoroutine("Attacking");
+            isMoving = false;
+        }
+        if (!disableInput && !isAttacking)
+        {
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
 
-            if(x != 0 || z != 0)
+            if (x != 0 || z != 0)
             {
                 isMoving = true;
+                Vector3 direction = new Vector3(x, 0.0f, z) * moveSpeed * Time.deltaTime;
+
+                float mouseDeltaX = Input.GetAxis("Mouse X");
+
+                Vector3 movement = myDirection * z + Vector3.Cross(Vector3.up, myDirection) * x;
+
+                transform.Translate(movement * moveSpeed * Time.deltaTime, Space.World);
+                transform.rotation = Quaternion.LookRotation(movement);
             }
             else
             {
                 isMoving = false;
-            }
-            Vector3 direction = new Vector3(x, 0.0f, z) * moveSpeed * Time.deltaTime;
-
-            float mouseDeltaX = Input.GetAxis("Mouse X");
-
-            Quaternion rotation = Quaternion.Euler(0.0f, mouseDeltaX * 3.0f, 0.0f);
-            myDirection = rotation * myDirection;
-
-            Vector3 movement = myDirection * z + Vector3.Cross(Vector3.up, myDirection) * x;
-
-            if (!isDodging)
-            {
-                transform.Translate(movement * moveSpeed * Time.deltaTime, Space.World);
-                transform.rotation = Quaternion.LookRotation(movement);
             }
         }
     }
     public Vector3 Direction()
     {
         return myDirection;
-    }
-    void DodgeRoll(Vector3 dir)
-    {
-        isDodging = true;
     }
     public void DisableInput()
     {
@@ -77,5 +71,15 @@ public class PlayerController : MonoBehaviour
     public void EnableInput()
     {
         disableInput = false;
+    }
+    public void GetOtherAnimator()
+    {
+        charAnimator = GetComponentInChildren<Animator>();
+    }
+    IEnumerator Attacking()
+    {
+        //attackCollider.
+        yield return new WaitForSeconds(1.0f);
+        isAttacking = false;
     }
 }
