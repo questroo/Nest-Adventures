@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool disableInput = false;
     private Vector3 myDirection;
     private Collider attackCollider;
+    public GameObject projectileStartLocation;
 
     private void Start()
     {
@@ -30,7 +31,14 @@ public class PlayerController : MonoBehaviour
         {
             charAnimator.SetBool("IsRunning", false);
         }
-        if (Input.GetKeyDown(KeyCode.E) && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.E) && !isAttacking && charAnimator.CompareTag("Tanjiro"))
+        {
+            isAttacking = true;
+            charAnimator.SetTrigger("Attack");
+            StartCoroutine("Attacking");
+            isMoving = false;
+        }
+        else if(Input.GetKeyDown(KeyCode.E) && !isAttacking)
         {
             isAttacking = true;
             charAnimator.SetTrigger("Attack");
@@ -78,7 +86,6 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator Attacking()
     {
-        //attackCollider.
         yield return new WaitForSeconds(1.0f);
         isAttacking = false;
     }
