@@ -14,12 +14,15 @@ public class PlayerController : MonoBehaviour
     private Vector3 myDirection;
     private Collider attackCollider;
     public GameObject projectileStartLocation;
+    public GameObject projectileEndLocation;
+    private ProjectileController projectileController;
 
     private void Start()
     {
         myDirection = Vector3.forward;
         charAnimator = GetComponentInChildren<Animator>();
         attackCollider = GetComponent<Collider>();
+        projectileController = GetComponent<ProjectileController>();
     }
     void Update()
     {
@@ -37,6 +40,7 @@ public class PlayerController : MonoBehaviour
             charAnimator.SetTrigger("Attack");
             StartCoroutine("Attacking");
             isMoving = false;
+            projectileController.FireProjectile(projectileStartLocation.transform.position, projectileEndLocation.transform.position);
         }
         else if(Input.GetKeyDown(KeyCode.E) && !isAttacking)
         {
