@@ -327,8 +327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f32ba41f69b764381062d596aa9217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireBlast: {fileID: 8253023300069038707, guid: fd80f8464ac0e644fab1efc4085f754d,
-    type: 3}
 --- !u!114 &989575515 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 821905509547661126, guid: 8faffff2b12e7e64f832833492b80ea1,
@@ -438,6 +436,52 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8666636121841095232, guid: 8faffff2b12e7e64f832833492b80ea1,
+        type: 3}
+      propertyPath: m_Name
+      value: Bertha
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666636121841095232, guid: 8faffff2b12e7e64f832833492b80ea1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bertha
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666636121841095232, guid: 8faffff2b12e7e64f832833492b80ea1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 821905509547661126, guid: 8faffff2b12e7e64f832833492b80ea1,
+        type: 3}
+      propertyPath: fireBlast
+      value: 
+      objectReference: {fileID: 8253023300069038707, guid: fd80f8464ac0e644fab1efc4085f754d,
+        type: 3}
+    - target: {fileID: 821905509547661126, guid: 8faffff2b12e7e64f832833492b80ea1,
+        type: 3}
+      propertyPath: projectileStartLocation
+      value: 
+      objectReference: {fileID: 1883061077}
+    - target: {fileID: 821905509547661126, guid: 8faffff2b12e7e64f832833492b80ea1,
+        type: 3}
+      propertyPath: projectileEndLocation
+      value: 
+      objectReference: {fileID: 1953697403}
+    - target: {fileID: 821905509547661126, guid: 8faffff2b12e7e64f832833492b80ea1,
+        type: 3}
+      propertyPath: fireSpeed
+      value: 25000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666636123110014657, guid: 8faffff2b12e7e64f832833492b80ea1,
+        type: 3}
+      propertyPath: m_Name
+      value: Tanjiro
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666636123110014657, guid: 8faffff2b12e7e64f832833492b80ea1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tanjiro
+      objectReference: {fileID: 0}
     - target: {fileID: 821905509547661121, guid: 8faffff2b12e7e64f832833492b80ea1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -492,47 +536,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666636121841095232, guid: 8faffff2b12e7e64f832833492b80ea1,
-        type: 3}
-      propertyPath: m_Name
-      value: Bertha
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666636121841095232, guid: 8faffff2b12e7e64f832833492b80ea1,
-        type: 3}
-      propertyPath: m_TagString
-      value: Bertha
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666636121841095232, guid: 8faffff2b12e7e64f832833492b80ea1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 821905509547661126, guid: 8faffff2b12e7e64f832833492b80ea1,
-        type: 3}
-      propertyPath: fireBlast
-      value: 
-      objectReference: {fileID: 8253023300069038707, guid: fd80f8464ac0e644fab1efc4085f754d,
-        type: 3}
-    - target: {fileID: 821905509547661126, guid: 8faffff2b12e7e64f832833492b80ea1,
-        type: 3}
-      propertyPath: projectileStartLocation
-      value: 
-      objectReference: {fileID: 1883061077}
-    - target: {fileID: 821905509547661126, guid: 8faffff2b12e7e64f832833492b80ea1,
-        type: 3}
-      propertyPath: projectileEndLocation
-      value: 
-      objectReference: {fileID: 1953697403}
-    - target: {fileID: 8666636123110014657, guid: 8faffff2b12e7e64f832833492b80ea1,
-        type: 3}
-      propertyPath: m_Name
-      value: Tanjiro
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666636123110014657, guid: 8faffff2b12e7e64f832833492b80ea1,
-        type: 3}
-      propertyPath: m_TagString
-      value: Tanjiro
       objectReference: {fileID: 0}
     - target: {fileID: 123506388907605919, guid: 8faffff2b12e7e64f832833492b80ea1,
         type: 3}

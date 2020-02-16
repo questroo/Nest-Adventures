@@ -1,10 +1,17 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Components
+    public GameObject fireBlast;
     private Animator charAnimator;
+    public GameObject projectileStartLocation;
+    public GameObject projectileEndLocation;
+    private ProjectileController projectileController;
+
+    //Variables
+    public float fireSpeed = 10.0f;
     private bool isMoving = false;
     private bool isAttacking = false;
     public float moveSpeed = 20.0f;
@@ -12,20 +19,19 @@ public class PlayerController : MonoBehaviour
     public float horizontalLaunchSpeed = 1777.0f;
     [SerializeField] private bool disableInput = false;
     private Vector3 myDirection;
-    private Collider attackCollider;
-    public GameObject projectileStartLocation;
-    public GameObject projectileEndLocation;
-    private ProjectileController projectileController;
 
-    private void Start()
+    public void Start()
     {
         myDirection = Vector3.forward;
         charAnimator = GetComponentInChildren<Animator>();
-        attackCollider = GetComponent<Collider>();
         projectileController = GetComponent<ProjectileController>();
     }
     void Update()
     {
+        if(disableInput)
+        {
+            isMoving = false;
+        }
         if (isMoving)
         {
             charAnimator.SetBool("IsRunning", true);
@@ -33,21 +39,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             charAnimator.SetBool("IsRunning", false);
-        }
-        if (Input.GetKeyDown(KeyCode.E) && !isAttacking && charAnimator.CompareTag("Tanjiro"))
-        {
-            isAttacking = true;
-            charAnimator.SetTrigger("Attack");
-            StartCoroutine("Attacking");
-            isMoving = false;
-            projectileController.FireProjectile(projectileStartLocation.transform.position, projectileEndLocation.transform.position);
-        }
-        else if(Input.GetKeyDown(KeyCode.E) && !isAttacking)
-        {
-            isAttacking = true;
-            charAnimator.SetTrigger("Attack");
-            StartCoroutine("Attacking");
-            isMoving = false;
         }
         if (!disableInput && !isAttacking)
         {
@@ -60,6 +51,21 @@ public class PlayerController : MonoBehaviour
                 Vector3 direction = new Vector3(x, 0.0f, z) * moveSpeed * Time.deltaTime;
 
                 float mouseDeltaX = Input.GetAxis("Mouse X");
+                if (Input.GetKeyDown(KeyCode.E) && !isAttacking && charAnimator.CompareTag("Tanjiro"))
+                {
+                    isAttacking = true;
+                    charAnimator.SetTrigger("Attack");
+                    StartCoroutine("Attacking");
+                    isMoving = false;
+                    StartCoroutine(FireProjectile(projectileStartLocation.transform.position, projectileEndLocation.transform.position));
+                }
+                else if (Input.GetKeyDown(KeyCode.E) && !isAttacking)
+                {
+                    isAttacking = true;
+                    charAnimator.SetTrigger("Attack");
+                    StartCoroutine("Attacking");
+                    isMoving = false;
+                }
 
                 Vector3 movement = myDirection * z + Vector3.Cross(Vector3.up, myDirection) * x;
 
@@ -84,13 +90,27 @@ public class PlayerController : MonoBehaviour
     {
         disableInput = false;
     }
-    public void GetOtherAnimator()
+    public void ResetCharacterComponents()
     {
         charAnimator = GetComponentInChildren<Animator>();
+        projectileController = GetComponent<ProjectileController>();
     }
     IEnumerator Attacking()
     {
         yield return new WaitForSeconds(1.0f);
         isAttacking = false;
+    }
+    IEnumerator FireProjectile(Vector3 startPos, Vector3 endPos)
+    {
+        GameObject fireBall = Instantiate(fireBlast, startPos, Quaternion.identity, null) as GameObject;
+        Rigidbody fireRigid = fireBall.GetComponent<Rigidbody>();
+        fireRigid.velocity = Vector3.zero;
+        fireRigid.AddForce((endPos - startPos).normalized * fireSpeed * Time.deltaTime);
+        yield return new WaitForSeconds(1.5f);
+        Destroy(fireBall);
+    }
+    public void TurnOffRunningAnim()
+    {
+        charAnimator.SetBool("IsRunning", false);
     }
 }
