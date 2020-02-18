@@ -14,11 +14,24 @@ public class PlayerController : MonoBehaviour
     private Vector3 myDirection;
     private Collider attackCollider;
 
+    // Gary's Testing Code
+    // Start
+    private Transform camaeraTransform;
+    // End
+
     private void Start()
     {
         myDirection = Vector3.forward;
         charAnimator = GetComponentInChildren<Animator>();
         attackCollider = GetComponent<Collider>();
+
+        // Gary's Testing Code
+        // Start
+        camaeraTransform = Camera.main.transform;
+        // End
+
+        //+ camaeraTransform.eulerAngles.y
+
     }
     void Update()
     {
@@ -51,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
                 Vector3 movement = myDirection * z + Vector3.Cross(Vector3.up, myDirection) * x;
 
-                transform.Translate(movement * moveSpeed * Time.deltaTime, Space.World);
+                transform.Translate(movement * moveSpeed * Time.deltaTime, Space.World) ;
                 transform.rotation = Quaternion.LookRotation(movement);
             }
             else

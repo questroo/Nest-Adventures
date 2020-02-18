@@ -13,7 +13,6 @@ public class CameraController : MonoBehaviour
     }
     void LateUpdate()
     {
-        Debug.Log("Test camera");
         Vector3 playerPos = playerController.transform.position;
         Vector3 playerDir = playerController.Direction();
 
