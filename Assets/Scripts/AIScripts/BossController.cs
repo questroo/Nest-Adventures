@@ -5,7 +5,8 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     Transform target;
-    public float attackRadius = 3f;
+    public float gapCloserRadius = 8f;
+    public float meleeAttackRadius = 3f;
 
     void Start()
     {
@@ -28,6 +29,9 @@ public class BossController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRadius);
+        Gizmos.DrawWireSphere(transform.position, gapCloserRadius);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, meleeAttackRadius);
     }
 }
