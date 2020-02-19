@@ -26,7 +26,7 @@ public class RunningBehaviour : StateMachineBehaviour
         //Vector3 target = new Vector3(playerPos.position.x, animator.transform.position.y);
         rb.transform.position += rb.transform.forward * speed * Time.deltaTime;
             
-        if(Vector3.Distance(playerPos.position, animator.transform.position) <= boss.attackRadius)
+        if(Vector3.Distance(playerPos.position, animator.transform.position) <= boss.gapCloserRadius)
         {
             animator.SetTrigger("attack");
         }
