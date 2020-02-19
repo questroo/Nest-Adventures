@@ -19,12 +19,13 @@ public class PlayerController : MonoBehaviour
     public float horizontalLaunchSpeed = 1777.0f;
     [SerializeField] private bool disableInput = false;
     private Vector3 myDirection;
-    public Transform cameraTransform;
-    public float speedSmoothTime = 0.1f;
+    private Transform cameraTransform;
+    public float speedAccelSmoothTime = 0.3f;
     float speedSmoothVelocity;
     public float turnSmoothVelocity;
-    public float turnSmoothTime = 0.15f;
+    public float turnSmoothTime = 0.1f;
     private bool lockOnTarget;
+    float currentSpeed = 0.0f;
 
 
     public void Start()
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
             Vector2 inputDir = new Vector2(x, z).normalized;
-
+            float targetSpeed = moveSpeed * inputDir.magnitude;
             if (Input.GetKeyDown(KeyCode.E) && !isAttacking && charAnimator.CompareTag("Tanjiro"))
             {
                 isAttacking = true;
@@ -73,24 +74,17 @@ public class PlayerController : MonoBehaviour
             {
                 isMoving = true;
 
-
-
                 float targetRotation = Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
                 transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
-                Vector3 movement = myDirection * z + Vector3.Cross(Vector3.up, myDirection) * x;
-
-                transform.Translate(transform.forward * moveSpeed * Time.deltaTime, Space.World);
+                //currentSpeed = Mathf.SmoothDamp(targetSpeed, currentSpeed, ref speedSmoothVelocity, speedDecelSmoothTime);
             }
-
             else
             {
                 isMoving = false;
             }
+            currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedAccelSmoothTime);
+            transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
         }
-    }
-    public Vector3 Direction()
-    {
-        return myDirection;
     }
     public void DisableInput()
     {
