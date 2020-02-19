@@ -19,16 +19,24 @@ public class PlayerController : MonoBehaviour
     public float horizontalLaunchSpeed = 1777.0f;
     [SerializeField] private bool disableInput = false;
     private Vector3 myDirection;
+    public Transform cameraTransform;
+    public float speedSmoothTime = 0.1f;
+    float speedSmoothVelocity;
+    public float turnSmoothVelocity;
+    public float turnSmoothTime = 0.15f;
+    private bool lockOnTarget;
+
 
     public void Start()
     {
         myDirection = Vector3.forward;
         charAnimator = GetComponentInChildren<Animator>();
         projectileController = GetComponent<ProjectileController>();
+        cameraTransform = Camera.main.transform;
     }
     void Update()
     {
-        if(disableInput)
+        if (disableInput)
         {
             isMoving = false;
         }
@@ -44,34 +52,36 @@ public class PlayerController : MonoBehaviour
         {
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
+            Vector2 inputDir = new Vector2(x, z).normalized;
 
-            if (x != 0 || z != 0)
+            if (Input.GetKeyDown(KeyCode.E) && !isAttacking && charAnimator.CompareTag("Tanjiro"))
+            {
+                isAttacking = true;
+                charAnimator.SetTrigger("Attack");
+                StartCoroutine("Attacking");
+                isMoving = false;
+                StartCoroutine(FireProjectile(projectileStartLocation.transform.position, projectileEndLocation.transform.position));
+            }
+            else if (Input.GetKeyDown(KeyCode.E) && !isAttacking)
+            {
+                isAttacking = true;
+                charAnimator.SetTrigger("Attack");
+                StartCoroutine("Attacking");
+                isMoving = false;
+            }
+            if (inputDir != Vector2.zero)
             {
                 isMoving = true;
-                Vector3 direction = new Vector3(x, 0.0f, z) * moveSpeed * Time.deltaTime;
 
-                float mouseDeltaX = Input.GetAxis("Mouse X");
-                if (Input.GetKeyDown(KeyCode.E) && !isAttacking && charAnimator.CompareTag("Tanjiro"))
-                {
-                    isAttacking = true;
-                    charAnimator.SetTrigger("Attack");
-                    StartCoroutine("Attacking");
-                    isMoving = false;
-                    StartCoroutine(FireProjectile(projectileStartLocation.transform.position, projectileEndLocation.transform.position));
-                }
-                else if (Input.GetKeyDown(KeyCode.E) && !isAttacking)
-                {
-                    isAttacking = true;
-                    charAnimator.SetTrigger("Attack");
-                    StartCoroutine("Attacking");
-                    isMoving = false;
-                }
 
+
+                float targetRotation = Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
+                transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
                 Vector3 movement = myDirection * z + Vector3.Cross(Vector3.up, myDirection) * x;
 
-                transform.Translate(movement * moveSpeed * Time.deltaTime, Space.World);
-                transform.rotation = Quaternion.LookRotation(movement);
+                transform.Translate(transform.forward * moveSpeed * Time.deltaTime, Space.World);
             }
+
             else
             {
                 isMoving = false;
