@@ -16,12 +16,6 @@ public class EnemyStat : MonoBehaviour
         player = FindObjectOfType<PlayerStats>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void TakeDamage(float damage)
     {
         bossCurrentHealth -= damage;
