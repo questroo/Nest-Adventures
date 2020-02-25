@@ -213,7 +213,7 @@ Transform:
   m_GameObject: {fileID: 637717531}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0973241, y: 1.0973241, z: 1.2179201}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -374,6 +374,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 452550837, guid: 8faffff2b12e7e64f832833492b80ea1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 452550837, guid: 8faffff2b12e7e64f832833492b80ea1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 821905509547661126, guid: 8faffff2b12e7e64f832833492b80ea1,
         type: 3}
@@ -601,22 +609,27 @@ PrefabInstance:
     - target: {fileID: 9179578096245354538, guid: e822dc73b3ee00a40b05dd715db1799c,
         type: 3}
       propertyPath: distFromTarget
-      value: 2
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 9179578096245354538, guid: e822dc73b3ee00a40b05dd715db1799c,
         type: 3}
       propertyPath: pitchMinMax.x
-      value: 10
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 9179578096245354538, guid: e822dc73b3ee00a40b05dd715db1799c,
         type: 3}
       propertyPath: mouseSensitivity
-      value: 2
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 9179578096245354538, guid: e822dc73b3ee00a40b05dd715db1799c,
         type: 3}
       propertyPath: pitchMinMax.y
-      value: 70
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 9179578096245354538, guid: e822dc73b3ee00a40b05dd715db1799c,
+        type: 3}
+      propertyPath: rotationSmoothTime
+      value: 0.18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e822dc73b3ee00a40b05dd715db1799c, type: 3}
