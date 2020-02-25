@@ -807,6 +807,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5149c07255266974f9e9122bb448d05e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &938275129 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 821905509547661121, guid: 8faffff2b12e7e64f832833492b80ea1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1528705395}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1337350075
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,7 +961,7 @@ PrefabInstance:
     - target: {fileID: 821905509547661121, guid: 8faffff2b12e7e64f832833492b80ea1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8383128e-17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 821905509547661121, guid: 8faffff2b12e7e64f832833492b80ea1,
         type: 3}
@@ -965,17 +971,17 @@ PrefabInstance:
     - target: {fileID: 821905509547661121, guid: 8faffff2b12e7e64f832833492b80ea1,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 821905509547661121, guid: 8faffff2b12e7e64f832833492b80ea1,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 821905509547661121, guid: 8faffff2b12e7e64f832833492b80ea1,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 821905509547661121, guid: 8faffff2b12e7e64f832833492b80ea1,
         type: 3}
@@ -1274,6 +1280,11 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 776234848}
+    - target: {fileID: 9179578096245354538, guid: e822dc73b3ee00a40b05dd715db1799c,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 938275129}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e822dc73b3ee00a40b05dd715db1799c, type: 3}
 --- !u!1 &2003128875
@@ -1439,6 +1450,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRadius
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2166021230834680832, guid: 8e917dbdc62492d4db6e5ae16e951476,
+        type: 3}
+      propertyPath: meleeAttackRadius
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e917dbdc62492d4db6e5ae16e951476, type: 3}
