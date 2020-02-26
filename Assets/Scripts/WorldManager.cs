@@ -1,23 +1,24 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WorldManager : MonoBehaviour
 {
+    // Controls
+    PlayerControls control;
     public GameObject[] Characters;
     private int m_CharacterIndex = 1;
 
     private bool swapping = false;
+    private void Awake()
+    {
+        control = new PlayerControls();
 
+        control.ActionMap.Swap.performed += ctx => Swap();
+    }
     private void Start()
     {
         Characters[0].SetActive(false);
-    }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q) && !swapping)
-        {
-            StartCoroutine(CharacterSwapping());
-        }
     }
     IEnumerator CharacterSwapping()
     {
@@ -49,6 +50,21 @@ public class WorldManager : MonoBehaviour
     public string GetCurrentPlayerTag()
     {
         return Characters[m_CharacterIndex].tag;
+    }
+    void Swap()
+    {
+        if (!swapping)
+        {
+            StartCoroutine("CharacterSwapping");
+        }
+    }
+    private void OnEnable()
+    {
+        control.ActionMap.Enable();
+    }
+    private void OnDisable()
+    {
+        control.ActionMap.Disable();
     }
 }
 
