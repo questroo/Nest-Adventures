@@ -105,6 +105,28 @@
                 {
                     "name": "",
                     "id": "aba0fa7f-97aa-44a5-83e3-6afe88a525cf",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LockOn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e734f628-2757-41d8-aa97-e4347380931d",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LockOn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fdf2b610-0ca9-4ff0-bdb1-8e51ebe8fbb7",
                     "path": "<Gamepad>/rightStickPress",
                     "interactions": "",
                     "processors": "",
