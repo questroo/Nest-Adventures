@@ -10,6 +10,7 @@ TagManager:
   - Boss
   - Weapon
   - Sword
+  - axe
   layers:
   - Default
   - TransparentFX
