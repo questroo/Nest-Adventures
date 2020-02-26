@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    // InputSystem
+    PlayerControls controls;
     //Components
     public GameObject fireBlast;
     private Animator charAnimator;
@@ -19,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public float horizontalLaunchSpeed = 1777.0f;
     [SerializeField] private bool disableInput = false;
     private Vector3 myDirection;
+    private Vector2 moveDirection;
     private Transform cameraTransform;
     public float speedAccelSmoothTime = 0.3f;
     float speedSmoothVelocity;
@@ -27,7 +31,15 @@ public class PlayerController : MonoBehaviour
     private bool lockOnTarget;
     float currentSpeed = 0.0f;
 
+    private void Awake()
+    {
+        controls = new PlayerControls();
 
+        controls.ActionMap.Move.performed += ctx => moveDirection = ctx.ReadValue<Vector2>();
+        controls.ActionMap.Move.canceled += ctx => moveDirection = Vector2.zero;
+
+        controls.ActionMap.Attack.performed += ctx => Attack();
+    }
     public void Start()
     {
         myDirection = Vector3.forward;
@@ -51,32 +63,32 @@ public class PlayerController : MonoBehaviour
         }
         if (!disableInput && !isAttacking)
         {
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
+            float x = moveDirection.x;
+            float z = moveDirection.y;
             Vector2 inputDir = new Vector2(x, z).normalized;
             float targetSpeed = moveSpeed * inputDir.magnitude;
-            if (Input.GetKeyDown(KeyCode.E) && !isAttacking && charAnimator.CompareTag("Tanjiro"))
-            {
-                isAttacking = true;
-                charAnimator.SetTrigger("Attack");
-                StartCoroutine("Attacking");
-                isMoving = false;
-                StartCoroutine(FireProjectile(projectileStartLocation.transform.position, projectileEndLocation.transform.position));
-            }
-            else if (Input.GetKeyDown(KeyCode.E) && !isAttacking)
-            {
-                isAttacking = true;
-                charAnimator.SetTrigger("Attack");
-                StartCoroutine("Attacking");
-                isMoving = false;
-            }
+            //Attack();
+            //if (Input.GetKeyDown(KeyCode.E) && !isAttacking && charAnimator.CompareTag("Tanjiro"))
+            //{
+            //    isAttacking = true;
+            //    charAnimator.SetTrigger("Attack");
+            //    StartCoroutine("Attacking");
+            //    isMoving = false;
+            //    StartCoroutine(FireProjectile(projectileStartLocation.transform.position, projectileEndLocation.transform.position));
+            //}
+            //else if (Input.GetKeyDown(KeyCode.E) && !isAttacking)
+            //{
+            //    isAttacking = true;
+            //    charAnimator.SetTrigger("Attack");
+            //    StartCoroutine("Attacking");
+            //    isMoving = false;
+            //}
             if (inputDir != Vector2.zero)
             {
                 isMoving = true;
 
                 float targetRotation = Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
                 transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
-                //currentSpeed = Mathf.SmoothDamp(targetSpeed, currentSpeed, ref speedSmoothVelocity, speedDecelSmoothTime);
             }
             else
             {
@@ -104,6 +116,24 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         isAttacking = false;
     }
+    void Attack()
+    {
+        if (!isAttacking && charAnimator.CompareTag("Tanjiro"))
+        {
+            isAttacking = true;
+            charAnimator.SetTrigger("Attack");
+            StartCoroutine("Attacking");
+            isMoving = false;
+            StartCoroutine(FireProjectile(projectileStartLocation.transform.position, projectileEndLocation.transform.position));
+        }
+        else if (!isAttacking)
+        {
+            isAttacking = true;
+            charAnimator.SetTrigger("Attack");
+            StartCoroutine("Attacking");
+            isMoving = false;
+        }
+    }
     IEnumerator FireProjectile(Vector3 startPos, Vector3 endPos)
     {
         GameObject fireBall = Instantiate(fireBlast, startPos, Quaternion.identity, null) as GameObject;
@@ -116,5 +146,13 @@ public class PlayerController : MonoBehaviour
     public void TurnOffRunningAnim()
     {
         charAnimator.SetBool("IsRunning", false);
+    }
+    private void OnEnable()
+    {
+        controls.ActionMap.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.ActionMap.Disable();
     }
 }

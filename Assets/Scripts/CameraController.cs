@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
@@ -23,8 +24,13 @@ public class CameraController : MonoBehaviour
     [Tooltip("Controls The Visability For The Mouse Cursor")]
     public bool isBossFollowOn = false;
 
+
+    // Controls
+    PlayerControls cameraControls;
+
     Vector3 rotationSmoothVelocity;
     Vector3 currentRotation;
+    Vector2 cameraMove;
 
     Quaternion newRot;
     Vector3 cameraToBoss;
@@ -34,16 +40,17 @@ public class CameraController : MonoBehaviour
     bool isChanging = false;
     float yaw;
     float pitch;
+    private void Awake()
+    {
+        cameraControls = new PlayerControls();
 
+        cameraControls.ActionMap.MoveCamera.performed += ctx => cameraMove = ctx.ReadValue<Vector2>();
+        cameraControls.ActionMap.MoveCamera.canceled += ctx => cameraMove = Vector2.zero;
+
+        cameraControls.ActionMap.LockOn.performed += ctx => LockOn();
+    }
     void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            isBossFollowOn = !isBossFollowOn;
-            isChanging = true;
-        }
-
-
         if (turnOffCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -52,17 +59,13 @@ public class CameraController : MonoBehaviour
 
         if (!isBossFollowOn)
         {
-            if (Input.GetMouseButton(0))
-            {
-                yaw += Input.GetAxis("Mouse X") * mouseSensitivity;
-                pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity;
-                pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
-            }
+            yaw += cameraMove.x * mouseSensitivity;
+            pitch -= cameraMove.y * mouseSensitivity;
+            pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
 
 
             if (isChanging)
             {
-                Debug.Log("Resetting rotation");
                 currentRotation = transform.eulerAngles;
                 pitch = transform.eulerAngles.x;
                 yaw = transform.eulerAngles.y;
@@ -70,7 +73,7 @@ public class CameraController : MonoBehaviour
             currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(pitch, yaw, 0.0f), ref rotationSmoothVelocity, rotationSmoothTime);
             transform.eulerAngles = currentRotation;
         }
-        else 
+        else
         {
             cameraToBoss = bossTransform.position - transform.position;
             newRot = Quaternion.LookRotation(cameraToBoss);
@@ -80,5 +83,18 @@ public class CameraController : MonoBehaviour
 
         transform.position = target.position - transform.forward * distFromTarget;
         isChanging = false;
+    }
+    private void OnEnable()
+    {
+        cameraControls.ActionMap.Enable();
+    }
+    private void OnDisable()
+    {
+        cameraControls.ActionMap.Disable();
+    }
+    void LockOn()
+    {
+        isBossFollowOn = !isBossFollowOn;
+        isChanging = true;
     }
 }
