@@ -953,6 +953,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 821905509547661126, guid: 8faffff2b12e7e64f832833492b80ea1,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8666636121841095232, guid: 8faffff2b12e7e64f832833492b80ea1,
         type: 3}
       propertyPath: m_TagString
@@ -976,7 +981,7 @@ PrefabInstance:
     - target: {fileID: 821905509547661121, guid: 8faffff2b12e7e64f832833492b80ea1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.152
       objectReference: {fileID: 0}
     - target: {fileID: 821905509547661121, guid: 8faffff2b12e7e64f832833492b80ea1,
         type: 3}
@@ -1288,7 +1293,7 @@ PrefabInstance:
     - target: {fileID: 9179578096245354538, guid: e822dc73b3ee00a40b05dd715db1799c,
         type: 3}
       propertyPath: rotationSmoothTime
-      value: 0.18
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 9179578096245354538, guid: e822dc73b3ee00a40b05dd715db1799c,
         type: 3}
@@ -1308,7 +1313,7 @@ PrefabInstance:
     - target: {fileID: 9179578096245354538, guid: e822dc73b3ee00a40b05dd715db1799c,
         type: 3}
       propertyPath: mouseSensitivity
-      value: 4.5
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e822dc73b3ee00a40b05dd715db1799c, type: 3}
@@ -1424,7 +1429,7 @@ PrefabInstance:
     - target: {fileID: 2166021230301572895, guid: 8e917dbdc62492d4db6e5ae16e951476,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.193
       objectReference: {fileID: 0}
     - target: {fileID: 2166021230301572895, guid: 8e917dbdc62492d4db6e5ae16e951476,
         type: 3}
