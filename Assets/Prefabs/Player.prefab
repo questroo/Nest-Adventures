@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1212577096}
   m_Layer: 0
   m_Name: col
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 821905509547661127}
   - component: {fileID: 821905509547661120}
   - component: {fileID: 938783135}
+  - component: {fileID: 290033730}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -238,19 +239,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f32ba41f69b764381062d596aa9217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &1822731997
-BoxCollider:
+--- !u!114 &290033730
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8666636123110014657}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_GameObject: {fileID: 821905509547661124}
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.8099539, y: 1.1683097, z: 1.0508726}
-  m_Center: {x: -0.119212985, y: 0.91614664, z: 0.6824151}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696ffd997693f964f8b88f1051071644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
 --- !u!1001 &821905509111375816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -365,12 +366,6 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 09c27268a35e7574cad14a40b081e9bb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 421dd6fcd285e2140ac6dbb7cadfad07, type: 3}
---- !u!1 &8666636123110014657 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 421dd6fcd285e2140ac6dbb7cadfad07,
-    type: 3}
-  m_PrefabInstance: {fileID: 821905509111375816}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5628736998003739858 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 421dd6fcd285e2140ac6dbb7cadfad07,

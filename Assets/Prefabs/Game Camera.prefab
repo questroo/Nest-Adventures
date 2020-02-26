@@ -96,4 +96,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95463e2cb62eaf489e94da9ef4a33c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  mouseSensitivity: 5
+  target: {fileID: 0}
+  distFromTarget: 5.5
+  pitchMinMax: {x: -5, y: 85}
+  rotationSmoothTime: 0.18
+  turnOffCursor: 0
+  isBossFollowOn: 0
+  bossTransform: {fileID: 0}
+  cameraSwitchSpeed: 270
