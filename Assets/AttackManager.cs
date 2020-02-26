@@ -18,7 +18,6 @@ public class AttackManager : MonoBehaviour
     {
         if(other.CompareTag("Boss") && playerController.GetAttackBool() == false)
         {
-            Debug.Log("boss should take damage");
             other.GetComponent<EnemyStat>().TakeDamage(damage);
         }
     }
