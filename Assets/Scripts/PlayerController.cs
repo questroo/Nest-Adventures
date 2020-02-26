@@ -67,22 +67,7 @@ public class PlayerController : MonoBehaviour
             float z = moveDirection.y;
             Vector2 inputDir = new Vector2(x, z).normalized;
             float targetSpeed = moveSpeed * inputDir.magnitude;
-            //Attack();
-            //if (Input.GetKeyDown(KeyCode.E) && !isAttacking && charAnimator.CompareTag("Tanjiro"))
-            //{
-            //    isAttacking = true;
-            //    charAnimator.SetTrigger("Attack");
-            //    StartCoroutine("Attacking");
-            //    isMoving = false;
-            //    StartCoroutine(FireProjectile(projectileStartLocation.transform.position, projectileEndLocation.transform.position));
-            //}
-            //else if (Input.GetKeyDown(KeyCode.E) && !isAttacking)
-            //{
-            //    isAttacking = true;
-            //    charAnimator.SetTrigger("Attack");
-            //    StartCoroutine("Attacking");
-            //    isMoving = false;
-            //}
+
             if (inputDir != Vector2.zero)
             {
                 isMoving = true;
@@ -142,6 +127,10 @@ public class PlayerController : MonoBehaviour
         fireRigid.AddForce((endPos - startPos).normalized * fireSpeed * Time.deltaTime);
         yield return new WaitForSeconds(1.5f);
         Destroy(fireBall);
+    }
+    public bool GetAttackBool()
+    {
+        return isAttacking;
     }
     public void TurnOffRunningAnim()
     {
