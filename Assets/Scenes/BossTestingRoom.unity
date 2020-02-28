@@ -3817,12 +3817,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1489472162}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1490916971 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6590442029868504988, guid: 8e917dbdc62492d4db6e5ae16e951476,
-    type: 3}
-  m_PrefabInstance: {fileID: 2166021229404026965}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1528705395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4941,13 +4935,13 @@ PrefabInstance:
     - target: {fileID: 9179578096245354538, guid: e822dc73b3ee00a40b05dd715db1799c,
         type: 3}
       propertyPath: mouseSensitivity
-      value: 3.8
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 9179578096245354538, guid: e822dc73b3ee00a40b05dd715db1799c,
         type: 3}
       propertyPath: bossTransform
       value: 
-      objectReference: {fileID: 1490916971}
+      objectReference: {fileID: 0}
     - target: {fileID: 9179578096245354538, guid: e822dc73b3ee00a40b05dd715db1799c,
         type: 3}
       propertyPath: cameraSwitchSpeed
@@ -5156,6 +5150,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 2166021230301572892, guid: 8e917dbdc62492d4db6e5ae16e951476,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2166021230301572895, guid: 8e917dbdc62492d4db6e5ae16e951476,
         type: 3}
