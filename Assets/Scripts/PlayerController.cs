@@ -109,6 +109,7 @@ public class PlayerController : MonoBehaviour
             charAnimator.SetTrigger("Attack");
             StartCoroutine("Attacking");
             isMoving = false;
+            Debug.Log("tanjiros attack");
             StartCoroutine(FireProjectile(projectileStartLocation.transform.position, projectileEndLocation.transform.position));
         }
         else if (!isAttacking)
@@ -116,11 +117,13 @@ public class PlayerController : MonoBehaviour
             isAttacking = true;
             charAnimator.SetTrigger("Attack");
             StartCoroutine("Attacking");
+            Debug.Log("bertha attack");
             isMoving = false;
         }
     }
     IEnumerator FireProjectile(Vector3 startPos, Vector3 endPos)
     {
+        Debug.Log("projectile fired");
         GameObject fireBall = Instantiate(fireBlast, startPos, Quaternion.identity, null) as GameObject;
         Rigidbody fireRigid = fireBall.GetComponent<Rigidbody>();
         fireRigid.velocity = Vector3.zero;
