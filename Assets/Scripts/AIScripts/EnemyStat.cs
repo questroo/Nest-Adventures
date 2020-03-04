@@ -1,30 +1,42 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyStat : MonoBehaviour
 {
     public float bossMaxHealth = 100f;
-    public float bossCurrentHealth = 100f;
     public float bossDamage = 10f;
+    public HealthBarManager healthBar;
 
+    private float bossCurrentHealth;
     private PlayerStats player;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         player = FindObjectOfType<PlayerStats>();
+        bossCurrentHealth = bossMaxHealth;
+        healthBar.SetMaxHealth(bossMaxHealth);
     }
 
     public void TakeDamage(float damage)
     {
         Debug.Log("got hit");
+
         bossCurrentHealth -= damage;
+        healthBar.SetHealth(bossCurrentHealth);
+
         if (bossCurrentHealth <= 0f)
         {
             bossCurrentHealth = 0.0f;
             Die();
         }
+    }
+
+    public float GetHealthNormalized()
+    {
+        return (float)bossCurrentHealth / bossMaxHealth;
     }
 
     private void OnCollisionEnter(Collision collision)

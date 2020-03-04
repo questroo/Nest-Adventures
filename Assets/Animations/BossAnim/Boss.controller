@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   minTimer: 0
-  maxTimer: 5
+  maxTimer: 4
 --- !u!1101 &-5493192010436126843
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  maxTimer: 5
+  maxTimer: 4
   minTimer: 0
 --- !u!1101 &-721960555544306738
 AnimatorStateTransition:

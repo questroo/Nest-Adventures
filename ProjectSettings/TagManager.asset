@@ -11,6 +11,7 @@ TagManager:
   - Weapon
   - Sword
   - axe
+  - bar
   layers:
   - Default
   - TransparentFX
