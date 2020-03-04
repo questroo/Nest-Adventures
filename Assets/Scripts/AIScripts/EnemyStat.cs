@@ -8,9 +8,9 @@ public class EnemyStat : MonoBehaviour
     public float bossMaxHealth = 100f;
     public float bossDamage = 10f;
     public HealthBarManager healthBar;
-
     private float bossCurrentHealth;
     private PlayerStats player;
+    public AttackManager attackManager;
 
 
     void Start()
@@ -22,15 +22,16 @@ public class EnemyStat : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        Debug.Log("got hit");
-
-        bossCurrentHealth -= damage;
-        healthBar.SetHealth(bossCurrentHealth);
-
-        if (bossCurrentHealth <= 0f)
+        if (!attackManager.hasBeenHit)
         {
-            bossCurrentHealth = 0.0f;
-            Die();
+            bossCurrentHealth -= damage;
+            healthBar.SetHealth(bossCurrentHealth);
+
+            if (bossCurrentHealth <= 0f)
+            {
+                bossCurrentHealth = 0.0f;
+                Die();
+            }
         }
     }
 
@@ -41,11 +42,11 @@ public class EnemyStat : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Tanjiro") || collision.gameObject.CompareTag("Bertha"))
+        if (collision.gameObject.CompareTag("Tanjiro") || collision.gameObject.CompareTag("Bertha"))
         {
             player.GetComponentInParent<PlayerStats>().TakeDamage(bossDamage);
         }
-        
+
     }
     private void Die()
     {

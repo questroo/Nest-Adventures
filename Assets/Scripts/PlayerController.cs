@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     PlayerControls controls;
     //Components
     private Animator charAnimator;
-    public Collider weaponCollider;
     //Variables
     public float fireSpeed = 10.0f;
     private bool isMoving = false;
@@ -41,7 +40,6 @@ public class PlayerController : MonoBehaviour
         myDirection = Vector3.forward;
         charAnimator = GetComponentInChildren<Animator>();
         cameraTransform = Camera.main.transform;
-        weaponCollider.enabled = false;
     }
     void Update()
     {
@@ -56,14 +54,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             charAnimator.SetBool("IsRunning", false);
-        }
-        if(isAttacking)
-        {
-            weaponCollider.enabled = true;
-        }
-        else
-        {
-            weaponCollider.enabled = false;
         }
         if (!disableInput && !isAttacking)
         {
