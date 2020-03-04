@@ -31,20 +31,20 @@ public class StrafeRBehaviour : StateMachineBehaviour
 
         rb.transform.position += rb.transform.right * speed * Time.deltaTime;
         
-        if(timer <= 1)
+        if(timer <= 0)
         {
             animator.SetTrigger("strafeToLeft");
         }
-        if (distance > boss.gapCloserRadius && distance > boss.meleeAttackRadius && timer <= 4)
+        else if (distance > boss.gapCloserRadius && distance > boss.meleeAttackRadius && timer <= 2)
         {
             animator.SetTrigger("run");
         }
-        if (distance <= boss.gapCloserRadius && distance > boss.meleeAttackRadius && timer <= 3)
+        else if (distance <= boss.gapCloserRadius && distance > boss.meleeAttackRadius && timer <= 2)
         {
             animator.SetTrigger("jumpAttack");
            
         }
-        if(distance <= boss.meleeAttackRadius && timer <= 0)
+        else if(distance <= boss.meleeAttackRadius && timer <= 1)
         {
             animator.SetTrigger("attack");
         }

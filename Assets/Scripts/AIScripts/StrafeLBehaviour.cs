@@ -31,11 +31,11 @@ public class StrafeLBehaviour : StateMachineBehaviour
         {
             animator.SetTrigger("strafeToRight");
         }
-        if (distance < boss.meleeAttackRadius && timer <= 4)
+        else if (distance < boss.meleeAttackRadius && timer <= 1)
         {
             animator.SetTrigger("attack");
         }
-        if (distance > boss.gapCloserRadius && distance > boss.meleeAttackRadius && timer <= 4)
+        else if (distance > boss.gapCloserRadius && distance > boss.meleeAttackRadius && timer <= 1)
         {
             animator.SetTrigger("run");
         }
