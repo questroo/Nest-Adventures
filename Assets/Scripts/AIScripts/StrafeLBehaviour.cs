@@ -24,16 +24,20 @@ public class StrafeLBehaviour : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         boss.LookAtPlayer();
-
+        float distance = Vector3.Distance(playerPos.position, rb.transform.position);
         rb.transform.position -= rb.transform.right * speed * Time.deltaTime;
 
         if (timer <= 0)
         {
             animator.SetTrigger("strafeToRight");
         }
-        if (Vector3.Distance(playerPos.position, rb.transform.position) < boss.meleeAttackRadius && timer <= 3)
+        if (distance < boss.meleeAttackRadius && timer <= 4)
         {
             animator.SetTrigger("attack");
+        }
+        if (distance > boss.gapCloserRadius && distance > boss.meleeAttackRadius && timer <= 4)
+        {
+            animator.SetTrigger("run");
         }
         else
         {

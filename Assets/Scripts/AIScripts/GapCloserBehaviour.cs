@@ -22,11 +22,9 @@ public class GapCloserBehaviour : StateMachineBehaviour
         {
             animator.transform.position += rb.transform.forward * speed * Time.deltaTime;
         }
-        else
-        {
-            time -= Time.deltaTime;
 
-        }
+        time -= Time.deltaTime;
+
 
 
 

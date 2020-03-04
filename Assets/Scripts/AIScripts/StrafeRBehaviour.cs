@@ -7,27 +7,19 @@ public class StrafeRBehaviour : StateMachineBehaviour
     private BossController boss;
     private Rigidbody rb;
     private Transform playerPos;
-    private float strafeTimer;
-    private float rushTimer;
-    private float attackTimer;
-    private float minTimer = 0;
-    private float maxTimer = 15;
-
+    private float timer;
+   
     public float speed;
-    public float strafeTimerNum;
-    public float attackTimerNum;
-    public float rushTimerNum;
-
-
+    public float maxTimer = 5;
+    public float minTimer = 0;
+ 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         boss = animator.GetComponent<BossController>();
         rb = animator.GetComponent<Rigidbody>();
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        strafeTimer = Random.Range(minTimer, maxTimer);
-        attackTimer = Random.Range(minTimer, maxTimer);
-        rushTimer = Random.Range(minTimer, maxTimer);
-
+        timer = Random.Range(minTimer, maxTimer);
+    
     }
 
 
@@ -35,27 +27,30 @@ public class StrafeRBehaviour : StateMachineBehaviour
     {
         boss.LookAtPlayer();
         float step = 2.0f * Time.deltaTime;
+        float distance = Vector3.Distance(playerPos.position, rb.transform.position);
 
         rb.transform.position += rb.transform.right * speed * Time.deltaTime;
         
-        if(strafeTimer <= strafeTimerNum)
+        if(timer <= 1)
         {
             animator.SetTrigger("strafeToLeft");
         }
-        if (Vector3.Distance(playerPos.position, rb.transform.position) >= boss.gapCloserRadius && rushTimer <= rushTimerNum)
+        if (distance > boss.gapCloserRadius && distance > boss.meleeAttackRadius && timer <= 4)
         {
             animator.SetTrigger("run");
         }
-        if (Vector3.Distance(playerPos.position, rb.transform.position) <= boss.gapCloserRadius && attackTimer <= attackTimerNum)
+        if (distance <= boss.gapCloserRadius && distance > boss.meleeAttackRadius && timer <= 3)
         {
             animator.SetTrigger("jumpAttack");
            
         }
+        if(distance <= boss.meleeAttackRadius && timer <= 0)
+        {
+            animator.SetTrigger("attack");
+        }
         else
         {
-            strafeTimer -= Time.deltaTime;
-            rushTimer -= Time.deltaTime;
-            attackTimer -= Time.deltaTime;
+            timer -= Time.deltaTime;
         }
 
     }

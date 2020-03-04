@@ -28,7 +28,7 @@ public class RunningBehaviour : StateMachineBehaviour
             
         if(Vector3.Distance(playerPos.position, animator.transform.position) <= boss.gapCloserRadius)
         {
-            animator.SetTrigger("attack");
+            animator.SetTrigger("jumpAttack");
         }
     }
 

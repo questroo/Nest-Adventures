@@ -18,6 +18,7 @@ public class EnemyStat : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Debug.Log("got hit");
         bossCurrentHealth -= damage;
         if (bossCurrentHealth <= 0f)
         {
