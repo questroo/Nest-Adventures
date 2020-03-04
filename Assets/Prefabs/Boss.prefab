@@ -123,6 +123,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &416901155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7867416652773270927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b14981dc76c2e9418b5c5c66c60205c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2166021230834680832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,18 +164,6 @@ MonoBehaviour:
   bossMaxHealth: 100
   bossCurrentHealth: 100
   bossDamage: 10
---- !u!114 &416901155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7867416652773270927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b14981dc76c2e9418b5c5c66c60205c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2166021230543797382
 PrefabInstance:
   m_ObjectHideFlags: 0
