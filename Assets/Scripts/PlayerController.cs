@@ -7,12 +7,8 @@ public class PlayerController : MonoBehaviour
     // InputSystem
     PlayerControls controls;
     //Components
-    public GameObject fireBlast;
     private Animator charAnimator;
-    public GameObject projectileStartLocation;
-    public GameObject projectileEndLocation;
-    private ProjectileController projectileController;
-
+    public Collider weaponCollider;
     //Variables
     public float fireSpeed = 10.0f;
     private bool isMoving = false;
@@ -44,8 +40,8 @@ public class PlayerController : MonoBehaviour
     {
         myDirection = Vector3.forward;
         charAnimator = GetComponentInChildren<Animator>();
-        projectileController = GetComponent<ProjectileController>();
         cameraTransform = Camera.main.transform;
+        weaponCollider.enabled = false;
     }
     void Update()
     {
@@ -60,6 +56,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             charAnimator.SetBool("IsRunning", false);
+        }
+        if(isAttacking)
+        {
+            weaponCollider.enabled = true;
+        }
+        else
+        {
+            weaponCollider.enabled = false;
         }
         if (!disableInput && !isAttacking)
         {
@@ -94,7 +98,6 @@ public class PlayerController : MonoBehaviour
     public void ResetCharacterComponents()
     {
         charAnimator = GetComponentInChildren<Animator>();
-        projectileController = GetComponent<ProjectileController>();
     }
     IEnumerator Attacking()
     {
@@ -103,34 +106,24 @@ public class PlayerController : MonoBehaviour
     }
     void Attack()
     {
-        if (!isAttacking && charAnimator.CompareTag("Tanjiro"))
+        if (!isAttacking)
         {
             isAttacking = true;
             charAnimator.SetTrigger("Attack");
             StartCoroutine("Attacking");
             isMoving = false;
-            Debug.Log("tanjiros attack");
-            StartCoroutine(FireProjectile(projectileStartLocation.transform.position, projectileEndLocation.transform.position));
-        }
-        else if (!isAttacking)
-        {
-            isAttacking = true;
-            charAnimator.SetTrigger("Attack");
-            StartCoroutine("Attacking");
-            Debug.Log("bertha attack");
-            isMoving = false;
         }
     }
-    IEnumerator FireProjectile(Vector3 startPos, Vector3 endPos)
-    {
-        Debug.Log("projectile fired");
-        GameObject fireBall = Instantiate(fireBlast, startPos, Quaternion.identity, null) as GameObject;
-        Rigidbody fireRigid = fireBall.GetComponent<Rigidbody>();
-        fireRigid.velocity = Vector3.zero;
-        fireRigid.AddForce((endPos - startPos).normalized * fireSpeed * Time.deltaTime);
-        yield return new WaitForSeconds(1.5f);
-        Destroy(fireBall);
-    }
+    //IEnumerator FireProjectile(Vector3 startPos, Vector3 endPos)
+    //{
+    //    Debug.Log("projectile fired");
+    //    GameObject fireBall = Instantiate(fireBlast, startPos, Quaternion.identity, null) as GameObject;
+    //    Rigidbody fireRigid = fireBall.GetComponent<Rigidbody>();
+    //    fireRigid.velocity = Vector3.zero;
+    //    fireRigid.AddForce((endPos - startPos).normalized * fireSpeed * Time.deltaTime);
+    //    yield return new WaitForSeconds(1.5f);
+    //    Destroy(fireBall);
+    //}
     public bool GetAttackBool()
     {
         return isAttacking;
