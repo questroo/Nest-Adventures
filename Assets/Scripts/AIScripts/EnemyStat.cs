@@ -8,16 +8,18 @@ public class EnemyStat : MonoBehaviour
     public float bossMaxHealth = 100f;
     public float bossDamage = 10f;
     public HealthBarManager healthBar;
-    private float bossCurrentHealth;
-    private PlayerStats player;
     public AttackManager attackManager;
 
+    private float bossCurrentHealth;
+    private PlayerStats player;
+    private Animator anim;
 
     void Start()
     {
         player = FindObjectOfType<PlayerStats>();
         bossCurrentHealth = bossMaxHealth;
         healthBar.SetMaxHealth(bossMaxHealth);
+        anim = GetComponent<Animator>();
     }
 
     public void TakeDamage(float damage)
@@ -30,7 +32,7 @@ public class EnemyStat : MonoBehaviour
             if (bossCurrentHealth <= 0f)
             {
                 bossCurrentHealth = 0.0f;
-                Die();
+                anim.SetTrigger("dead");
             }
         }
     }
@@ -48,7 +50,7 @@ public class EnemyStat : MonoBehaviour
         }
 
     }
-    private void Die()
+    public void Die()
     {
         //Death Animation
         //Stop all movement

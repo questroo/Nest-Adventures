@@ -26,7 +26,6 @@ public class StrafeRBehaviour : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         boss.LookAtPlayer();
-        float step = 2.0f * Time.deltaTime;
         float distance = Vector3.Distance(playerPos.position, rb.transform.position);
 
         rb.transform.position += rb.transform.right * speed * Time.deltaTime;

@@ -18,16 +18,15 @@ public class GapCloserBehaviour : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        
         if (time > 0.0f)
         {
+            boss.LookAtPlayer();
             animator.transform.position += rb.transform.forward * speed * Time.deltaTime;
         }
 
         time -= Time.deltaTime;
-
-
-
-
+        
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
