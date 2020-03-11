@@ -24,8 +24,7 @@ public class EnemyStat : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (!attackManager.hasBeenHit)
-        {
+        
             bossCurrentHealth -= damage;
             healthBar.SetHealth(bossCurrentHealth);
 
@@ -34,7 +33,7 @@ public class EnemyStat : MonoBehaviour
                 bossCurrentHealth = 0.0f;
                 anim.SetTrigger("dead");
             }
-        }
+        
     }
 
     public float GetHealthNormalized()

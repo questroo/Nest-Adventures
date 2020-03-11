@@ -13,8 +13,7 @@ public class WorldManager : MonoBehaviour
     private void Awake()
     {
         control = new PlayerControls();
-
-        control.ActionMap.Swap.performed += ctx => Swap();
+        
     }
     private void Start()
     {
