@@ -38,10 +38,10 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Swap",
+                    "name": "DodgeRoll",
                     "type": "Button",
-                    "id": "ae497d11-f0c5-43d5-827a-abad8586c9b0",
-                    "expectedControlType": "",
+                    "id": "d5c03d16-8305-4774-afeb-ec34b424564b",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -137,12 +137,12 @@
                 },
                 {
                     "name": "",
-                    "id": "b95024ab-a4b8-483b-9284-d93906cb783a",
-                    "path": "<Gamepad>/buttonNorth",
+                    "id": "7f91a4b2-2641-4e45-9830-cc7779d956cf",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Swap",
+                    "action": "DodgeRoll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

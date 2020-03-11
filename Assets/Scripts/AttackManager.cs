@@ -4,25 +4,29 @@ using UnityEngine;
 
 public class AttackManager : MonoBehaviour
 {
+    private PlayerController playerController;
     public float damage = 50.0f;
-    public bool hasBeenHit { get; set; }
+    public bool canDealDamage = true;
 
-    private void OnTriggerExit(Collider other)
+    private void Start()
     {
-        if (other.CompareTag("Boss"))
-        {
-            hasBeenHit = false;
-        }
+        playerController = GetComponent<PlayerController>();
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Boss"))
         {
+            playerController.weaponCollider.enabled = false;
             Debug.Log("dealt damage to boss");
-
             other.GetComponent<EnemyStat>().TakeDamage(damage);
 
-            hasBeenHit = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Boss"))
+        {
         }
     }
 }
