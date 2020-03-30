@@ -9,7 +9,10 @@ public class PlayerController : MonoBehaviour
     public GameObject projectileStartLocation;
     public GameObject projectileEndLocation;
     private ProjectileController projectileController;
+    private Camera cam;
 
+    public Vector3 camForward;
+    public Vector3 camRight;
     //Variables
     public float fireSpeed = 10.0f;
     private bool isMoving = false;
@@ -30,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
     public void Start()
     {
+        cam = Camera.main;
         myDirection = Vector3.forward;
         charAnimator = GetComponentInChildren<Animator>();
         projectileController = GetComponent<ProjectileController>();
@@ -37,6 +41,12 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        camForward = cam.transform.forward;
+        camRight = cam.transform.right;
+        camForward.y = 0.0f;
+        camRight.y = 0.0f;
+        camForward.Normalize();
+        camRight.Normalize();
         if (disableInput)
         {
             isMoving = false;
