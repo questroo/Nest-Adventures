@@ -7,6 +7,7 @@ public class RunningBehaviour : StateMachineBehaviour
 {
     public float speed;
 
+    private NavMeshAgent agent;
     private Transform playerPos;
     private BossController boss;
     private Rigidbody rb;
@@ -17,6 +18,7 @@ public class RunningBehaviour : StateMachineBehaviour
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         rb = animator.GetComponent<Rigidbody>();
         boss = animator.GetComponent<BossController>();
+        agent = animator.GetComponent<NavMeshAgent>();
     }
 
 
@@ -24,11 +26,15 @@ public class RunningBehaviour : StateMachineBehaviour
     {
         boss.LookAtPlayer();
         //Vector3 target = new Vector3(playerPos.position.x, animator.transform.position.y);
+        float distance = Vector3.Distance(playerPos.position, rb.transform.position);
         rb.transform.position += rb.transform.forward * speed * Time.deltaTime;
+
+        if (distance >= boss.gapCloserRadius)
+            agent.SetDestination(playerPos.position);
             
-        if(Vector3.Distance(playerPos.position, animator.transform.position) <= boss.gapCloserRadius)
+        if(distance <= boss.gapCloserRadius)
         {
-            animator.SetTrigger("attack");
+            animator.SetTrigger("jumpAttack");
         }
     }
 

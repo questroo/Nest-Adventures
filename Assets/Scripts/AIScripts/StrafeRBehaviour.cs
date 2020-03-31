@@ -8,23 +8,25 @@ public class StrafeRBehaviour : StateMachineBehaviour
     private Rigidbody rb;
     private Transform playerPos;
     private float timer;
-
+   
     public float speed;
-    public float minTimer;
-    public float maxTimer;
-
+    public float maxTimer = 5;
+    public float minTimer = 0;
+ 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         boss = animator.GetComponent<BossController>();
         rb = animator.GetComponent<Rigidbody>();
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         timer = Random.Range(minTimer, maxTimer);
+    
     }
 
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         boss.LookAtPlayer();
+        float distance = Vector3.Distance(playerPos.position, rb.transform.position);
 
         rb.transform.position += rb.transform.right * speed * Time.deltaTime;
         
@@ -32,19 +34,24 @@ public class StrafeRBehaviour : StateMachineBehaviour
         {
             animator.SetTrigger("strafeToLeft");
         }
-        else
+        else if (distance > boss.gapCloserRadius && distance > boss.meleeAttackRadius && timer <= 2)
         {
-           timer -= Time.deltaTime;
+            animator.SetTrigger("run");
         }
-
-        if (Vector3.Distance(playerPos.position, rb.transform.position) >= boss.gapCloserRadius)
+        else if (distance <= boss.gapCloserRadius && distance > boss.meleeAttackRadius && timer <= 2)
         {
-
+            animator.SetTrigger("jumpAttack");
+           
         }
-        else if (Vector3.Distance(playerPos.position, rb.transform.position) <= boss.meleeAttackRadius)
+        else if(distance <= boss.meleeAttackRadius && timer <= 1)
         {
             animator.SetTrigger("attack");
         }
+        else
+        {
+            timer -= Time.deltaTime;
+        }
+
     }
 
 

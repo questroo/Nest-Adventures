@@ -1,29 +1,42 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
-    public float m_Health = 100.0f;
+    public float m_maxHealth = 100.0f;
+    private float m_Health;
     public float m_AtkDamage = 14.0f;
     private bool invincible = false;
+    public Image healthSlider;
 
     private EnemyStat enemyStat;
 
     private void Start()
     {
+        m_Health = m_maxHealth;
         enemyStat = FindObjectOfType<EnemyStat>();
+        healthSlider.fillAmount = 1.0f;
     }
     public void TakeDamage(float damage)
     {
         if (!invincible)
         {
-            Debug.Log("Take damage.");
             m_Health -= damage;
-            if (m_Health < 0.0f)
+            Debug.Log("Take damage. Curr health: " + m_Health);
+            if (m_Health <= 0.0f)
             {
                 m_Health = 0.0f;
+                UpdateHealthBar();
                 Die();
             }
+            UpdateHealthBar();
         }
+    }
+
+    private void UpdateHealthBar()
+    {
+        float healthPercent = m_Health / m_maxHealth;
+        healthSlider.fillAmount = healthPercent;
     }
     public void StartIFrame()
     {
