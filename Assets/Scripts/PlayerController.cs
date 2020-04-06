@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     PlayerControls controls;
     //Components
     private Animator charAnimator;
-<<<<<<< HEAD
     public GameObject projectileStartLocation;
     public GameObject projectileEndLocation;
     private ProjectileController projectileController;
@@ -16,8 +15,6 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 camForward;
     public Vector3 camRight;
-=======
->>>>>>> bd2121ce94cb35e0160f30b7dbdcdf0b498505fc
     //Variables
     public float fireSpeed = 10.0f;
     private bool isMoving = false;
