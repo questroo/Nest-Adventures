@@ -12,6 +12,8 @@ TagManager:
   - Sword
   - axe
   - bar
+  - Trap
+  - Breakable
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,8 @@ TagManager:
   - UI
   - 
   - 
-  - UI
   - PostProcessing
+  - 
   - 
   - 
   - 
