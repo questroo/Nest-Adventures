@@ -6,18 +6,24 @@ using UnityEngine.AI;
 public class BossController : MonoBehaviour
 {
     Transform target;
-    public float gapCloserRadius = 8f;
-    public float meleeAttackRadius = 3f;
+    NavMeshAgent agent;
+
+    public float meleeAttackRadius;
 
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        agent = GetComponent<NavMeshAgent>();
+        meleeAttackRadius = agent.stoppingDistance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(target != null)
+        {
+            Movement();
+        }
     }
 
     public void LookAtPlayer()
@@ -27,11 +33,17 @@ public class BossController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5.0f);
     }
 
+    public void Movement()
+    {
+        float distance = Vector3.Distance(target.position, transform.position);
+
+        LookAtPlayer();
+        agent.SetDestination(target.position);
+      
+    }
+
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, gapCloserRadius);
-
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, meleeAttackRadius);
     }
