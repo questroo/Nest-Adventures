@@ -15,7 +15,7 @@ public class PlayerStats : MonoBehaviour
     {
         m_Health = m_maxHealth;
         enemyStat = FindObjectOfType<EnemyStat>();
-        healthSlider.fillAmount = 1.0f;
+        //healthSlider.fillAmount = 1.0f;
     }
     public void TakeDamage(float damage)
     {

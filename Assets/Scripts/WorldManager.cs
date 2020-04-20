@@ -44,7 +44,7 @@ public class WorldManager : MonoBehaviour
             Characters[0].SetActive(false);
         }
         swapping = false;
-        Characters[m_CharacterIndex].GetComponentInParent<PlayerController>().ResetCharacterComponents();
+        //Characters[m_CharacterIndex].GetComponentInParent<PlayerController>().ResetCharacterComponents();
     }
     public string GetCurrentPlayerTag()
     {

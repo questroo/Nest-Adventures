@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
@@ -22,8 +24,10 @@ public class CameraController : MonoBehaviour
     public bool turnOffCursor = false;
 
     [Tooltip("Controls The Visability For The Mouse Cursor")]
-    public bool isBossFollowOn = false;
+    public bool isTargetFollowOn = false;
 
+    [SerializeField]
+    private List<EnemyStat> enemiesInLOS;
 
     // Controls
     PlayerControls cameraControls;
@@ -34,8 +38,10 @@ public class CameraController : MonoBehaviour
 
     Quaternion newRot;
     Vector3 cameraToBoss;
-    public Transform bossTransform;
+    private Transform enemyLockOnTransform;
     public float cameraSwitchSpeed = 270.0f;
+    [SerializeField]
+    private int enemyIndex = 0;
 
     bool isChanging = false;
     float yaw;
@@ -49,6 +55,12 @@ public class CameraController : MonoBehaviour
 
         cameraControls.ActionMap.LockOn.performed += ctx => LockOn();
     }
+
+    private void Update()
+    {
+        ManageEnemiesInLOSList();
+    }
+
     void LateUpdate()
     {
         if (turnOffCursor)
@@ -57,7 +69,7 @@ public class CameraController : MonoBehaviour
             Cursor.visible = false;
         }
 
-        if (!isBossFollowOn)
+        if (!isTargetFollowOn)
         {
             yaw += cameraMove.x * mouseSensitivity;
             pitch -= cameraMove.y * mouseSensitivity;
@@ -75,7 +87,7 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            cameraToBoss = bossTransform.position - transform.position;
+            cameraToBoss = enemyLockOnTransform.position - transform.position;
             newRot = Quaternion.LookRotation(cameraToBoss);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, Time.deltaTime * cameraSwitchSpeed);
             currentRotation = transform.eulerAngles;
@@ -94,7 +106,40 @@ public class CameraController : MonoBehaviour
     }
     void LockOn()
     {
-        isBossFollowOn = !isBossFollowOn;
+        if(!isTargetFollowOn)
+        {
+            enemyIndex = 0;
+        }
+
+        isTargetFollowOn = true;
+        enemyLockOnTransform = enemiesInLOS[enemyIndex++].transform;
+
+        if(enemyIndex == enemiesInLOS.Count)
+        {
+            isTargetFollowOn = false;
+        }
         isChanging = true;
+    }
+    void ManageEnemiesInLOSList()
+    {
+        var allEnemies = FindObjectsOfType<EnemyStat>();
+        foreach (EnemyStat enemy in allEnemies)
+        {
+            var tempVect = Camera.main.WorldToViewportPoint(enemy.transform.position);
+            if (tempVect.x >= 0 && tempVect.x <= 1 &&
+                tempVect.y >= 0 && tempVect.y <= 1 &&
+                tempVect.z > 0)
+            {
+                if (!enemiesInLOS.Any(x => x.transform == enemy.transform))
+                {
+                    enemiesInLOS.Add(enemy);
+                }
+
+            }
+            else
+            {
+                enemiesInLOS.Remove(enemy);
+            }
+        }
     }
 }
