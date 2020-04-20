@@ -7,13 +7,14 @@ public class BossController : MonoBehaviour
 {
     Transform target;
     NavMeshAgent agent;
-    public float gapCloserRadius = 8f;
-    public float meleeAttackRadius = 3f;
+
+    public float meleeAttackRadius;
 
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        meleeAttackRadius = agent.stoppingDistance;
     }
 
     // Update is called once per frame
@@ -38,20 +39,12 @@ public class BossController : MonoBehaviour
 
         LookAtPlayer();
         agent.SetDestination(target.position);
-
-        if(distance <= agent.stoppingDistance)
-        {
-            //attack
-        }
-        
+      
     }
 
-   // private void OnDrawGizmos()
-   // {
-   //     Gizmos.color = Color.red;
-   //     Gizmos.DrawWireSphere(transform.position, gapCloserRadius);
-   //
-   //     Gizmos.color = Color.blue;
-   //     Gizmos.DrawWireSphere(transform.position, meleeAttackRadius);
-   // }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, meleeAttackRadius);
+    }
 }
