@@ -7,26 +7,25 @@ public class PlayerController : MonoBehaviour
     // InputSystem
     PlayerControls controls;
     //Components
-    private Animator charAnimator;
+    //private Animator charAnimator;
     //Variables
-    public float fireSpeed = 10.0f;
     private bool isMoving = false;
     private bool isAttacking = false;
     private bool isDodging = false;
+    private bool lockOnTarget;
+    [SerializeField] private bool disableInput = false;
     public float moveSpeed = 20.0f;
     public float jumpHeight = 225.0f;
     public float horizontalLaunchSpeed = 1777.0f;
-    [SerializeField] private bool disableInput = false;
+    public float speedAccelSmoothTime = 0.3f;
+    public float fireSpeed = 10.0f;
+    public float turnSmoothVelocity;
+    public float turnSmoothTime = 0.1f;
+    private float speedSmoothVelocity;
+    private float currentSpeed = 0.0f;
     private Vector3 myDirection;
     private Vector2 moveDirection;
     private Transform cameraTransform;
-    public float speedAccelSmoothTime = 0.3f;
-    float speedSmoothVelocity;
-    public float turnSmoothVelocity;
-    public float turnSmoothTime = 0.1f;
-    private bool lockOnTarget;
-    float currentSpeed = 0.0f;
-    public Collider weaponCollider;
 
     private void Awake()
     {
@@ -42,23 +41,22 @@ public class PlayerController : MonoBehaviour
     public void Start()
     {
         myDirection = Vector3.forward;
-        charAnimator = GetComponentInChildren<Animator>();
+        //charAnimator = GetComponentInChildren<Animator>();
         cameraTransform = Camera.main.transform;
-        weaponCollider.enabled = false;
     }
     void Update()
     {
         if (disableInput)
         {
-            isMoving = false;
+            //isMoving = false;
         }
         if (isMoving)
         {
-            charAnimator.SetBool("IsRunning", true);
+            //charAnimator.SetBool("IsRunning", true);
         }
         else
         {
-            charAnimator.SetBool("IsRunning", false);
+            //charAnimator.SetBool("IsRunning", false);
         }
         if (!disableInput && !isAttacking)
         {
@@ -92,21 +90,19 @@ public class PlayerController : MonoBehaviour
     }
     public void ResetCharacterComponents()
     {
-        charAnimator = GetComponentInChildren<Animator>();
+        //charAnimator = GetComponentInChildren<Animator>();
     }
     IEnumerator Attacking()
     {
         yield return new WaitForSeconds(1.0f);
         isAttacking = false;
-        weaponCollider.enabled = false;
     }
     void Attack()
     {
         if (!isAttacking)
         {
-            weaponCollider.enabled = true;
             isAttacking = true;
-            charAnimator.SetTrigger("Attack");
+            //charAnimator.SetTrigger("Attack");
             StartCoroutine("Attacking");
             isMoving = false;
         }
@@ -117,7 +113,7 @@ public class PlayerController : MonoBehaviour
         if(!isDodging)
         {
             isDodging = true;
-            charAnimator.SetTrigger("DodgeRoll");
+            //charAnimator.SetTrigger("DodgeRoll");
             isMoving = false;
         }
     }
@@ -137,7 +133,7 @@ public class PlayerController : MonoBehaviour
     }
     public void TurnOffRunningAnim()
     {
-        charAnimator.SetBool("IsRunning", false);
+        //charAnimator.SetBool("IsRunning", false);
     }
     private void OnEnable()
     {

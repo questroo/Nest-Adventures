@@ -17,7 +17,6 @@ public class AttackManager : MonoBehaviour
     {
         if (other.CompareTag("Boss"))
         {
-            playerController.weaponCollider.enabled = false;
             Debug.Log("dealt damage to boss");
             other.GetComponent<EnemyStat>().TakeDamage(damage);
 
