@@ -3,7 +3,7 @@
 public class AttackController : MonoBehaviour
 {
     private Animator animator;
-    float meleeDamage = 20.0f;
+    int meleeDamage = 20;
 
     private void Start()
     {

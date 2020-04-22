@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttackManager : MonoBehaviour
 {
     private PlayerController playerController;
-    public float damage = 50.0f;
+    public int damage = 50;
     public bool canDealDamage = true;
 
     private void Start()
