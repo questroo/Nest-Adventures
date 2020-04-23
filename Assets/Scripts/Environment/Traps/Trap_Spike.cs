@@ -85,7 +85,8 @@ public class Trap_Spike : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerDungeonTester>().TakeDamage(10.0f);
+            //other.GetComponent<PlayerStats>().TakeDamage(10.0f);
+            other.GetComponent<PlayerStats>().TakeDamage(10.0f);
         }
     }
 }

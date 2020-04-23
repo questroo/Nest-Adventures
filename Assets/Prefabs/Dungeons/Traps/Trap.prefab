@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0cbc45e9902cd47bc208c35b7141c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trapType: 2
+  trapType: 3
   canReset: 1
-  resetDelay: 10
+  resetDelay: 3
   triggerDelay: 0.2

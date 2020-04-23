@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Trap_Explosion : MonoBehaviour
 {
-    public float representationDelay = 1.0f;
-    
     public float bossExplosionDamage = 10.0f;
     public float playerExplosionDamage = 30.0f;
 
