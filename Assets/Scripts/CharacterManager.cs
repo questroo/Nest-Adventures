@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class WorldManager : MonoBehaviour
+public class CharacterManager : MonoBehaviour
 {
     // Controls
     PlayerControls control;
@@ -13,7 +13,8 @@ public class WorldManager : MonoBehaviour
     private void Awake()
     {
         control = new PlayerControls();
-        
+
+        control.ActionMap.CharacterSwap.performed += ctx => Swap();
     }
     private void Start()
     {
