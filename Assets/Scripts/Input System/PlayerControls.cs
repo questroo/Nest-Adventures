@@ -57,6 +57,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""CharacterSwap"",
+                    ""type"": ""Button"",
+                    ""id"": ""23c6a0dd-2628-48b3-8be3-d0862b1e8c0c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -158,6 +166,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""DodgeRoll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8711c09f-d817-4130-9bea-dd6b28aff79f"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CharacterSwap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""afa3a57e-cbf8-44c8-b39d-80db8a4aaa6b"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CharacterSwap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -171,6 +201,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_ActionMap_MoveCamera = m_ActionMap.FindAction("MoveCamera", throwIfNotFound: true);
         m_ActionMap_LockOn = m_ActionMap.FindAction("LockOn", throwIfNotFound: true);
         m_ActionMap_DodgeRoll = m_ActionMap.FindAction("DodgeRoll", throwIfNotFound: true);
+        m_ActionMap_CharacterSwap = m_ActionMap.FindAction("CharacterSwap", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -225,6 +256,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_ActionMap_MoveCamera;
     private readonly InputAction m_ActionMap_LockOn;
     private readonly InputAction m_ActionMap_DodgeRoll;
+    private readonly InputAction m_ActionMap_CharacterSwap;
     public struct ActionMapActions
     {
         private @PlayerControls m_Wrapper;
@@ -234,6 +266,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @MoveCamera => m_Wrapper.m_ActionMap_MoveCamera;
         public InputAction @LockOn => m_Wrapper.m_ActionMap_LockOn;
         public InputAction @DodgeRoll => m_Wrapper.m_ActionMap_DodgeRoll;
+        public InputAction @CharacterSwap => m_Wrapper.m_ActionMap_CharacterSwap;
         public InputActionMap Get() { return m_Wrapper.m_ActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -258,6 +291,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @DodgeRoll.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnDodgeRoll;
                 @DodgeRoll.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnDodgeRoll;
                 @DodgeRoll.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnDodgeRoll;
+                @CharacterSwap.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnCharacterSwap;
+                @CharacterSwap.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnCharacterSwap;
+                @CharacterSwap.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnCharacterSwap;
             }
             m_Wrapper.m_ActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -277,6 +313,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @DodgeRoll.started += instance.OnDodgeRoll;
                 @DodgeRoll.performed += instance.OnDodgeRoll;
                 @DodgeRoll.canceled += instance.OnDodgeRoll;
+                @CharacterSwap.started += instance.OnCharacterSwap;
+                @CharacterSwap.performed += instance.OnCharacterSwap;
+                @CharacterSwap.canceled += instance.OnCharacterSwap;
             }
         }
     }
@@ -288,5 +327,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnMoveCamera(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
         void OnDodgeRoll(InputAction.CallbackContext context);
+        void OnCharacterSwap(InputAction.CallbackContext context);
     }
 }
