@@ -71,7 +71,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
-  m_AllowMSAA: 0
+  m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -99,14 +99,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 5
   target: {fileID: 0}
-  distFromTarget: 6
+  distFromTarget: 5.5
   pitchMinMax: {x: -5, y: 85}
   rotationSmoothTime: 0.18
   turnOffCursor: 0
-  isTargetFollowOn: 0
-  enemiesInLOS: []
+  isBossFollowOn: 0
+  bossTransform: {fileID: 0}
   cameraSwitchSpeed: 270
-  enemyIndex: 0
 --- !u!114 &5730369469950696773
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,8 +10,7 @@ public class Trap : MonoBehaviour
         PlacementTrap,
         SpikeTrap,
         StatModTrap,
-        TeleportTrap,
-        ArrowTrap
+        TeleportTrap
     }
 
     Trap_Explosion explosionTrap;
@@ -19,7 +18,6 @@ public class Trap : MonoBehaviour
     Trap_Spike spikeTrap;
     Trap_StatMod statModTrap;
     Trap_Teleport teleportTrap;
-    Trap_Arrow arrowTrap;
 
     public TrapType trapType = TrapType.SpikeTrap;
 
@@ -69,12 +67,6 @@ public class Trap : MonoBehaviour
                 teleportTrap = GetComponentInChildren<Trap_Teleport>();
                 if (!teleportTrap)
                     Debug.LogError("Trap_Teleport script can't be found even though this is marked as a Teleport Trap!!");
-                break;
-
-            case TrapType.ArrowTrap:
-                arrowTrap = GetComponentInChildren<Trap_Arrow>();
-                if (!arrowTrap)
-                    Debug.LogError("Arrow_Trap script can't be found even though this is marked as a Arrow Trap!!");
                 break;
         }
     }
@@ -140,10 +132,6 @@ public class Trap : MonoBehaviour
 
             case TrapType.TeleportTrap:
                 teleportTrap.TriggerTrap();
-                break;
-
-            case TrapType.ArrowTrap:
-                arrowTrap.TriggerTrap();
                 break;
         }
     }

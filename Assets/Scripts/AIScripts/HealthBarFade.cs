@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trap_StatMod : MonoBehaviour
+public class HealthBarFade : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,10 +14,5 @@ public class Trap_StatMod : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void TriggerTrap()
-    {
-
     }
 }
