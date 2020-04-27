@@ -1,9 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    public Text nameText;
+    public Text dialogueText;
+    public Animator animator;
+
+    private float textSpeed = 0.1f;
+
     private Queue<string> sentences;
 
     private void Start()
@@ -11,14 +18,9 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    private void Update()
-    {
-
-    }
-
     public void StartDialouge(Dialogue dialogue)
     {
-        Debug.Log("Talking to " + dialogue.name);
+        nameText.text = dialogue.name;
 
         sentences.Clear();
 
@@ -28,6 +30,8 @@ public class DialogueManager : MonoBehaviour
         }
 
         DisplayNextSentence();
+
+        animator.SetBool("isOpen", true);
     }
 
     public void DisplayNextSentence()
@@ -35,16 +39,33 @@ public class DialogueManager : MonoBehaviour
         if (sentences.Count == 0)
         {
             EndDialogue();
+
             return;
         }
 
         string sentence = sentences.Dequeue();
-        Debug.Log(sentence);
+
+        StopAllCoroutines();
+
+        StartCoroutine(TypeSentence(sentence));
+    }
+
+    IEnumerator TypeSentence(string sentence)
+    {
+        dialogueText.text = "";
+
+        foreach (char letter in sentence.ToCharArray())
+        {
+            dialogueText.text += letter;
+
+            yield return new WaitForSeconds(textSpeed);
+        }
     }
 
     private void EndDialogue()
     {
         Debug.Log("End Dialogue");
-    }
 
+        animator.SetBool("isOpen", false);
+    }
 }
