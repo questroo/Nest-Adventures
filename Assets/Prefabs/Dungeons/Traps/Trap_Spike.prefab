@@ -792,7 +792,7 @@ PrefabInstance:
     - target: {fileID: 3379133478200793220, guid: c6585441d1b4fdd40bdd93d2d0268171,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.9
+      value: 3.5494595
       objectReference: {fileID: 0}
     - target: {fileID: 3379133478200793220, guid: c6585441d1b4fdd40bdd93d2d0268171,
         type: 3}
@@ -807,17 +807,17 @@ PrefabInstance:
     - target: {fileID: 3379133478200793220, guid: c6585441d1b4fdd40bdd93d2d0268171,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3379133478200793220, guid: c6585441d1b4fdd40bdd93d2d0268171,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3379133478200793220, guid: c6585441d1b4fdd40bdd93d2d0268171,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3379133478200793220, guid: c6585441d1b4fdd40bdd93d2d0268171,
         type: 3}
@@ -848,11 +848,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Trap_Spike
-      objectReference: {fileID: 0}
-    - target: {fileID: 6284955328284802803, guid: c6585441d1b4fdd40bdd93d2d0268171,
-        type: 3}
-      propertyPath: trapType
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7276189572119772560, guid: c6585441d1b4fdd40bdd93d2d0268171,
         type: 3}

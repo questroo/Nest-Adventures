@@ -19,7 +19,7 @@ public class AttackBehaviour : StateMachineBehaviour
     {
         float distance = Vector3.Distance(boss.GetTarget().position, rigidBody.position);
 
-        if(distance <= boss.meleeAttackRadius)
+        if(distance <= boss.GetMeleeRadius())
         {
             animator.SetTrigger("Attack");
         }

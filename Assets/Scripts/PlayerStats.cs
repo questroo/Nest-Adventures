@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -12,25 +11,12 @@ public class PlayerStats : MonoBehaviour
 
     private EnemyStat enemyStat;
 
-    // StatMod Trap Idea
-
-    private List<StatusEffect> activeStatusEffects;
-    // StatMod Trap Idea
-
     private void Start()
     {
         m_Health = m_maxHealth;
         enemyStat = FindObjectOfType<EnemyStat>();
         //healthSlider.fillAmount = 1.0f;
-
-        activeStatusEffects = new List<StatusEffect>();
     }
-
-    private void Update()
-    {
-        UpdateStatusEffects();
-    }
-
     public void TakeDamage(float damage)
     {
         if (!invincible)
@@ -71,55 +57,4 @@ public class PlayerStats : MonoBehaviour
             //and die
         }
     }
-
-    // StatMod Trap Idea
-    public void ModifyStat(StatToModify statType, float statModAmount, float statModDuration)
-    {
-        //activeStatusEffects.Add(newStatEffect);
-    }
-    public void ModifyStat(StatusEffect statEffect)
-    {
-        if(!activeStatusEffects.Contains(statEffect))
-        {
-            activeStatusEffects.Add(statEffect);
-        }
-    }
-
-    private void UpdateStatusEffects()
-    {
-        foreach(StatusEffect statEffect in activeStatusEffects)
-        {
-            statEffect.durationRemaining -= Time.deltaTime;
-            if(statEffect.durationRemaining <= 0.0f)
-            {
-                activeStatusEffects.Remove(statEffect);
-            }
-            else
-            {
-                if(!invincible)
-                {
-                    switch (statEffect.statToMod)
-                    {
-                        case StatToModify.Stun:
-                            break;
-
-                        case StatToModify.Attack:
-                            break;
-
-                        case StatToModify.Defence:
-                            break;
-
-                        case StatToModify.Speed:
-                            break;
-                    }
-                }
-            }
-        }
-    }
-
-    public void ClearAllStatusEffects()
-    {
-        activeStatusEffects.Clear();
-    }
-    // StatMod Trap Idea
 }

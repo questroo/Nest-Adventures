@@ -5,58 +5,40 @@ using UnityEngine;
 
 public class EnemyStat : MonoBehaviour
 {
-    public int enemyMaxHealth = 100;
-    public int bossDamage = 5;
-    public HealthBarController healthbar;
+    public float enemyMaxHealth = 100f;
+    public float bossDamage = 5f;
+    public HealthBarManager healthBar;
 
-    private int enemyCurrentHealth;
-    public Material material;
+    private float enemyCurrentHealth;
 
 
     void Start()
     {
         enemyCurrentHealth = enemyMaxHealth;
-        healthbar.SetMaxHealth(enemyMaxHealth);
+        healthBar.SetMaxHealth(enemyMaxHealth);
     }
 
-    void Update()
+    private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeDamage(5);
-            Debug.Log("Boss took " + 5 + " damage ");
         }
-
-        if (enemyCurrentHealth <= 70)
-        {
-            BossPhase2();
-        }
-
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
 
         enemyCurrentHealth -= damage;
+        Debug.Log("Boss takes " + damage + " damage");
+        healthBar.SetHealth(enemyCurrentHealth);
 
-        healthbar.SetHealth(enemyCurrentHealth);
-
-        if (enemyCurrentHealth <= 0)
+        if (enemyCurrentHealth <= 0f)
         {
-            enemyCurrentHealth = 0;
+            enemyCurrentHealth = 0.0f;
             Die();
         }
 
-    }
-
-    public void BossPhase2()
-    {
-        //TODO: Change color of boss, increase damage, increase speed
-
-        Debug.Log("Boss Change to Phase 2");
-        Debug.Log("Increase damage in multiples of 2");
-        bossDamage *= 2;
-       
     }
 
     public void Die()

@@ -44,7 +44,7 @@ public class CameraController : MonoBehaviour
     private Transform enemyLockOnTransform;
     public float cameraSwitchSpeed = 270.0f;
     [SerializeField]
-    private int enemyIndex = -1;
+    private int enemyIndex = 0;
 
     bool isChanging = false;
     float yaw;
@@ -59,11 +59,6 @@ public class CameraController : MonoBehaviour
         cameraControls.ActionMap.LockOn.performed += ctx => LockOn();
     }
 
-    private void Start()
-    {
-        enemyIndex = -1;
-    }
-
     private void Update()
     {
         ManageEnemiesInLOSList();
@@ -75,13 +70,6 @@ public class CameraController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-        }
-        if (enemiesInLOS.Count > 0)
-        {
-            if (isTargetFollowOn)
-            {
-                enemyLockOnTransform = enemiesInLOS[enemyIndex].transform;
-            }
         }
 
         if (!isTargetFollowOn)
@@ -122,15 +110,18 @@ public class CameraController : MonoBehaviour
     }
     void LockOn()
     {
-        isTargetFollowOn = true;
-
-        enemyIndex++;
-        if (enemyIndex >= enemiesInLOS.Count)
+        if(!isTargetFollowOn)
         {
-            isTargetFollowOn = false;
-            enemyIndex = -1;
+            enemyIndex = 0;
         }
 
+        isTargetFollowOn = true;
+        enemyLockOnTransform = enemiesInLOS[enemyIndex++].transform;
+
+        if(enemyIndex == enemiesInLOS.Count)
+        {
+            isTargetFollowOn = false;
+        }
         isChanging = true;
     }
     void ManageEnemiesInLOSList()
@@ -147,14 +138,11 @@ public class CameraController : MonoBehaviour
                 {
                     enemiesInLOS.Add(enemy);
                 }
+
             }
             else
             {
                 enemiesInLOS.Remove(enemy);
-                if(enemyIndex >= enemiesInLOS.Count)
-                {
-                    enemyIndex--;
-                }
             }
         }
     }
