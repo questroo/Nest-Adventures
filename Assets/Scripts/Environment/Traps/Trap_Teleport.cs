@@ -15,9 +15,9 @@ public class Trap_Teleport : MonoBehaviour
 
     public void TriggerTrap()
     {
-        int limit = teleportLocations.Length-1;
+        int limit = teleportLocations.Length;
 
-        int randomPlace = Random.Range(0, limit);
+        int randomPlace = Random.Range(0, limit); // 0-limit EXCLUSIVE... Do not subtract one from length to get limit
 
         player.transform.position = teleportLocations[randomPlace].position;
         player.transform.rotation = teleportLocations[randomPlace].rotation;
