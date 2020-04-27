@@ -155,8 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMaxHealth: 100
   bossDamage: 5
-  healthbar: {fileID: 0}
-  material: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!65 &14960808
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -188,7 +187,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -282,7 +281,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -339,8 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMaxHealth: 100
   bossDamage: 5
-  healthbar: {fileID: 0}
-  material: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!1 &470020722
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,7 +475,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: 8f89a347a7dc4c845a8237275177944b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -789,7 +787,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 12000
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -996,8 +994,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMaxHealth: 100
   bossDamage: 5
-  healthbar: {fileID: 0}
-  material: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!65 &1844841995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1029,7 +1026,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
