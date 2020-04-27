@@ -10,7 +10,6 @@ public class HitBox : MonoBehaviour
 
     public void Attack()
     {
-        
         Collider[] hitPlayer = Physics.OverlapSphere(attackPoint.position, attackRange, playerLayer);
 
         foreach (Collider player in hitPlayer)

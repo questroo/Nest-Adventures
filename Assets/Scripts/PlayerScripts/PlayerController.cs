@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         controls.ActionMap.Move.performed += ctx => moveDirection = ctx.ReadValue<Vector2>();
         controls.ActionMap.Move.canceled += ctx => moveDirection = Vector2.zero;
 
-        controls.ActionMap.Attack.performed += ctx => Attack();
+        //controls.ActionMap.Attack.performed += ctx => Attack();
 
         controls.ActionMap.DodgeRoll.performed += ctx => DodgeRoll();
     }
@@ -98,19 +98,19 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         isAttacking = false;
-        weaponCollider.enabled = false;
+        //weaponCollider.enabled = false;
     }
-    void Attack()
-    {
-        if (!isAttacking)
-        {
-            weaponCollider.enabled = true;
-            isAttacking = true;
-            charAnimator.SetTrigger("Attack");
-            StartCoroutine("Attacking");
-            isMoving = false;
-        }
-    }
+    //void Attack()
+    //{
+    //    if (!isAttacking)
+    //    {
+    //        //weaponCollider.enabled = true;
+    //        isAttacking = true;
+    //        charAnimator.SetTrigger("Attack");
+    //        StartCoroutine("Attacking");
+    //        isMoving = false;
+    //    }
+    //}
 
     private void DodgeRoll()
     {
