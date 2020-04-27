@@ -73,11 +73,11 @@ public class Trap : MonoBehaviour
 
     private void Update()
     {
-        if(resetTimeLeft >= 0)
+        if(resetTimeLeft > 0)
         {
             resetTimeLeft -= Time.deltaTime;
         }
-        if(triggerDelay >= 0)
+        if(triggerDelay > 0)
         {
             triggerDelay -= Time.deltaTime;
         }

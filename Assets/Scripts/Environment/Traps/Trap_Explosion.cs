@@ -57,7 +57,7 @@ public class Trap_Explosion : MonoBehaviour
         if (!playerIsHit && other.CompareTag("Player"))
         {
             playerIsHit = true;
-            other.GetComponent<PlayerDungeonTester>().TakeDamage(playerExplosionDamage);
+            other.GetComponent<PlayerStats>().TakeDamage(playerExplosionDamage);
         }
         else if(!bossIsHit && other.CompareTag("Boss"))
         {

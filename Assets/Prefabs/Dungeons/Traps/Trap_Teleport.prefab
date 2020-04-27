@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 929779975385062794}
   - component: {fileID: 6969007955153405586}
   m_Layer: 0
-  m_Name: TeleportTrap_ONE
-  m_TagString: Untagged
+  m_Name: TeleportTrap
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4004110533375506407}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0.082, z: 0}
+  m_LocalScale: {x: 1.5, y: 0.15, z: 1.5}
   m_Children: []
   m_Father: {fileID: 8018083593434214779}
   m_RootOrder: 0
@@ -94,9 +94,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleportLocations:
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  player: {fileID: 0}
 --- !u!1001 &4729029701845215743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104,6 +101,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1128219906086331688, guid: c6585441d1b4fdd40bdd93d2d0268171,
+        type: 3}
+      propertyPath: m_TagString
+      value: Trap
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235440753707533082, guid: c6585441d1b4fdd40bdd93d2d0268171,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3379133478200793220, guid: c6585441d1b4fdd40bdd93d2d0268171,
         type: 3}
       propertyPath: m_LocalPosition.x

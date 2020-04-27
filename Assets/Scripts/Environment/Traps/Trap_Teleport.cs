@@ -6,7 +6,12 @@ public class Trap_Teleport : MonoBehaviour
 {
     public Transform[] teleportLocations;
 
-    public PlayerDungeonTester player;
+    private Player player;
+
+    public void Awake()
+    {
+        player = FindObjectOfType<Player>();
+    }
 
     public void TriggerTrap()
     {
