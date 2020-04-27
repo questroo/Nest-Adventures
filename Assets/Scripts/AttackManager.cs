@@ -20,7 +20,6 @@ public class AttackManager : MonoBehaviour
             playerController.weaponCollider.enabled = false;
             Debug.Log("dealt damage to boss");
             other.GetComponent<EnemyStat>().TakeDamage(damage);
-
         }
     }
     private void OnTriggerExit(Collider other)

@@ -25,6 +25,9 @@ public class CameraController : MonoBehaviour
 
     [Tooltip("Controls The Visability For The Mouse Cursor")]
     public bool isTargetFollowOn = false;
+    
+    [Tooltip("Controls The Angle At Which You Lock On To A Target")]
+    public float lockOnAngle;
 
     [SerializeField]
     private List<EnemyStat> enemiesInLOS;
@@ -99,12 +102,13 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            cameraToBoss = enemyLockOnTransform.position - transform.position;
+            Vector3 modifiedCameraPosition = transform.position;
+            modifiedCameraPosition.y += lockOnAngle;
+            cameraToBoss = enemyLockOnTransform.position - modifiedCameraPosition;
             newRot = Quaternion.LookRotation(cameraToBoss);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, Time.deltaTime * cameraSwitchSpeed);
             currentRotation = transform.eulerAngles;
         }
-
         transform.position = target.position - transform.forward * distFromTarget;
         isChanging = false;
     }
