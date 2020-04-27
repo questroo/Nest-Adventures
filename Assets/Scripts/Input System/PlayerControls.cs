@@ -71,7 +71,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""fd8c7ce8-ebc4-4390-bf3b-bdddc1c4b03b"",
-                    ""path"": ""<Gamepad>/leftStick"",
+                    ""path"": ""<HID::Logitech Logitech RumblePad 2 USB>/hat"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -115,7 +115,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""29924483-6119-467a-acc0-648ecb53ba66"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""path"": ""<Joystick>/stick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
