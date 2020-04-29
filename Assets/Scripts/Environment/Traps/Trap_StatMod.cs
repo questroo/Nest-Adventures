@@ -4,20 +4,31 @@ using UnityEngine;
 
 public class Trap_StatMod : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public StatusType trapStatusEffect = StatusType.Poison;
+    public float strength;
+    public float duration;
 
-    // Update is called once per frame
-    void Update()
+    PlayerStats statsHandle;
+
+    private void Start()
     {
-        
+        statsHandle = FindObjectOfType<PlayerStats>();
+        if(!statsHandle)
+        {
+            Debug.LogError("PlayerStats script not found in scene!! StatMod trap " + transform.parent.name + " will not work!");
+        }
     }
 
     public void TriggerTrap()
     {
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            statsHandle.ModifyStatus(trapStatusEffect, strength, duration);
+        }
     }
 }
