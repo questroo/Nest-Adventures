@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AttackBehaviour : StateMachineBehaviour
+public class IdleBehaviour : StateMachineBehaviour
 {
     BossController boss;
     Rigidbody rigidBody;
@@ -18,6 +18,9 @@ public class AttackBehaviour : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         float distance = Vector3.Distance(boss.GetTarget().position, rigidBody.position);
+
+        boss.LookAtPlayer();
+        boss.Movement();
 
         if(distance <= boss.GetMeleeRadius())
         {

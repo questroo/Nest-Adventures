@@ -18,14 +18,13 @@ public class BossController : MonoBehaviour
         meleeAttackRadius = agent.stoppingDistance;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (target != null)
-        {
-            Movement();
-        }
-    }
+    //void Update()
+    //{
+    //    if (target != null)
+    //    {
+    //        Movement();
+    //    }
+    //}
 
     public Transform GetTarget()
     {
@@ -53,7 +52,13 @@ public class BossController : MonoBehaviour
         if (distance <= lookRadius)
         {
             agent.SetDestination(target.position);
+            agent.isStopped = false;
         }
+        else
+        {
+            agent.isStopped = true;
+        }
+
 
     }
 
