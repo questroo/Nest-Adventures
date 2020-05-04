@@ -46,3 +46,5 @@ MonoBehaviour:
   Characters:
   - {fileID: 0}
   - {fileID: 0}
+  swapTime: 1
+  iFrameTime: 1
