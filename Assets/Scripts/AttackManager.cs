@@ -1,15 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AttackManager : MonoBehaviour
 {
+    public CharacterManager characterManager;
+    PlayerControls attackControls;
+
     private PlayerController playerController;
+    private ProjectileController projectileController;
+    private Animator weaponAnimator;
     public float damage = 50.0f;
     public bool canDealDamage = true;
 
+    private void Awake()
+    {
+        attackControls = new PlayerControls();
+
+        attackControls.ActionMap.Attack.performed += ctx => Attack();
+    }
     private void Start()
     {
+        projectileController = GetComponent<ProjectileController>();
+        weaponAnimator = GetComponentInChildren<Animator>();
         playerController = GetComponent<PlayerController>();
     }
 
@@ -20,7 +34,6 @@ public class AttackManager : MonoBehaviour
             playerController.weaponCollider.enabled = false;
             Debug.Log("dealt damage to boss");
             other.GetComponent<EnemyStat>().TakeDamage(damage);
-
         }
     }
     private void OnTriggerExit(Collider other)
@@ -28,5 +41,27 @@ public class AttackManager : MonoBehaviour
         if (other.CompareTag("Boss"))
         {
         }
+    }
+
+    void Attack()
+    {
+        if (characterManager.GetCurrentPlayerTag() == "Tanjiro")
+        {
+            weaponAnimator.SetTrigger("Attack");
+        }
+        else
+        {
+            projectileController.ShootProjectile();
+        }
+    }
+
+    private void OnEnable()
+    {
+        attackControls.ActionMap.Enable();
+    }
+
+    private void OnDisable()
+    {
+        attackControls.ActionMap.Disable();
     }
 }

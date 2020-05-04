@@ -8,6 +8,8 @@ public class CharacterManager : MonoBehaviour
     PlayerControls control;
     public GameObject[] Characters;
     private int m_CharacterIndex = 1;
+    public float swapTime = 1.0f;
+    public float iFrameTime = 1.0f;
 
     private bool swapping = false;
     private void Awake()
@@ -29,7 +31,7 @@ public class CharacterManager : MonoBehaviour
         //start IFrame
         Characters[m_CharacterIndex].GetComponentInParent<PlayerStats>().StartIFrame();
         //start anim
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(swapTime);
         //enable input
         Characters[m_CharacterIndex].GetComponentInParent<PlayerController>().EnableInput();
         //endIframe
