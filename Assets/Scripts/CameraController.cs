@@ -28,8 +28,8 @@ public class CameraController : MonoBehaviour
 
     [Tooltip("Controls The Angle At Which You Lock On To A Target")]
     public float lockOnAngle;
-
     [SerializeField]
+
     private List<EnemyStat> enemiesInLOS;
 
     // Controls
@@ -59,6 +59,11 @@ public class CameraController : MonoBehaviour
         cameraControls.ActionMap.LockOn.performed += ctx => LockOn();
     }
 
+    private void Start()
+    {
+        enemyIndex = -1;
+    }
+
     private void Update()
     {
         ManageEnemiesInLOSList();
@@ -70,6 +75,13 @@ public class CameraController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+        }
+        if (enemiesInLOS.Count > 0)
+        {
+            if (isTargetFollowOn)
+            {
+                enemyLockOnTransform = enemiesInLOS[enemyIndex].transform;
+            }
         }
 
         if (!isTargetFollowOn)
@@ -97,6 +109,7 @@ public class CameraController : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, Time.deltaTime * cameraSwitchSpeed);
             currentRotation = transform.eulerAngles;
         }
+
         transform.position = target.position - transform.forward * distFromTarget;
         isChanging = false;
     }
@@ -112,13 +125,13 @@ public class CameraController : MonoBehaviour
     {
         isTargetFollowOn = true;
 
-        ++enemyIndex;
+        enemyIndex++;
         if (enemyIndex >= enemiesInLOS.Count)
         {
             isTargetFollowOn = false;
             enemyIndex = -1;
         }
-        enemyLockOnTransform = enemiesInLOS[enemyIndex].transform;
+
         isChanging = true;
     }
     void ManageEnemiesInLOSList()
@@ -139,9 +152,9 @@ public class CameraController : MonoBehaviour
             else
             {
                 enemiesInLOS.Remove(enemy);
-                if(enemyIndex >= enemiesInLOS.Count)
+                if (enemyIndex >= enemiesInLOS.Count)
                 {
-                    enemyIndex = enemiesInLOS.Count - 1;
+                    enemyIndex--;
                 }
             }
         }
