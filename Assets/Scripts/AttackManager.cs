@@ -5,8 +5,11 @@ using UnityEngine.InputSystem;
 
 public class AttackManager : MonoBehaviour
 {
+    public CharacterManager characterManager;
     PlayerControls attackControls;
+
     private PlayerController playerController;
+    private ProjectileController projectileController;
     private Animator weaponAnimator;
     public float damage = 50.0f;
     public bool canDealDamage = true;
@@ -19,6 +22,7 @@ public class AttackManager : MonoBehaviour
     }
     private void Start()
     {
+        projectileController = GetComponent<ProjectileController>();
         weaponAnimator = GetComponentInChildren<Animator>();
         playerController = GetComponent<PlayerController>();
     }
@@ -41,7 +45,14 @@ public class AttackManager : MonoBehaviour
 
     void Attack()
     {
-        weaponAnimator.SetTrigger("Attack");
+        if (characterManager.GetCurrentPlayerTag() == "Tanjiro")
+        {
+            weaponAnimator.SetTrigger("Attack");
+        }
+        else
+        {
+            projectileController.ShootProjectile();
+        }
     }
 
     private void OnEnable()
