@@ -675,6 +675,11 @@ PrefabInstance:
       propertyPath: lockOnAngle
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 9179578096245354538, guid: e822dc73b3ee00a40b05dd715db1799c,
+        type: 3}
+      propertyPath: enemyIndex
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 9179578096245354542, guid: e822dc73b3ee00a40b05dd715db1799c,
         type: 3}
       propertyPath: m_Name
