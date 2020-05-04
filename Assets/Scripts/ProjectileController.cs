@@ -21,11 +21,8 @@ public class ProjectileController : MonoBehaviour
 
     public void ShootProjectile()
     {
-        Debug.Log("projectile fire function entered");
-
         if (characterManager.GetCurrentPlayerTag() == "Bertha")
         {
-            Debug.Log("projectile fire");
             Rigidbody projRb = Instantiate(projectile, projectileSpawnLocation.position, Quaternion.identity).GetComponent<Rigidbody>();
 
             projRb.AddForce(transform.forward * projectileForce);

@@ -25,11 +25,11 @@ public class CameraController : MonoBehaviour
 
     [Tooltip("Controls The Visability For The Mouse Cursor")]
     public bool isTargetFollowOn = false;
-    
+
     [Tooltip("Controls The Angle At Which You Lock On To A Target")]
     public float lockOnAngle;
-
     [SerializeField]
+
     private List<EnemyStat> enemiesInLOS;
 
     // Controls
@@ -44,7 +44,7 @@ public class CameraController : MonoBehaviour
     private Transform enemyLockOnTransform;
     public float cameraSwitchSpeed = 270.0f;
     [SerializeField]
-    private int enemyIndex = 0;
+    private int enemyIndex = -1;
 
     bool isChanging = false;
     float yaw;
@@ -59,6 +59,11 @@ public class CameraController : MonoBehaviour
         cameraControls.ActionMap.LockOn.performed += ctx => LockOn();
     }
 
+    private void Start()
+    {
+        enemyIndex = -1;
+    }
+
     private void Update()
     {
         ManageEnemiesInLOSList();
@@ -70,6 +75,13 @@ public class CameraController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+        }
+        if (enemiesInLOS.Count > 0)
+        {
+            if (isTargetFollowOn)
+            {
+                enemyLockOnTransform = enemiesInLOS[enemyIndex].transform;
+            }
         }
 
         if (!isTargetFollowOn)
@@ -97,6 +109,7 @@ public class CameraController : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, Time.deltaTime * cameraSwitchSpeed);
             currentRotation = transform.eulerAngles;
         }
+
         transform.position = target.position - transform.forward * distFromTarget;
         isChanging = false;
     }
@@ -110,18 +123,15 @@ public class CameraController : MonoBehaviour
     }
     void LockOn()
     {
-        if(!isTargetFollowOn)
-        {
-            enemyIndex = 0;
-        }
-
         isTargetFollowOn = true;
-        enemyLockOnTransform = enemiesInLOS[enemyIndex++].transform;
 
-        if(enemyIndex == enemiesInLOS.Count)
+        enemyIndex++;
+        if (enemyIndex >= enemiesInLOS.Count)
         {
             isTargetFollowOn = false;
+            enemyIndex = -1;
         }
+
         isChanging = true;
     }
     void ManageEnemiesInLOSList()
@@ -138,11 +148,14 @@ public class CameraController : MonoBehaviour
                 {
                     enemiesInLOS.Add(enemy);
                 }
-
             }
             else
             {
                 enemiesInLOS.Remove(enemy);
+                if (enemyIndex >= enemiesInLOS.Count)
+                {
+                    enemyIndex--;
+                }
             }
         }
     }
