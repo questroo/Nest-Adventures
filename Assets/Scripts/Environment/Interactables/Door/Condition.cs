@@ -7,7 +7,6 @@ public class Condition : MonoBehaviour
     public ConditionType conditionType = ConditionType.PlayerEnter;
 
     ConditionalDoor doorHandle;
-    int enemyCount = 0;
 
     [Tooltip("Only fill this array if the condition type is EnemiesKilled or BossKilled!")]
     public GameObject[] enemyList;
