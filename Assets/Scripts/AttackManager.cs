@@ -13,6 +13,8 @@ public class AttackManager : MonoBehaviour
     private ProjectileController projectileController;
     public float damage = 50.0f;
     public bool canDealDamage = true;
+    [SerializeField]
+    private bool disableInput = false;
 
     private void Awake()
     {
@@ -29,13 +31,16 @@ public class AttackManager : MonoBehaviour
 
     void Attack()
     {
-        if (characterManager.GetCurrentPlayerTag() == "Tanjiro")
+        if (!disableInput)
         {
-            StartCoroutine("MeleeAttack");
-        }
-        else
-        {
-            projectileController.ShootProjectile();
+            if (characterManager.GetCurrentPlayerTag() == "Tanjiro")
+            {
+                StartCoroutine("MeleeAttack");
+            }
+            else
+            {
+                projectileController.ShootProjectile();
+            }
         }
     }
 
@@ -55,5 +60,13 @@ public class AttackManager : MonoBehaviour
     private void OnDisable()
     {
         attackControls.ActionMap.Disable();
+    }
+    public void DisableInput()
+    {
+        disableInput = true;
+    }
+    public void EnableInput()
+    {
+        disableInput = false;
     }
 }

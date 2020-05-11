@@ -159,4 +159,7 @@ public class CameraController : MonoBehaviour
             }
         }
     }
+    public bool GetLockOn() { return isTargetFollowOn; }
+
+    public Transform GetCurrentlyLockedOnTransform() { return enemyLockOnTransform; }
 }
