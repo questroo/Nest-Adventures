@@ -7,6 +7,7 @@ public class ProjectileController : MonoBehaviour
 {
     public PlayerControls controller;
     public CharacterManager characterManager;
+    public CameraController cameraController;
 
     public GameObject projectile;
     public Transform projectileSpawnLocation;
@@ -25,8 +26,22 @@ public class ProjectileController : MonoBehaviour
         {
             Rigidbody projRb = Instantiate(projectile, projectileSpawnLocation.position, Quaternion.identity).GetComponent<Rigidbody>();
 
-            projRb.AddForce(transform.forward * projectileForce);
-            StartCoroutine("DestroyProjectile", projRb.gameObject);
+            if (cameraController.GetLockOn())
+            {
+                Debug.Log("locked on");
+                Transform target = cameraController.GetCurrentlyLockedOnTransform();
+                if(target)
+                {
+                    projRb.AddForce(Vector3.Normalize(target.position - projRb.transform.position) * projectileForce);
+                    StartCoroutine("DestroyProjectile", projRb.gameObject);
+                }
+            }
+            else
+            {
+                Debug.Log("not locked on");
+                projRb.AddForce(transform.forward * projectileForce);
+                StartCoroutine("DestroyProjectile", projRb.gameObject);
+            }
         }
     }
     IEnumerator DestroyProjectile(GameObject proj)

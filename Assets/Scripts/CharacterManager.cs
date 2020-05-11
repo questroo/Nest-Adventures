@@ -28,12 +28,14 @@ public class CharacterManager : MonoBehaviour
         m_CharacterIndex = ++m_CharacterIndex % 2;
         //disable input
         Characters[m_CharacterIndex].GetComponentInParent<PlayerController>().DisableInput();
+        Characters[m_CharacterIndex].GetComponentInParent<AttackManager>().DisableInput();
         //start IFrame
         Characters[m_CharacterIndex].GetComponentInParent<PlayerStats>().StartIFrame();
         //start anim
         yield return new WaitForSeconds(swapTime);
         //enable input
         Characters[m_CharacterIndex].GetComponentInParent<PlayerController>().EnableInput();
+        Characters[m_CharacterIndex].GetComponentInParent<AttackManager>().EnableInput();
         //endIframe
         Characters[m_CharacterIndex].GetComponentInParent<PlayerStats>().EndIFrame();
         //anim done
