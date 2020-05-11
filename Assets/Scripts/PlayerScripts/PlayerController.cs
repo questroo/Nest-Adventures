@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 myDirection;
     private Vector2 moveDirection;
     private Transform cameraTransform;
-    public Collider weaponCollider;
 
     private void Awake()
     {

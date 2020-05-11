@@ -20,28 +20,13 @@ public class AttackManager : MonoBehaviour
     {
         attackControls = new PlayerControls();
 
-        attackControls.ActionMap.Attack.performed += ctx => Attack();
+        //attackControls.ActionMap.Attack.performed += ctx => Attack();
+        attackControls.ActionMap.Attack.performed += (x) => Attack();
     }
     private void Start()
     {
         projectileController = GetComponent<ProjectileController>();
         playerController = GetComponent<PlayerController>();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Boss"))
-        {
-            playerController.weaponCollider.enabled = false;
-            Debug.Log("dealt damage to boss");
-            other.GetComponent<EnemyStat>().TakeDamage(damage);
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Boss"))
-        {
-        }
     }
 
     void Attack()

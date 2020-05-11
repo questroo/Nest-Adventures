@@ -18,6 +18,7 @@ public class ProjectileController : MonoBehaviour
         controller = new PlayerControls();
 
         //controller.ActionMap.Attack.performed += ctx => ShootProjectile();
+        characterManager = FindObjectOfType<CharacterManager>();
     }
 
     public void ShootProjectile()
