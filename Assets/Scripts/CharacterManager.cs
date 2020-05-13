@@ -4,6 +4,10 @@ using UnityEngine.InputSystem;
 
 public class CharacterManager : MonoBehaviour
 {
+    // Singleton Instance
+    public static CharacterManager instance = null;
+
+
     // Controls
     PlayerControls control;
     public GameObject[] Characters;
@@ -14,6 +18,15 @@ public class CharacterManager : MonoBehaviour
     private bool swapping = false;
     private void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
         control = new PlayerControls();
 
         control.ActionMap.CharacterSwap.performed += ctx => Swap();

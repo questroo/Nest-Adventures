@@ -29,7 +29,6 @@ public class ProjectileController : MonoBehaviour
 
             if (cameraController.GetLockOn())
             {
-                Debug.Log("locked on");
                 Transform target = cameraController.GetCurrentlyLockedOnTransform();
                 if(target)
                 {
@@ -39,7 +38,6 @@ public class ProjectileController : MonoBehaviour
             }
             else
             {
-                Debug.Log("not locked on");
                 projRb.AddForce(transform.forward * projectileForce);
                 StartCoroutine("DestroyProjectile", projRb.gameObject);
             }

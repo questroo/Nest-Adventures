@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour
     public float lockOnAngle;
     [SerializeField]
 
-    private List<EnemyStat> enemiesInLOS;
+    private List<TestTarget> enemiesInLOS;
 
     // Controls
     PlayerControls cameraControls;
@@ -136,9 +136,17 @@ public class CameraController : MonoBehaviour
     }
     void ManageEnemiesInLOSList()
     {
-        var allEnemies = FindObjectsOfType<EnemyStat>();
-        foreach (EnemyStat enemy in allEnemies)
+        var allEnemies = FindObjectsOfType<TestTarget>();
+        foreach (TestTarget enemy in allEnemies)
         {
+            //if(enemy == null)
+            //{
+            //    enemiesInLOS.Remove(enemy);
+            //    if (enemyIndex >= enemiesInLOS.Count)
+            //    {
+            //        enemyIndex--;
+            //    }
+            //}
             var tempVect = Camera.main.WorldToViewportPoint(enemy.transform.position);
             if (tempVect.x >= 0 && tempVect.x <= 1 &&
                 tempVect.y >= 0 && tempVect.y <= 1 &&
@@ -162,4 +170,16 @@ public class CameraController : MonoBehaviour
     public bool GetLockOn() { return isTargetFollowOn; }
 
     public Transform GetCurrentlyLockedOnTransform() { return enemyLockOnTransform; }
+
+    public void RemoveSelfFromList(TestTarget testTarget)
+    {
+        if (enemiesInLOS.Contains(testTarget))
+        {
+            enemiesInLOS.Remove(testTarget);
+            if (enemyIndex >= enemiesInLOS.Count)
+            {
+                enemyIndex--;
+            }
+        }
+    }
 }
