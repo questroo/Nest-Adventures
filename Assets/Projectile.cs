@@ -5,11 +5,12 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     float projectileDamage = 10.0f;
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        var target = collision.transform.GetComponent<EnemyStat>();
-        if (target)
+        var target = other.gameObject.GetComponent<IDamageable>();
+        if(target != null)
         {
+            Debug.Log("Hitting target");
             target.TakeDamage(projectileDamage);
             Destroy(gameObject);
         }
