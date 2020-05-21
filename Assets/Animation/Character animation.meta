@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Animation/Character animation.meta
 guid: 6d9535833d35550488467db5de62659f
+=======
+guid: f2bbbb21c8a2aff4f901962eff3b9cf5
+>>>>>>> 551edc55b3de0148f83ce67f6f8173e610becd5e:Assets/Animation/Character animation/Attack animation.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

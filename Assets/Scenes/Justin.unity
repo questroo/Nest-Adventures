@@ -150,11 +150,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 14960806}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a67df762184238b4880c5629ff6be03a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c058cc2b6fc04844a9584ed27b5db48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMaxHealth: 100
-  bossDamage: 5
 --- !u!65 &14960808
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -332,11 +330,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 212979578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a67df762184238b4880c5629ff6be03a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c058cc2b6fc04844a9584ed27b5db48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMaxHealth: 100
-  bossDamage: 5
 --- !u!1 &505765382
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,6 +714,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350435b0ed9a2ed4685d27b548b6de71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1695459922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 486015825139837599, guid: 0cb52d520b9232b45855313bf6fbce61,
+    type: 3}
+  m_PrefabInstance: {fileID: 486015823566573999}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1695459923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695459922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11adcc68d793fb747ad34f198385999a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0.3
+  maxTime: 0.8
+  comboCooldown: 3
+  maxCombo: 3
 --- !u!1 &1844841993
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,11 +765,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1844841993}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a67df762184238b4880c5629ff6be03a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c058cc2b6fc04844a9584ed27b5db48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMaxHealth: 100
-  bossDamage: 5
 --- !u!65 &1844841995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -839,36 +855,56 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 486015823962737585, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: d8b1148553d2f1343a2ace9c2b663a83, type: 3}
+    - target: {fileID: 486015824085568425, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: d8b1148553d2f1343a2ace9c2b663a83, type: 3}
     - target: {fileID: 486015824085568426, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+      objectReference: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 486015824150930392, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+      objectReference: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 486015824505920324, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: d8b1148553d2f1343a2ace9c2b663a83, type: 3}
     - target: {fileID: 486015824505920325, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+      objectReference: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 486015824652969114, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+      objectReference: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 486015824828333724, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: d8b1148553d2f1343a2ace9c2b663a83, type: 3}
     - target: {fileID: 486015824828333725, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+      objectReference: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 486015825128051375, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+      objectReference: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 486015825139837596, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}
       propertyPath: characterManager
@@ -944,5 +980,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 486015825535925687, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: d8b1148553d2f1343a2ace9c2b663a83, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cb52d520b9232b45855313bf6fbce61, type: 3}

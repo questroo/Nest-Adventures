@@ -26,6 +26,10 @@ public class IdleBehaviour : StateMachineBehaviour
         {
             animator.SetTrigger("Attack");
         }
+
+        if (Input.GetKeyDown(KeyCode.D))
+            boss.Dash();
+
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
