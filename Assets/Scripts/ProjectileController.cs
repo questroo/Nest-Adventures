@@ -21,12 +21,25 @@ public class ProjectileController : MonoBehaviour
         characterManager = FindObjectOfType<CharacterManager>();
     }
 
-    public void ShootProjectile()
+    public void ShootProjectile(int comboNumber)
     {
         if (characterManager.GetCurrentPlayerTag() == "Bertha")
         {
             Rigidbody projRb = Instantiate(projectile, projectileSpawnLocation.position, Quaternion.identity).GetComponent<Rigidbody>();
-
+            switch (comboNumber)
+            {
+                case 1:
+                    projRb.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    break;
+                case 2:
+                    projRb.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    break;
+                case 3:
+                    projRb.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                    break;
+                default:
+                    break;
+            }
             if (cameraController.GetLockOn())
             {
                 Transform target = cameraController.GetCurrentlyLockedOnTransform();
