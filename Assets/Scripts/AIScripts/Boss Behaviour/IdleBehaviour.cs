@@ -7,6 +7,7 @@ public class IdleBehaviour : StateMachineBehaviour
 {
     BossController boss;
     Rigidbody rigidBody;
+    float dashNum;
     
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -20,15 +21,13 @@ public class IdleBehaviour : StateMachineBehaviour
         float distance = Vector3.Distance(boss.GetTarget().position, rigidBody.position);
 
         boss.LookAtPlayer();
+
         boss.Movement();
 
         if(distance <= boss.GetMeleeRadius())
         {
             animator.SetTrigger("Attack");
         }
-
-        if (Input.GetKeyDown(KeyCode.D))
-            boss.Dash();
 
     }
 

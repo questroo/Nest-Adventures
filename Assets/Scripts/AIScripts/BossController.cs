@@ -10,6 +10,7 @@ public class BossController : MonoBehaviour
     Rigidbody rb;
 
     private float meleeAttackRadius;
+    public float dashStartWaitTime;
     public float lookRadius = 5.0f;
     public float dashRadius = 5.0f;
 
@@ -23,8 +24,7 @@ public class BossController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
-            Dash();
+
     }
 
     public Transform GetTarget()
@@ -65,10 +65,8 @@ public class BossController : MonoBehaviour
 
     public void Dash()
     {
-        float distance = Vector3.Distance(target.position, transform.position);
-        LookAtPlayer();
-        
-        rb.AddForce(transform.forward * 500);
+
+        rb.transform.Translate(Vector3.forward * (20 * Time.deltaTime));
 
     }
 
