@@ -22,15 +22,15 @@ public class ComboManager : MonoBehaviour
     {
 
         //Starts the looping coroutine
-        StartCoroutine("Melee");
+        StartCoroutine("ComboAttack");
     }
 
-    IEnumerator Melee()
+    IEnumerator ComboAttack()
     {
         //Constantly loops so you only have to call it once
         while (true)
         {
-            //Checks if attacking and then starts of the combo
+            //Checks if attacking and then starts off the combo
             if (Input.GetButtonDown("Fire1"))
             {
                 combo++;

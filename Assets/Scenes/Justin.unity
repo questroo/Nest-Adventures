@@ -520,7 +520,7 @@ PrefabInstance:
     - target: {fileID: 9179578096245354542, guid: e822dc73b3ee00a40b05dd715db1799c,
         type: 3}
       propertyPath: m_Name
-      value: Game Camera (1)
+      value: Game Camera
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5730369469950696773, guid: e822dc73b3ee00a40b05dd715db1799c, type: 3}
@@ -714,28 +714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350435b0ed9a2ed4685d27b548b6de71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1695459922 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 486015825139837599, guid: 0cb52d520b9232b45855313bf6fbce61,
-    type: 3}
-  m_PrefabInstance: {fileID: 486015823566573999}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1695459923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1695459922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11adcc68d793fb747ad34f198385999a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 0.3
-  maxTime: 0.8
-  comboCooldown: 3
-  maxCombo: 3
 --- !u!1 &1844841993
 GameObject:
   m_ObjectHideFlags: 0
