@@ -20,6 +20,8 @@ public class BossController : MonoBehaviour
     public float lookRadius = 5.0f;
     public float dashRadius = 5.0f;
 
+    public float damageFromObstacle = 10.0f;
+
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -84,8 +86,8 @@ public class BossController : MonoBehaviour
         {
             if (damageCooldown == 2.0f)
             {
-                enemyStat.TakeDamage(3);
-                damageCooldown -= Time.deltaTime;
+                enemyStat.TakeDamage(damageFromObstacle);
+                damageCooldown -= 1;
             }
             else
             {
