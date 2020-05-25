@@ -8,9 +8,15 @@ public class BossController : MonoBehaviour
     Transform target;
     NavMeshAgent agent;
     Rigidbody rb;
+    EnemyStat enemyStat;
 
     private float meleeAttackRadius;
-    public float dashStartWaitTime;
+    private float damageCooldown;
+    private float damageCooldownStart = 2.0f;
+
+    public Transform hitPoint;
+    public LayerMask terrainLayer;
+    public float hitRange;
     public float lookRadius = 5.0f;
     public float dashRadius = 5.0f;
 
@@ -18,14 +24,16 @@ public class BossController : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
+        enemyStat = GetComponent<EnemyStat>();
         agent = GetComponent<NavMeshAgent>();
         meleeAttackRadius = agent.stoppingDistance;
+        damageCooldown = damageCooldownStart;
     }
 
-    void Update()
-    {
-
-    }
+    // void Update()
+    // {
+    //
+    // }
 
     public Transform GetTarget()
     {
@@ -35,6 +43,11 @@ public class BossController : MonoBehaviour
     public float GetMeleeRadius()
     {
         return meleeAttackRadius;
+    }
+
+    public float GetDMGCooldown(float reset)
+    {
+        return damageCooldown = reset;
     }
 
     public void LookAtPlayer()
@@ -50,24 +63,37 @@ public class BossController : MonoBehaviour
         float distance = Vector3.Distance(target.position, transform.position);
 
         LookAtPlayer();
-        if (distance <= lookRadius)
-        {
-            agent.SetDestination(target.position);
-            agent.isStopped = false;
-        }
-        else
-        {
-            agent.isStopped = true;
-        }
 
+        agent.SetDestination(target.position);
+        agent.isStopped = false;
 
+    }
+
+    public void StopMovement()
+    {
+        agent.isStopped = true;
     }
 
     public void Dash()
     {
+        rb.AddForce(transform.forward * 10);
 
-        rb.transform.Translate(Vector3.forward * (20 * Time.deltaTime));
+        Collider[] hitTerrain = Physics.OverlapSphere(hitPoint.position, hitRange, terrainLayer);
 
+        foreach (Collider terrain in hitTerrain)
+        {
+            if (damageCooldown == 2.0f)
+            {
+                enemyStat.TakeDamage(3);
+                damageCooldown -= Time.deltaTime;
+            }
+            else
+            {
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+            }
+
+        }
     }
 
     private void OnDrawGizmos()
@@ -80,5 +106,7 @@ public class BossController : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, dashRadius);
+
+        Gizmos.DrawWireSphere(hitPoint.position, hitRange);
     }
 }

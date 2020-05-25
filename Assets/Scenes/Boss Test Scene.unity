@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: cf2dd18c3cf4769468b33881e38624a0, type: 2}
+--- !u!4 &238694134 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4479801023700579029, guid: 32aa783716b3147449857be1254b3a39,
+    type: 3}
+  m_PrefabInstance: {fileID: 4479801023881566504}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &279505780
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMaxHealth: 100
   bossDamage: 5
+  healthBar: {fileID: 0}
 --- !u!114 &514061761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,7 +396,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584904552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.09, y: 0.96, z: 11.96}
+  m_LocalPosition: {x: 2.09, y: 0.96, z: 10.25}
   m_LocalScale: {x: 1, y: 1.8948, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -564,7 +571,7 @@ GameObject:
   - component: {fileID: 861711019}
   - component: {fileID: 861711018}
   - component: {fileID: 861711017}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -658,7 +665,7 @@ GameObject:
   - component: {fileID: 873203593}
   - component: {fileID: 873203592}
   - component: {fileID: 873203591}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -752,7 +759,7 @@ GameObject:
   - component: {fileID: 964055541}
   - component: {fileID: 964055540}
   - component: {fileID: 964055539}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -883,6 +890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMaxHealth: 100
   bossDamage: 5
+  healthBar: {fileID: 0}
 --- !u!195 &1012327605
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -952,7 +960,7 @@ GameObject:
   - component: {fileID: 1057930292}
   - component: {fileID: 1057930291}
   - component: {fileID: 1057930290}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1980,6 +1988,21 @@ PrefabInstance:
       propertyPath: dashNum
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4479801023700579028, guid: 32aa783716b3147449857be1254b3a39,
+        type: 3}
+      propertyPath: hitPoint
+      value: 
+      objectReference: {fileID: 238694134}
+    - target: {fileID: 4479801023700579028, guid: 32aa783716b3147449857be1254b3a39,
+        type: 3}
+      propertyPath: hitRange
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479801023700579028, guid: 32aa783716b3147449857be1254b3a39,
+        type: 3}
+      propertyPath: terrainLayer.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 4479801023700579029, guid: 32aa783716b3147449857be1254b3a39,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2038,7 +2061,12 @@ PrefabInstance:
     - target: {fileID: 4479801023700579030, guid: 32aa783716b3147449857be1254b3a39,
         type: 3}
       propertyPath: m_Constraints
-      value: 14
+      value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479801023700579030, guid: 32aa783716b3147449857be1254b3a39,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.44
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32aa783716b3147449857be1254b3a39, type: 3}

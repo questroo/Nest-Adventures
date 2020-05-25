@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class IdleBehaviour : StateMachineBehaviour
+public class DashBehaviour : StateMachineBehaviour
 {
     BossController boss;
     Rigidbody rigidBody;
     private float dashTime;
-    private float startDashTime = 5.0f;
+    public float startDashTime = 0.5f;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -22,31 +22,23 @@ public class IdleBehaviour : StateMachineBehaviour
     {
         float distance = Vector3.Distance(boss.GetTarget().position, rigidBody.position);
 
-        boss.LookAtPlayer();
-        
-        if (distance <= boss.GetMeleeRadius())
+        if (dashTime >= 0.0f)
         {
-            animator.SetTrigger("Attack");
-        }
-        else if (distance <= boss.lookRadius)
-        {
-            boss.Movement();
-            dashTime = startDashTime;
-        }
-        else if (distance <= boss.dashRadius && distance >= boss.lookRadius && dashTime <= 0.0f)
-        {
-            animator.SetTrigger("Dash");
-            dashTime = startDashTime;
+            boss.Dash();
+            dashTime -= Time.deltaTime;
         }
         else
         {
-            dashTime -= Time.deltaTime;
-            boss.StopMovement();
+            rigidBody.velocity = Vector3.zero;
+            rigidBody.angularVelocity = Vector3.zero;
+            boss.GetDMGCooldown(2.0f);
+            animator.SetTrigger("Idle");
         }
-    }
 
+    }
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger("Attack");
+        animator.ResetTrigger("Idle");
     }
+
 }
