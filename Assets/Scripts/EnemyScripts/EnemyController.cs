@@ -7,35 +7,43 @@ public class EnemyController : MonoBehaviour
 {
     public float speed;
     public float startWaitTime;
-    public Transform moveSpots;
+    public Transform[] moveSpots;
 
+    private NavMeshAgent agent;
     private int randomSpot;
     private float waitTime;
-    private float minX = -42.44f;
-    private float minZ = -10.0f;
-    private float maxX = -24.5f;
-    private float maxZ = 10.0f;
+    //private float minX = -42.44f;
+    //private float minZ = -10.0f;
+    //private float maxX = -24.5f;
+    //private float maxZ = 10.0f;
 
     void Start()
     {
         waitTime = startWaitTime;
-        moveSpots.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
+        randomSpot = Random.Range(0, moveSpots.Length);
+        agent = GetComponent<NavMeshAgent>();
+        //moveSpots.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, moveSpots.position, speed * Time.deltaTime);
-        float spotDistance = Vector3.Distance(transform.position, moveSpots.position);
+        Patrol();
+    }
 
-        //LookAtDirection();
-        transform.LookAt(moveSpots.position);
+    void Patrol()
+    {
+        //transform.position = Vector3.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
+        agent.SetDestination(moveSpots[randomSpot].position);
+        float spotDistance = Vector3.Distance(transform.position, moveSpots[randomSpot].position);
+        LookAtDirection();
 
-        if (spotDistance < 0.2f)
+        if (agent.stoppingDistance <= 3.0f)
         {
             if (waitTime <= 0)
             {
-                moveSpots.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
+                //moveSpots.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
+                randomSpot = Random.Range(0, moveSpots.Length);
                 waitTime = startWaitTime;
             }
             else
@@ -47,7 +55,7 @@ public class EnemyController : MonoBehaviour
 
     void LookAtDirection()
     {
-        Vector3 direction = (moveSpots.position - transform.position).normalized;
+        Vector3 direction = (moveSpots[randomSpot].position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5.0f);
     }
