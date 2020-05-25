@@ -27,6 +27,7 @@ public class IdleBehaviour : StateMachineBehaviour
         if (distance <= boss.GetMeleeRadius())
         {
             animator.SetTrigger("Attack");
+            dashTime = startDashTime;
         }
         else if (distance <= boss.lookRadius)
         {

@@ -28,7 +28,6 @@ public class EnemyStat : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-
         enemyCurrentHealth -= damage;
         Debug.Log("Boss takes " + damage + " damage");
         healthBar.SetHealth(enemyCurrentHealth);
