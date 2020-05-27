@@ -30,6 +30,9 @@ public class AttackManager : MonoBehaviour
     //Time of last attack
     float lastTime;
 
+    public float meleeAttackWindup = 1.0f;
+    public float meleeAttackRange = 1.0f;
+
     private void Awake()
     {
         attackControls = new PlayerControls();
@@ -45,16 +48,13 @@ public class AttackManager : MonoBehaviour
 
     void Attack()
     {
-        if (!disableInput)
-        {
-
-        }
     }
     public IEnumerator MeleeAttack(int comboNumber)
     {
         if (characterManager.GetCurrentPlayerTag() == "Tanjiro")
         {
-            Vector3 spawnPosition = transform.position + (transform.forward * 1.0f);
+            yield return new WaitForSeconds(meleeAttackWindup);
+            Vector3 spawnPosition = transform.position + (transform.forward * meleeAttackRange);
             spawnPosition.y += 1.0f;
             GameObject spawnedOrb = Instantiate(meleeOrb, spawnPosition, transform.rotation);
             switch (comboNumber)
@@ -76,7 +76,7 @@ public class AttackManager : MonoBehaviour
         }
         else
         {
-            projectileController.ShootProjectile(comboNumber);
+            projectileController.StartCoroutine("ShootProjectile", comboNumber);
         }
     }
 

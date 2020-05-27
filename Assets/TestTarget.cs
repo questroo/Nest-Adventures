@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TestTarget : MonoBehaviour, IDamageable
 {
-    private float health = 100.0f;
+    public float health = 100.0f;
 
     public float Health {
         get { return health; }
