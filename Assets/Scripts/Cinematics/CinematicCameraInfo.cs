@@ -20,17 +20,14 @@ public class CinematicCameraInfo : MonoBehaviour
     [Tooltip("This is a small delay to ensure the animation does not loop")]
     public float delayPadding = 0.0f;
 
-    private void Awake()
+    void Awake()
     {
         AnimatorClipInfo[] clipInfo = GetComponent<Animator>().GetCurrentAnimatorClipInfo(0);
 
         camTime = clipInfo[0].clip.length - delayPadding;
-    }
 
-    private void Start()
-    {
         fader = FindObjectOfType<CinematicFade>();
-        if(!fader)
+        if (!fader)
         {
             Debug.LogError("No Cinematic Fader found!! Cutscenes will not fade to black!");
         }
