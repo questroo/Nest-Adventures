@@ -54,7 +54,6 @@ public class BossController : MonoBehaviour
 
     public void LookAtPlayer()
     {
-
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5.0f);
@@ -62,8 +61,6 @@ public class BossController : MonoBehaviour
 
     public void Movement()
     {
-        float distance = Vector3.Distance(target.position, transform.position);
-
         LookAtPlayer();
 
         agent.SetDestination(target.position);
@@ -78,7 +75,7 @@ public class BossController : MonoBehaviour
 
     public void Dash()
     {
-        rb.AddForce(transform.forward * 10);
+        rb.AddForce(transform.forward * 20);
 
         Collider[] hitTerrain = Physics.OverlapSphere(hitPoint.position, hitRange, terrainLayer);
 
@@ -110,4 +107,6 @@ public class BossController : MonoBehaviour
 
         Gizmos.DrawWireSphere(hitPoint.position, hitRange);
     }
+
+
 }

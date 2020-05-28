@@ -7,8 +7,10 @@ public class EnemyController : MonoBehaviour
 {
     public float speed;
     public float startWaitTime;
+    public float lookRadius = 6.0f;
     public Transform[] moveSpots;
 
+    private Transform target;
     private NavMeshAgent agent;
     private int randomSpot;
     private float waitTime;
@@ -20,8 +22,11 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         waitTime = startWaitTime;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
         randomSpot = Random.Range(0, moveSpots.Length);
         agent = GetComponent<NavMeshAgent>();
+       // boss = GetComponent<BossController>();
+
         //moveSpots.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
     }
 
@@ -29,27 +34,39 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         Patrol();
+
     }
 
     void Patrol()
     {
         //transform.position = Vector3.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
-        agent.SetDestination(moveSpots[randomSpot].position);
-        float spotDistance = Vector3.Distance(transform.position, moveSpots[randomSpot].position);
+
         LookAtDirection();
 
-        if (agent.stoppingDistance <= 3.0f)
+        float distance = Vector3.Distance(target.position, transform.position);
+        float spotDistance = Vector3.Distance(transform.position, moveSpots[randomSpot].position);
+
+        if (lookRadius <= distance)
         {
-            if (waitTime <= 0)
+            agent.SetDestination(moveSpots[randomSpot].position);
+
+            if (agent.stoppingDistance <= 3.0f)
             {
-                //moveSpots.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
-                randomSpot = Random.Range(0, moveSpots.Length);
-                waitTime = startWaitTime;
+                if (waitTime <= 0)
+                {
+                    //moveSpots.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
+                    randomSpot = Random.Range(0, moveSpots.Length);
+                    waitTime = startWaitTime;
+                }
+                else
+                {
+                    waitTime -= Time.deltaTime;
+                }
             }
-            else
-            {
-                waitTime -= Time.deltaTime;
-            }
+        }
+        else if(lookRadius >= distance)
+        {
+            agent.SetDestination(target.position);
         }
     }
 
@@ -58,5 +75,11 @@ public class EnemyController : MonoBehaviour
         Vector3 direction = (moveSpots[randomSpot].position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5.0f);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, lookRadius);
     }
 }
