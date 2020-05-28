@@ -1075,7 +1075,7 @@ GameObject:
   - component: {fileID: 486015825139837598}
   m_Layer: 0
   m_Name: MainPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1154,6 +1154,8 @@ MonoBehaviour:
   maxTime: 1
   comboCooldown: 2
   maxCombo: 3
+  meleeAttackWindup: 1
+  meleeAttackRange: 1
 --- !u!54 &486015825139837597
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1189,6 +1191,7 @@ MonoBehaviour:
   projectileSpawnLocation: {fileID: 486015824751956107}
   projectileForce: 1111
   projectileLifeTime: 1
+  rangedAttackStartupDelay: 1
 --- !u!1 &486015825462711342
 GameObject:
   m_ObjectHideFlags: 0
