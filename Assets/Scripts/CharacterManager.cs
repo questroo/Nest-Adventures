@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class CharacterManager : MonoBehaviour
 {
     // Singleton Instance
     public static CharacterManager instance = null;
-
-
+    public Text countdownText;
     // Controls
     PlayerControls control;
     public GameObject[] Characters;
@@ -37,6 +37,7 @@ public class CharacterManager : MonoBehaviour
     }
     IEnumerator CharacterSwapping()
     {
+        StartCoroutine("StartTimer");
         swapping = true;
         m_CharacterIndex = ++m_CharacterIndex % 2;
         //disable input
@@ -62,7 +63,16 @@ public class CharacterManager : MonoBehaviour
             Characters[0].SetActive(false);
         }
         swapping = false;
-        //Characters[m_CharacterIndex].GetComponentInParent<PlayerController>().ResetCharacterComponents();
+    }
+    public IEnumerator StartTimer()
+    {
+        float totalTime = swapTime;
+        while (totalTime >= 0)
+        {
+            totalTime -= Time.deltaTime;
+            countdownText.text = totalTime.ToString("n2");
+            yield return null;
+        }
     }
     public string GetCurrentPlayerTag()
     {
@@ -70,7 +80,7 @@ public class CharacterManager : MonoBehaviour
     }
     void Swap()
     {
-        if (!swapping)
+        if (!swapping && !GameObject.FindGameObjectWithTag("Player").GetComponent<ProjectileController>().IsWindingUp())
         {
             StartCoroutine("CharacterSwapping");
         }
