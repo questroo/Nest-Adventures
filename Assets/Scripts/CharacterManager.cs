@@ -49,6 +49,7 @@ public class CharacterManager : MonoBehaviour
         yield return new WaitForSeconds(swapTime);
         //enable input
         Characters[m_CharacterIndex].GetComponentInParent<PlayerController>().EnableInput();
+        Characters[m_CharacterIndex].GetComponentInParent<AnimationController>().RegetAnimator();
         Characters[m_CharacterIndex].GetComponentInParent<AttackManager>().EnableInput();
         //endIframe
         Characters[m_CharacterIndex].GetComponentInParent<PlayerStats>().EndIFrame();
@@ -84,6 +85,10 @@ public class CharacterManager : MonoBehaviour
         {
             StartCoroutine("CharacterSwapping");
         }
+    }
+    public bool CheckSwapping()
+    {
+        return swapping;
     }
     private void OnEnable()
     {
