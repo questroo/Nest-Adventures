@@ -24,7 +24,7 @@ public class WalkBehaviour : StateMachineBehaviour
 
         if (distance <= boss.GetMeleeRadius())
         {
-            animator.SetTrigger("Idle");
+            animator.SetTrigger("Attack");
             boss.StopMovement();
         }
         else if (distance <= boss.lookRadius)
@@ -42,5 +42,6 @@ public class WalkBehaviour : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.ResetTrigger("Idle");
+        animator.ResetTrigger("Attack");
     }
 }
