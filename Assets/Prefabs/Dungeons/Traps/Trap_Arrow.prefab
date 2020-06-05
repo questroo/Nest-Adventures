@@ -1,5 +1,39 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1842933347714512296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2826006205613774979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a0cbc45e9902cd47bc208c35b7141c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trapType: 5
+  canReset: 1
+  resetDelay: 10
+  triggerDelay: 1
+--- !u!114 &3822311653310859813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460054849204634391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf80995db348b741ba5c52bf780b41e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrowObject: {fileID: 2924637953476210342, guid: 1188416341a0eb94fbd22c23cfc9666d,
+    type: 3}
+  arrowInstantiateTransforms:
+  - {fileID: 0}
+  arrowLaunchForce: 60
+  continuousFiring: 0
 --- !u!1001 &2011725988024624703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72,5 +106,27 @@ PrefabInstance:
       propertyPath: trapType
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7276189572119772560, guid: c6585441d1b4fdd40bdd93d2d0268171,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.9021233
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276189572119772560, guid: c6585441d1b4fdd40bdd93d2d0268171,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.3510616
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6585441d1b4fdd40bdd93d2d0268171, type: 3}
+--- !u!1 &2826006205613774979 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4385639121382129340, guid: c6585441d1b4fdd40bdd93d2d0268171,
+    type: 3}
+  m_PrefabInstance: {fileID: 2011725988024624703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1460054849204634391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1128219906086331688, guid: c6585441d1b4fdd40bdd93d2d0268171,
+    type: 3}
+  m_PrefabInstance: {fileID: 2011725988024624703}
+  m_PrefabAsset: {fileID: 0}

@@ -106,7 +106,7 @@ public class Trap : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (
-                other.CompareTag("Player") &&
+                (other.CompareTag("Player") || other.CompareTag("Tanjiro") || other.CompareTag("Bertha")) &&
                 (resetTimeLeft <= 0) &&
                 ((hasBeenTriggered && canReset) || (!hasBeenTriggered))
            )

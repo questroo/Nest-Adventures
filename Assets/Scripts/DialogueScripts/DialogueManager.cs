@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    public Canvas textCanvas;
+
     public Text nameText;
     public Text dialogueText;
     public Animator animator;
 
-    public float textSpeed = 0.1f;
+    public float textSpeed = 0.01f;
 
     private Queue<string> sentences;
 
@@ -19,7 +21,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void StartDialouge(Dialogue dialogue)
-    {
+    {       
         nameText.text = dialogue.name;
 
         sentences.Clear();

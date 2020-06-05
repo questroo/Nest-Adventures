@@ -13,12 +13,12 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (isPlayerNear && !hasStarted && Input.GetKeyDown(KeyCode.Space))
+        if (isPlayerNear && !hasStarted && Input.GetKeyDown(KeyCode.J))
         {
             hasStarted = true;
             Trigger();
         }
-        else if (isPlayerNear && hasStarted && Input.GetKeyDown(KeyCode.Space))
+        else if (isPlayerNear && hasStarted && Input.GetKeyDown(KeyCode.J))
         {
             dialogueManagerScript.DisplayNextSentence();
         }
@@ -27,12 +27,12 @@ public class DialogueTrigger : MonoBehaviour
     public void Trigger()
     {
         dialogueManagerScript = FindObjectOfType<DialogueManager>();
-        dialogueManagerScript.StartDialouge(dialogue);       
+        dialogueManagerScript.StartDialouge(dialogue);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Tanjiro") || other.CompareTag("Bertha"))
         {
             isPlayerNear = true;
         }
@@ -40,7 +40,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Tanjiro") || other.CompareTag("Bertha"))
         {
             isPlayerNear = false;
             hasStarted = false;
