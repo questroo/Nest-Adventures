@@ -12,8 +12,8 @@ public class IdleBehaviour : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        boss = animator.GetComponentInParent<BossController>();
-        rigidBody = animator.GetComponentInParent<Rigidbody>();
+        boss = animator.GetComponent<BossController>();
+        rigidBody = animator.GetComponent<Rigidbody>();
         dashTime = startDashTime;
 
     }
@@ -31,7 +31,7 @@ public class IdleBehaviour : StateMachineBehaviour
         }
         else if (distance <= boss.lookRadius)
         {
-            boss.Movement();
+            animator.SetTrigger("Walk");
             dashTime = startDashTime;
         }
         else if (distance <= boss.dashRadius && distance >= boss.lookRadius && dashTime <= 0.0f)
@@ -42,12 +42,12 @@ public class IdleBehaviour : StateMachineBehaviour
         else
         {
             dashTime -= Time.deltaTime;
-            boss.StopMovement();
         }
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.ResetTrigger("Attack");
+        animator.ResetTrigger("Walk");
     }
 }

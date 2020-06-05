@@ -558,8 +558,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   hitRange: 0.68
-  lookRadius: 11.4
-  dashRadius: 18.1
+  lookRadius: 12.77
+  dashRadius: 22.78
   damageFromObstacle: 10
 --- !u!195 &4479801023700579031
 NavMeshAgent:
