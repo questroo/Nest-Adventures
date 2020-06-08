@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 486015824480541677}
   - component: {fileID: 486015824480541676}
   m_Layer: 0
-  m_Name: Player (1)
+  m_Name: BigPlayer
   m_TagString: Tanjiro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 486015824480541678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 486015824427169744}
   - {fileID: 486015823685675346}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 486015824989561600}
   - component: {fileID: 486015824989561631}
   m_Layer: 0
-  m_Name: Player
+  m_Name: SmallPlayer
   m_TagString: Bertha
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
