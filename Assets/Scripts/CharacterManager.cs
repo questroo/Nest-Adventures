@@ -7,7 +7,7 @@ public class CharacterManager : MonoBehaviour
 {
     // Singleton Instance
     public static CharacterManager instance = null;
-    public Text countdownText;
+    //public Text countdownText;
     // Controls
     PlayerControls control;
     public GameObject[] Characters;
@@ -18,7 +18,7 @@ public class CharacterManager : MonoBehaviour
     private bool swapping = false;
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -37,7 +37,7 @@ public class CharacterManager : MonoBehaviour
     }
     IEnumerator CharacterSwapping()
     {
-        StartCoroutine("StartTimer");
+        //StartCoroutine("StartTimer");
         swapping = true;
         m_CharacterIndex = ++m_CharacterIndex % 2;
         //disable input
@@ -71,7 +71,7 @@ public class CharacterManager : MonoBehaviour
         while (totalTime >= 0)
         {
             totalTime -= Time.deltaTime;
-            countdownText.text = totalTime.ToString("n2");
+            //countdownText.text = totalTime.ToString("n2");
             yield return null;
         }
     }
@@ -99,4 +99,3 @@ public class CharacterManager : MonoBehaviour
         control.ActionMap.Disable();
     }
 }
-

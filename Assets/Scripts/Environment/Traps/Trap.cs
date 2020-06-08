@@ -111,6 +111,7 @@ public class Trap : MonoBehaviour
                 ((hasBeenTriggered && canReset) || (!hasBeenTriggered))
            )
         {
+            Debug.Log("trigger entered");
             resetTimeLeft = resetDelay;
             triggerDelayLeft = triggerDelay;
             isTriggered = true;
