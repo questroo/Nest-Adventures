@@ -24,6 +24,8 @@ public class Trap_ArrowProjectile : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        transform.LookAt(transform.position + GetComponent<Rigidbody>().velocity.normalized);
     }
 
     private void OnTriggerEnter(Collider other)

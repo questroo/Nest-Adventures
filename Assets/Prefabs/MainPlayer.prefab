@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 486015824480541677}
   - component: {fileID: 486015824480541676}
   m_Layer: 0
-  m_Name: Player (1)
+  m_Name: BigPlayer
   m_TagString: Tanjiro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 486015824480541678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 486015824427169744}
   - {fileID: 486015823685675346}
@@ -138,25 +138,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.91361845, y: 1.021344, z: 0.16133234}
   m_Center: {x: 0.0013181716, y: 0.58038986, z: 0.018456057}
---- !u!95 &1803861110
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475565347274457636}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4c53d1093d0f8ac44992b5d386c2f55a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &486015824751956108
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,7 +179,7 @@ GameObject:
   - component: {fileID: 486015824989561600}
   - component: {fileID: 486015824989561631}
   m_Layer: 0
-  m_Name: Player
+  m_Name: SmallPlayer
   m_TagString: Bertha
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -233,25 +214,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.91361845, y: 1.021344, z: 0.16133234}
   m_Center: {x: 0.0013181716, y: 0.58038986, z: 0.018456057}
---- !u!95 &2079620085
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475565347549885349}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3692bbd433990054283a63344a6c5b4b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &486015825139837599
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disableInput: 0
   fireSpeed: 25000
-  moveSpeed: 5
+  moveSpeed: 10
   jumpHeight: 225
   horizontalLaunchSpeed: 1777
   speedAccelSmoothTime: 0.15
@@ -428,6 +390,44 @@ Transform:
   m_Father: {fileID: 486015824989561600}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1803861110
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8475565347274457636}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4c53d1093d0f8ac44992b5d386c2f55a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!95 &2079620085
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8475565347549885349}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3692bbd433990054283a63344a6c5b4b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &486015824741063469
 PrefabInstance:
   m_ObjectHideFlags: 0

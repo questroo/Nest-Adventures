@@ -14,7 +14,7 @@ public class KillVolume : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Bertha") || other.CompareTag("Tanjiro"))
         {
             faderHandle.TriggerFade();
         }

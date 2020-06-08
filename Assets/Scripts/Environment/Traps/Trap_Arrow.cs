@@ -8,6 +8,8 @@ public class Trap_Arrow : MonoBehaviour
     public Transform[] arrowInstantiateTransforms;
     public float arrowLaunchForce;
     public bool continuousFiring = false;
+    public float continuousFireingDelay = 1.0f;
+    public bool arrowReady = true;
 
     bool isTriggered = false;
     GameObject arrowHandle;
@@ -17,8 +19,11 @@ public class Trap_Arrow : MonoBehaviour
     {
         if (isTriggered)
         {
-            isTriggered = false;
-            FireArrows();
+            if(!continuousFiring)
+                isTriggered = false;
+
+            if(arrowReady)
+                FireArrows();
         }
     }
 
@@ -29,6 +34,8 @@ public class Trap_Arrow : MonoBehaviour
 
     private void FireArrows()
     {
+        StartCoroutine(ContinuousFireTimer());
+
         foreach (Transform arrowLaunchTransform in arrowInstantiateTransforms)
         {
             arrowHandle = Instantiate(arrowObject, arrowLaunchTransform.position, arrowLaunchTransform.rotation);
@@ -37,5 +44,12 @@ public class Trap_Arrow : MonoBehaviour
 
             arrowRigidBody.AddForce(arrowLaunchTransform.forward.normalized * arrowLaunchForce, ForceMode.Impulse);
         }
+    }
+
+    IEnumerator ContinuousFireTimer()
+    {
+        arrowReady = false;
+        yield return new WaitForSeconds(continuousFireingDelay);
+        arrowReady = true;
     }
 }

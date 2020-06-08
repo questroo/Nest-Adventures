@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Prefabs/Mannequins.meta
+guid: 80bf9a0c2e74487478e937e9024d170e
+=======
 guid: c5d95f9cb1a98594bb686eacd89578dc
+>>>>>>> db417ff31b04f9ebd5a1c65006bdf8e7d0418de4:Assets/Animation/Boss Arena.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
