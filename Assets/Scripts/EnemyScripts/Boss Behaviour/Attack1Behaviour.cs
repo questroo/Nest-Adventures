@@ -10,8 +10,8 @@ public class Attack1Behaviour : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        boss = animator.GetComponentInParent<BossController>();
-        rigidBody = animator.GetComponentInParent<Rigidbody>();
+        boss = animator.GetComponent<BossController>();
+        rigidBody = animator.GetComponent<Rigidbody>();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -20,8 +20,8 @@ public class Attack1Behaviour : StateMachineBehaviour
 
         if (distance <= boss.GetMeleeRadius())
         {
-            rigidBody.transform.Translate(Vector3.forward * Time.deltaTime);
-            animator.SetTrigger("Attack");
+            //rigidBody.transform.Translate(Vector3.forward * Time.deltaTime);
+            //animator.SetTrigger("Attack");
         }
         else
         {
