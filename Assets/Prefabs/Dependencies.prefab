@@ -533,6 +533,71 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3360264853795351059}
     m_Modifications:
+    - target: {fileID: 486015824480541676, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.9136185
+      objectReference: {fileID: 0}
+    - target: {fileID: 486015824480541676, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.55751
+      objectReference: {fileID: 0}
+    - target: {fileID: 486015824480541676, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.74973047
+      objectReference: {fileID: 0}
+    - target: {fileID: 486015824480541676, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.0013181687
+      objectReference: {fileID: 0}
+    - target: {fileID: 486015824480541676, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.8484728
+      objectReference: {fileID: 0}
+    - target: {fileID: 486015824480541676, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.013222433
+      objectReference: {fileID: 0}
+    - target: {fileID: 486015824989561631, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.9613864
+      objectReference: {fileID: 0}
+    - target: {fileID: 486015824989561631, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.6044967
+      objectReference: {fileID: 0}
+    - target: {fileID: 486015824989561631, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.7647891
+      objectReference: {fileID: 0}
+    - target: {fileID: 486015824989561631, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.022565803
+      objectReference: {fileID: 0}
+    - target: {fileID: 486015824989561631, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.87196606
+      objectReference: {fileID: 0}
+    - target: {fileID: 486015824989561631, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.073951386
+      objectReference: {fileID: 0}
+    - target: {fileID: 486015825139837597, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 486015825139837599, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}
       propertyPath: m_Name
