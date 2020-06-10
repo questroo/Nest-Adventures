@@ -22,9 +22,6 @@ public class CinematicFade : MonoBehaviour
     float timer;
     FadeState fadeState = FadeState.Clear;
 
-    bool isFadingToBlack = false;
-    bool isFadingFromBlackToCamera = false;
-
     private void Update()
     {
         switch (fadeState)

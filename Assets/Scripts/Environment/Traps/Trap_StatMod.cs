@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum StatusType
+{
+    Poison,
+    AttackDown
+}
+
 public class Trap_StatMod : MonoBehaviour
 {
-    //public StatusType trapStatusEffect = StatusType.Poison;
+    public StatusType trapStatusEffect = StatusType.Poison;
     public float strength;
     public float duration;
 
@@ -28,7 +34,7 @@ public class Trap_StatMod : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            //statsHandle.ModifyStatus(trapStatusEffect, strength, duration);
+            statsHandle.ModifyStatus(trapStatusEffect, strength, duration);
         }
     }
 }
