@@ -22,7 +22,7 @@ public class HitBox : MonoBehaviour
         foreach (Collider player in hitPlayer)
         {
             Debug.Log("we hit " + player.name);
-            player.GetComponentInParent<PlayerStats>().TakeDamage(10.0f);
+            player.GetComponentInParent<PlayerStats>().TakeDamage(enemyStat.bossDamage);
             
         }
     }

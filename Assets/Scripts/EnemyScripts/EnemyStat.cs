@@ -46,7 +46,7 @@ public class EnemyStat : MonoBehaviour, IDamageable
         //Stop all movement
         //Remove collision
         //Model Disappear
-
+        Debug.Log("Boss dead supposedly . . .");
         Destroy(gameObject);
     }
 }
