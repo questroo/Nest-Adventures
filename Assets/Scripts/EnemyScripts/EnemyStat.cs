@@ -3,18 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStat : MonoBehaviour
+public class EnemyStat : MonoBehaviour, IDamageable
 {
     public float enemyMaxHealth = 100f;
     public float bossDamage = 5f;
     public HealthBarManager healthBar;
 
-    private float enemyCurrentHealth;
+    public float Health { get; set; }
 
 
     void Start()
     {
-        enemyCurrentHealth = enemyMaxHealth;
+        Health = enemyMaxHealth;
         healthBar.SetMaxHealth(enemyMaxHealth);
     }
 
@@ -28,13 +28,13 @@ public class EnemyStat : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        enemyCurrentHealth -= damage;
+        Health -= damage;
         Debug.Log("Boss takes " + damage + " damage");
-        healthBar.SetHealth(enemyCurrentHealth);
+        healthBar.SetHealth(Health);
 
-        if (enemyCurrentHealth <= 0f)
+        if (Health <= 0f)
         {
-            enemyCurrentHealth = 0.0f;
+            Health = 0.0f;
             Die();
         }
 
