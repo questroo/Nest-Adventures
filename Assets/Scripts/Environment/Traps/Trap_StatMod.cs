@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public enum StatusType
 {
@@ -13,11 +14,14 @@ public class Trap_StatMod : MonoBehaviour
     public StatusType trapStatusEffect = StatusType.Poison;
     public float strength;
     public float duration;
+    public VisualEffect visualEffect;
+    float effectDuration = 2.0f;
 
     PlayerStats statsHandle;
 
     private void Start()
     {
+        visualEffect.Stop();
         statsHandle = FindObjectOfType<PlayerStats>();
         if(!statsHandle)
         {
@@ -27,14 +31,14 @@ public class Trap_StatMod : MonoBehaviour
 
     public void TriggerTrap()
     {
-
+        statsHandle.ModifyStatus(trapStatusEffect, strength, duration);
+        StartCoroutine(PlayEffect());
     }
 
-    private void OnTriggerEnter(Collider other)
+    IEnumerator PlayEffect()
     {
-        if(other.CompareTag("Player"))
-        {
-            statsHandle.ModifyStatus(trapStatusEffect, strength, duration);
-        }
+        visualEffect.Play();
+        yield return new WaitForSeconds(effectDuration);
+        visualEffect.Stop();
     }
 }

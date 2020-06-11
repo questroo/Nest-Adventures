@@ -92,8 +92,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7caf161b9080ca46807a069e9e9b6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleportLocations:
-  - {fileID: 0}
+  teleportPositionPrefab: {fileID: 2787236036281729906, guid: 17c1e41f9d9d6b046a7cd6998124dea4,
+    type: 3}
+  teleportLocations: []
 --- !u!1001 &4729029701845215743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -170,6 +171,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Trap_Teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5551895181651481979, guid: c6585441d1b4fdd40bdd93d2d0268171,
+        type: 3}
+      propertyPath: trapType
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6284955328284802803, guid: c6585441d1b4fdd40bdd93d2d0268171,
         type: 3}

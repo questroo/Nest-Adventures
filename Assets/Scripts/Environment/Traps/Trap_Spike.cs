@@ -83,9 +83,9 @@ public class Trap_Spike : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") || other.CompareTag("Bertha") || other.CompareTag("Tanjiro"))
         {
-            other.GetComponent<PlayerDungeonTester>().TakeDamage(10.0f);
+            other.GetComponentInParent<PlayerStats>().TakeDamage(10.0f);
         }
     }
 }

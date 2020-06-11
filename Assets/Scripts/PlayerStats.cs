@@ -7,7 +7,7 @@ public class PlayerStats : MonoBehaviour
     private float m_Health;
     public float m_AtkDamage = 14.0f;
     private bool invincible = false;
-    public Image healthSlider;
+    public HealthBarManager healthBar;
 
     private EnemyStat enemyStat;
 
@@ -27,7 +27,7 @@ public class PlayerStats : MonoBehaviour
     {
         m_Health = m_maxHealth;
         enemyStat = FindObjectOfType<EnemyStat>();
-        healthSlider.fillAmount = 1.0f;
+        healthBar.SetMaxHealth(m_maxHealth);
     }
     public void TakeDamage(float damage)
     {
@@ -141,8 +141,7 @@ public class PlayerStats : MonoBehaviour
 
     private void UpdateHealthBar()
     {
-        float healthPercent = m_Health / m_maxHealth;
-        healthSlider.fillAmount = healthPercent;
+        healthBar.SetHealth(m_Health);
     }
     public void StartIFrame()
     {

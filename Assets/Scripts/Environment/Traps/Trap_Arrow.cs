@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.WSA;
 
 public class Trap_Arrow : MonoBehaviour
 {
     public GameObject arrowObject;
-    public Transform[] arrowInstantiateTransforms;
+    public GameObject launcherObject;
+    public List<Transform> arrowInstantiateTransforms;
     public float arrowLaunchForce;
     public bool continuousFiring = false;
     public float continuousFireingDelay = 1.0f;
@@ -51,5 +53,11 @@ public class Trap_Arrow : MonoBehaviour
         arrowReady = false;
         yield return new WaitForSeconds(continuousFireingDelay);
         arrowReady = true;
+    }
+
+    public void MakeNewArrowLauncher()
+    {
+        GameObject newLauncher = Instantiate(launcherObject, transform.position + Vector3.up, Quaternion.identity, transform);
+        arrowInstantiateTransforms.Add(newLauncher.transform);
     }
 }
