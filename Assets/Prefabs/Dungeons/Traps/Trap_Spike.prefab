@@ -859,6 +859,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trap_Spike
       objectReference: {fileID: 0}
+    - target: {fileID: 5551895181651481979, guid: c6585441d1b4fdd40bdd93d2d0268171,
+        type: 3}
+      propertyPath: trapType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7276189572119772560, guid: c6585441d1b4fdd40bdd93d2d0268171,
         type: 3}
       propertyPath: m_IsTrigger
