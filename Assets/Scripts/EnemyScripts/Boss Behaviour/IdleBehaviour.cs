@@ -12,8 +12,8 @@ public class IdleBehaviour : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        boss = animator.GetComponent<BossController>();
-        rigidBody = animator.GetComponent<Rigidbody>();
+        boss = animator.GetComponentInParent<BossController>();
+        rigidBody = animator.GetComponentInParent<Rigidbody>();
         dashTime = startDashTime;
 
     }
