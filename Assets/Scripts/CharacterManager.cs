@@ -33,7 +33,7 @@ public class CharacterManager : MonoBehaviour
     }
     private void Start()
     {
-        Characters[0].SetActive(false);
+        Characters[0].SetActive(true);
     }
     IEnumerator CharacterSwapping()
     {

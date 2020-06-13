@@ -5,7 +5,7 @@ using UnityEngine;
 public class BreakableObject : MonoBehaviour, IDamageable
 {
     [SerializeField]
-    private float objectHealth = 3.0f;
+    public float objectHealth = 5.0f;
     private float health;
 
     public float Health
@@ -16,19 +16,11 @@ public class BreakableObject : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        hitsLeft = hitsToBreak;
+        health = objectHealth;
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.collider.CompareTag("Weapon"))
-        {
-            hitsLeft--;
-            if (hitsLeft <= 0)
-            {
-                DestroyThisBreakable();
-            }
-        }
     }
 
     public void DestroyThisBreakable()
@@ -39,11 +31,20 @@ public class BreakableObject : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        throw new System.NotImplementedException();
+        health -= damage;
+        if(health <= 0)
+        {
+            Die();
+        }
     }
 
     public void Die()
     {
-        throw new System.NotImplementedException();
+        Break();
+    }
+
+    public void Break()
+    {
+        // SpawnParticle or break apart
     }
 }
