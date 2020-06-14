@@ -8,7 +8,7 @@ public class Trap_ArrowProjectile : MonoBehaviour
     [Tooltip("Time from instantiation to wait until the game deletes this object.")]
     public float lifeTime = 10.0f;
 
-    PlayerDungeonTester playerScript;
+    PlayerStats playerScript;
     float lifetimeLeft = 0.0f;
     bool stuck = false;
 
@@ -38,9 +38,9 @@ public class Trap_ArrowProjectile : MonoBehaviour
             rb.isKinematic = true;
             rb.useGravity = false;
 
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") || other.CompareTag("Bertha") || other.CompareTag("Tanjiro"))
             {
-                playerScript = other.GetComponent<PlayerDungeonTester>();
+                playerScript = other.GetComponentInParent<PlayerStats>();
 
                 if (playerScript)
                 {

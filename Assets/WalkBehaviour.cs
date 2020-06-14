@@ -11,8 +11,8 @@ public class WalkBehaviour : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        boss = animator.GetComponent<BossController>();
-        rigidBody = animator.GetComponent<Rigidbody>();
+        boss = animator.GetComponentInParent<BossController>();
+        rigidBody = animator.GetComponentInParent<Rigidbody>();
 
     }
 
@@ -24,7 +24,7 @@ public class WalkBehaviour : StateMachineBehaviour
 
         if (distance <= boss.GetMeleeRadius())
         {
-            animator.SetTrigger("Attack");
+            animator.SetTrigger("Idle");
             boss.StopMovement();
         }
         else if (distance <= boss.lookRadius)
