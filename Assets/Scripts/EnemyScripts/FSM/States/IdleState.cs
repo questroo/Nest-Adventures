@@ -10,6 +10,9 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
     [CreateAssetMenu(fileName = "IdleState", menuName ="Unity-FSM/States/Idle", order =1)]
     public class IdleState : AbstractFSMState
     {
+        public float waitTimeMin = 1.0f;
+        public float waitTimeMax = 3.0f;
+
         public override void OnEnable()
         {
             base.OnEnable();
