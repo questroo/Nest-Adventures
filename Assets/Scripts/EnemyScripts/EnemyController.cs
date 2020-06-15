@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     public float speed;
     public float startWaitTime;
     public float lookRadius = 6.0f;
+    public float alertRadius = 8.0f;
     public Transform[] moveSpots;
 
     private Transform target;
@@ -25,31 +26,30 @@ public class EnemyController : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player").transform;
         randomSpot = Random.Range(0, moveSpots.Length);
         agent = GetComponent<NavMeshAgent>();
-       // boss = GetComponent<BossController>();
+        // boss = GetComponent<BossController>();
 
         //moveSpots.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        Patrol();
+    //void Update()
+    //{
+    //    Patrol();
+    //}
 
-    }
-
-    void Patrol()
+    public void Movement()
     {
         //transform.position = Vector3.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
 
-        LookAtDirection();
 
         float distance = Vector3.Distance(target.position, transform.position);
         float spotDistance = Vector3.Distance(transform.position, moveSpots[randomSpot].position);
 
-        if (lookRadius <= distance)
+        if (distance >= alertRadius)
         {
+            LookAtDirection();
             agent.SetDestination(moveSpots[randomSpot].position);
-
+            agent.isStopped = false;
             if (agent.stoppingDistance <= 3.0f)
             {
                 if (waitTime <= 0)
@@ -64,22 +64,41 @@ public class EnemyController : MonoBehaviour
                 }
             }
         }
-        else if(lookRadius >= distance)
+        else if (distance <= alertRadius)
         {
-            agent.SetDestination(target.position);
+            LookAtPlayer();
+            agent.isStopped = true;
+            if (distance <= lookRadius)
+            {
+                agent.SetDestination(target.position);
+                agent.isStopped = false;
+            }
         }
     }
 
-    void LookAtDirection()
+    public void LookAtDirection()
     {
         Vector3 direction = (moveSpots[randomSpot].position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5.0f);
     }
 
+    public void LookAtPlayer()
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5.0f);
+    }
+
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, lookRadius);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, alertRadius);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, agent.stoppingDistance);
     }
 }
