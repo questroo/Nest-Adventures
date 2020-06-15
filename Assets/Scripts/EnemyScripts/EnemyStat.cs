@@ -8,21 +8,22 @@ public class EnemyStat : MonoBehaviour, IDamageable
     public float enemyMaxHealth = 100f;
     public float bossDamage = 5f;
     public HealthBarManager healthBar;
-
     public float Health { get; set; }
-
+    Animator animator;
 
     void Start()
     {
         Health = enemyMaxHealth;
+        animator = GetComponentInChildren<Animator>();
         healthBar.SetMaxHealth(enemyMaxHealth);
+        
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            TakeDamage(100);
+            TakeDamage(100.0f);
         }
     }
 
@@ -30,14 +31,14 @@ public class EnemyStat : MonoBehaviour, IDamageable
     {
         Health -= damage;
         Debug.Log("Boss takes " + damage + " damage");
-        healthBar.SetHealth(Health);
-
-        if (Health <= 0f)
+  
+        if (Health <= 0.0f)
         {
-            Health = 0.0f;
-            Die();
+            Health = 0.0f; 
+            animator.SetInteger("Die", 1);
         }
 
+        healthBar.SetHealth(Health);
     }
 
     public void Die()
