@@ -1375,6 +1375,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 486015825139837594, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 6.03
+      objectReference: {fileID: 0}
     - target: {fileID: 486015825139837599, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}
       propertyPath: m_Name
@@ -1443,6 +1448,11 @@ PrefabInstance:
     - target: {fileID: 6198824963230493967, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198824964149439525, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1821,20 +1831,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5325908998930136176, guid: 56a7d9d5a6f168b458910bd40dc1cfeb,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.6517
-      objectReference: {fileID: 0}
     - target: {fileID: 5325908998930136178, guid: 56a7d9d5a6f168b458910bd40dc1cfeb,
         type: 3}
       propertyPath: m_Name
       value: meleeEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 5325908998930136178, guid: 56a7d9d5a6f168b458910bd40dc1cfeb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56a7d9d5a6f168b458910bd40dc1cfeb, type: 3}
