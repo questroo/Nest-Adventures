@@ -6,7 +6,9 @@ public class BreakableObject : MonoBehaviour, IDamageable
 {
     [SerializeField]
     public float objectHealth = 5.0f;
-    private float health;
+    public float health;
+
+    public LootTable lootTable;
 
     public float Health
     {
@@ -25,8 +27,11 @@ public class BreakableObject : MonoBehaviour, IDamageable
 
     public void DestroyThisBreakable()
     {
-        // TODO - implement polish for destruction (effects, shaders etc.)
-        Destroy(this.gameObject);
+        if(lootTable)
+        {
+            lootTable.DropLoot();
+        }
+        Destroy(gameObject);
     }
 
     public void TakeDamage(float damage)
@@ -40,11 +45,6 @@ public class BreakableObject : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        Break();
-    }
-
-    public void Break()
-    {
-        // SpawnParticle or break apart
+        DestroyThisBreakable();
     }
 }

@@ -34,6 +34,9 @@ public class PlayerStats : MonoBehaviour
         if (!invincible)
         {
             m_Health -= damage;
+            if (m_Health > m_maxHealth)
+                m_Health = m_maxHealth;
+
             Debug.Log("Take damage. Curr health: " + m_Health);
             if (m_Health <= 0.0f)
             {

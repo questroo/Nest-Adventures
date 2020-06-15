@@ -5,12 +5,11 @@ using UnityEngine;
 public class HealthPickup : MonoBehaviour
 {
     public float healthValue;
+    public float spawnForce = 10.0f;
 
     Rigidbody rb;
-    public float spawnForce = 10.0f;
-    public float spawnRadius = 1.0f;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -20,18 +19,14 @@ public class HealthPickup : MonoBehaviour
         }
         else
         {
-            rb.AddExplosionForce(spawnForce, Random.onUnitSphere, spawnRadius, 1.0f, ForceMode.Impulse);
+            rb.velocity = (Random.onUnitSphere * spawnForce) + (Vector3.up * 2.0f);
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        rb.velocity = Vector3.zero;
-        rb.isKinematic = true;
         if(collision.gameObject.CompareTag("Player"))
         {
-            int i = 0;
-            int j = i + 2;
             collision.gameObject.GetComponent<PlayerStats>().TakeDamage(-1.0f * healthValue);
             Destroy(gameObject);
         }

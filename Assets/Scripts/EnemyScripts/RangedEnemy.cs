@@ -1,72 +1,38 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.EnemyScripts.FSM;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using UnityEngine;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent), typeof(FiniteStateMachine))]
 public class RangedEnemy : MonoBehaviour, IDamageable
 {
-    public enum EnemyState
+    protected NavMeshAgent navMeshAgent;
+    protected FiniteStateMachine finiteStateMachine;
+
+    public float health;
+    public void Awake()
     {
-        Patrolling,
-        Attacking,
-        LookingForPlayer,
-        Chasing,
-        MovingIntoRange,
-        Dead
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        finiteStateMachine = GetComponent<FiniteStateMachine>();
     }
 
-    public float maxHealth = 100.0f;
-    float health;
-
-    [SerializeField]
-    EnemyState currentState = EnemyState.Patrolling;
-
-    private void Awake()
-    {
-        health = maxHealth;
-    }
-
-    void Update()
-    {
-        switch (currentState)
-        {
-            case EnemyState.Patrolling:
-                break;
-
-            case EnemyState.Attacking:
-                break;
-
-            case EnemyState.LookingForPlayer:
-                break;
-
-            case EnemyState.Chasing:
-                break;
-
-            case EnemyState.MovingIntoRange:
-                break;
-
-            case EnemyState.Dead:
-                break;
-        }
-    }
-
-
-
-    ///  Health Interface
+    #region HEALTH IMPLEMENTATION
     public float Health
     {
         get { return health; }
         set { health = value; }
     }
-    public void TakeDamage(float damage)
-    {
-        Health -= damage;
-        Die();
-    }
+
     public void Die()
     {
-        if (Health <= 0.0f)
-        {
-            Destroy(gameObject);
-        }
+        
     }
+
+    public void TakeDamage(float damage)
+    {
+        
+    }
+    #endregion
 }
