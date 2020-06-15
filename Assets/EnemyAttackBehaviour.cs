@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MinionIdleBehaviour : StateMachineBehaviour
+public class EnemyAttackBehaviour : StateMachineBehaviour
 {
     EnemyController enemy;
     Rigidbody rigidBody;
@@ -20,16 +20,15 @@ public class MinionIdleBehaviour : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         float distance = Vector3.Distance(enemy.GetTarget().position, animator.transform.position);
-        enemy.Movement();
 
-        if(distance <= enemy.attackRadius)
+        if (distance >= enemy.attackRadius)
         {
-            animator.SetTrigger("Attack");
+            animator.SetTrigger("Idle");
         }
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger("Attack");
+        animator.ResetTrigger("Idle");
     }
 }

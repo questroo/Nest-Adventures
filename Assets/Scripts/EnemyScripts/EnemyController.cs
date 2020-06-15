@@ -5,10 +5,11 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    public float speed;
+    //public float speed;
     public float startWaitTime;
     public float lookRadius = 6.0f;
     public float alertRadius = 8.0f;
+    public float attackRadius = 4.0f;
     public Transform[] moveSpots;
 
     private Transform target;
@@ -36,7 +37,10 @@ public class EnemyController : MonoBehaviour
     //{
     //    Patrol();
     //}
-
+    public Transform GetTarget()
+    {
+        return target;
+    }
     public void Movement()
     {
         //transform.position = Vector3.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
@@ -99,6 +103,6 @@ public class EnemyController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, alertRadius);
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, agent.stoppingDistance);
+        Gizmos.DrawWireSphere(transform.position, attackRadius);
     }
 }
