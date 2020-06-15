@@ -484,7 +484,7 @@ Transform:
   m_GameObject: {fileID: 5325908998930136178}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -30.37, y: 0.5, z: 0.29}
-  m_LocalScale: {x: 1, y: 1.6517, z: 1}
+  m_LocalScale: {x: 0.6349001, y: 1.0486643, z: 0.6348999}
   m_Children:
   - {fileID: 5325908998465188381}
   - {fileID: 5325908998447125393}
@@ -541,9 +541,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startWaitTime: 3
-  lookRadius: 7.07
-  alertRadius: 10.81
-  attackRadius: 3.26
+  lookRadius: 4.85
+  alertRadius: 6.38
+  attackRadius: 1.87
   moveSpots:
   - {fileID: 0}
   - {fileID: 0}
