@@ -2,32 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakableObject : MonoBehaviour
+public class BreakableObject : MonoBehaviour, IDamageable
 {
     [SerializeField]
-    private float hitsToBreak = 3.0f;
-    private float hitsLeft;
+    public float objectHealth = 5.0f;
+    public float health;
+
+    public LootTable lootTable;
+
+    public float Health
+    {
+        get { return health; }
+        set { health = value; }
+    }
 
     private void Start()
     {
-        hitsLeft = hitsToBreak;
+        health = objectHealth;
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.collider.CompareTag("Weapon"))
-        {
-            hitsLeft--;
-            if (hitsLeft <= 0)
-            {
-                DestroyThisBreakable();
-            }
-        }
     }
 
     public void DestroyThisBreakable()
     {
-        // TODO - implement polish for destruction (effects, shaders etc.)
-        Destroy(this.gameObject);
+        if(lootTable)
+        {
+            lootTable.DropLoot();
+        }
+        Destroy(gameObject);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if(health <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        DestroyThisBreakable();
     }
 }

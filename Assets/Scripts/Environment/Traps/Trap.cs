@@ -5,16 +5,17 @@ using UnityEngine;
 public class Trap : MonoBehaviour
 {
     public enum TrapType
-    { 
+    {
         ExplosionTrap,
         PlacementTrap,
+        PlacementStatModTrap,
         SpikeTrap,
         StatModTrap,
         TeleportTrap,
         ArrowTrap
     }
 
-    Trap_Explosion explosionTrap;
+    Trap_ExplosionSpawner explosionTrap;
     Trap_Placement placementTrap;
     Trap_Spike spikeTrap;
     Trap_StatMod statModTrap;
@@ -28,13 +29,10 @@ public class Trap : MonoBehaviour
     [Tooltip("Time it takes for the trap to go from tripped position to reset position")]
     public float resetDelay = 10.0f;
     [Tooltip("Time it waits before triggering the trap")]
-    public float triggerDelay = 1.0f;
+    public float triggerDelay = 0.3f;
 
     // Trap Currents
-    float resetTimeLeft = 0.0f;
-    float triggerDelayLeft = 0.0f;
-    bool hasBeenTriggered = false;
-    bool isTriggered = false;
+    bool isReset = true;
 
 
     private void Start()
@@ -42,8 +40,8 @@ public class Trap : MonoBehaviour
         switch (trapType)
         {
             case TrapType.ExplosionTrap:
-                explosionTrap = GetComponentInChildren<Trap_Explosion>();
-                if(!explosionTrap)
+                explosionTrap = GetComponentInChildren<Trap_ExplosionSpawner>();
+                if (!explosionTrap)
                     Debug.LogError("Trap_Explosion script can't be found even though this is marked as a Explosion Trap!!");
                 break;
 
@@ -51,6 +49,15 @@ public class Trap : MonoBehaviour
                 placementTrap = GetComponentInChildren<Trap_Placement>();
                 if (!placementTrap)
                     Debug.LogError("Trap_Placement script can't be found even though this is marked as a Placement Trap!!");
+                break;
+
+            case TrapType.PlacementStatModTrap:
+                placementTrap = GetComponentInChildren<Trap_Placement>();
+                statModTrap = GetComponentInChildren<Trap_StatMod>();
+                if (!placementTrap)
+                    Debug.LogError("Trap_Placement script can't be found even though this is marked as a Placement Trap!!");
+                if (!statModTrap)
+                    Debug.LogError("Trap_StatMod script can't be found even though this is marked as a statMod Trap!!");
                 break;
 
             case TrapType.SpikeTrap:
@@ -72,51 +79,38 @@ public class Trap : MonoBehaviour
                 break;
 
             case TrapType.ArrowTrap:
-                arrowTrap = GetComponentInChildren<Trap_Arrow>();
+                arrowTrap = GetComponent<Trap_Arrow>();
                 if (!arrowTrap)
                     Debug.LogError("Trap_Arrow script can't be found even though this is marked as a Teleport Trap!!");
                 break;
         }
     }
 
-    private void Update()
+    private void OnTriggerStay(Collider other)
     {
-        if(resetTimeLeft > 0)
+        if (isReset && (other.CompareTag("Player") || other.CompareTag("Tanjiro") || other.CompareTag("Bertha")))
         {
-            resetTimeLeft -= Time.deltaTime;
-        }
-        if(triggerDelay > 0)
-        {
-            triggerDelay -= Time.deltaTime;
-        }
-        if(isTriggered)
-        {
-            triggerDelayLeft -= Time.deltaTime;
-            if(triggerDelayLeft <= 0)
-            {
-                triggerDelayLeft = 0.0f;
-                isTriggered = false;
-                hasBeenTriggered = true;
-                TriggerTrap();
-            }
+            isReset = false;
+            StartCoroutine(CountDownUntilTrigger());
         }
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    IEnumerator CountDownUntilTrigger()
     {
-        if (
-                (other.CompareTag("Player") || other.CompareTag("Tanjiro") || other.CompareTag("Bertha")) &&
-                (resetTimeLeft <= 0) &&
-                ((hasBeenTriggered && canReset) || (!hasBeenTriggered))
-           )
-        {
-            Debug.Log("trigger entered");
-            resetTimeLeft = resetDelay;
-            triggerDelayLeft = triggerDelay;
-            isTriggered = true;
-        }
+        yield return new WaitForSeconds(triggerDelay);
+        TriggerTrap();
+        StartCoroutine(CountDownUntilReset());
     }
+
+    IEnumerator CountDownUntilReset()
+    {
+        yield return new WaitForSeconds(resetDelay);
+        isReset = true;
+
+        if (trapType == TrapType.ExplosionTrap)
+            explosionTrap.ResetTrap();
+    }
+
 
 
     private void TriggerTrap()
@@ -129,6 +123,11 @@ public class Trap : MonoBehaviour
 
             case TrapType.PlacementTrap:
                 placementTrap.TriggerTrap();
+                break;
+
+            case TrapType.PlacementStatModTrap:
+                placementTrap.TriggerTrap();
+                statModTrap.TriggerTrap();
                 break;
 
             case TrapType.SpikeTrap:

@@ -5,8 +5,14 @@ using UnityEngine;
 public class HitBox : MonoBehaviour
 {
     public Transform attackPoint;
+    private EnemyStat enemyStat;
     public float attackRange = 0.5f;
     public LayerMask playerLayer;
+
+    private void Start()
+    {
+        enemyStat = GetComponentInParent<EnemyStat>();
+    }
 
     public void Attack()
     {
@@ -15,7 +21,9 @@ public class HitBox : MonoBehaviour
 
         foreach (Collider player in hitPlayer)
         {
-            Debug.Log("we hit" + player.name);
+            Debug.Log("we hit " + player.name);
+            player.GetComponentInParent<PlayerStats>().TakeDamage(enemyStat.bossDamage);
+            
         }
     }
 

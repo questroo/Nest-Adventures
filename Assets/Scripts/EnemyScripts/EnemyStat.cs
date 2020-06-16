@@ -3,41 +3,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStat : MonoBehaviour
+public class EnemyStat : MonoBehaviour, IDamageable
 {
     public float enemyMaxHealth = 100f;
     public float bossDamage = 5f;
     public HealthBarManager healthBar;
-
-    private float enemyCurrentHealth;
-
+    public float Health { get; set; }
+    Animator animator;
 
     void Start()
     {
-        enemyCurrentHealth = enemyMaxHealth;
+        Health = enemyMaxHealth;
+        animator = GetComponentInChildren<Animator>();
         healthBar.SetMaxHealth(enemyMaxHealth);
+        
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            TakeDamage(5);
+            TakeDamage(100.0f);
         }
     }
 
     public void TakeDamage(float damage)
     {
-        enemyCurrentHealth -= damage;
+        Health -= damage;
         Debug.Log("Boss takes " + damage + " damage");
-        healthBar.SetHealth(enemyCurrentHealth);
-
-        if (enemyCurrentHealth <= 0f)
+  
+        if (Health <= 0.0f)
         {
-            enemyCurrentHealth = 0.0f;
-            Die();
+            Health = 0.0f; 
+            animator.SetInteger("Die", 1);
         }
 
+        healthBar.SetHealth(Health);
     }
 
     public void Die()
@@ -46,7 +47,7 @@ public class EnemyStat : MonoBehaviour
         //Stop all movement
         //Remove collision
         //Model Disappear
-
+        Debug.Log("Boss dead supposedly . . .");
         Destroy(gameObject);
     }
 }
