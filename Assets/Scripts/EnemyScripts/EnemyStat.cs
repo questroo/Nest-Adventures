@@ -19,13 +19,13 @@ public class EnemyStat : MonoBehaviour, IDamageable
         
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(100.0f);
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        TakeDamage(100.0f);
+    //    }
+    //}
 
     public void TakeDamage(float damage)
     {

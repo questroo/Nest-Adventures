@@ -548,6 +548,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e822dc73b3ee00a40b05dd715db1799c, type: 3}
+--- !u!114 &735905906 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7441522094827338391, guid: b655ae66fda9a6848ba9f7f742d078b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1948976266}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350435b0ed9a2ed4685d27b548b6de71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &861711015
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,6 +1392,11 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 6.03
       objectReference: {fileID: 0}
+    - target: {fileID: 486015825139837596, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: characterManager
+      value: 
+      objectReference: {fileID: 735905906}
     - target: {fileID: 486015825139837599, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}
       propertyPath: m_Name
@@ -1687,6 +1704,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 520023040, guid: 32aa783716b3147449857be1254b3a39, type: 3}
+      propertyPath: bossDamage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 520023040, guid: 32aa783716b3147449857be1254b3a39, type: 3}
+      propertyPath: enemyMaxHealth
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 4479801023700579027, guid: 32aa783716b3147449857be1254b3a39,
         type: 3}
       propertyPath: m_Name
@@ -1747,6 +1772,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4479801023700579030, guid: 32aa783716b3147449857be1254b3a39,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479801023700579030, guid: 32aa783716b3147449857be1254b3a39,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32aa783716b3147449857be1254b3a39, type: 3}
 --- !u!1001 &5325908999376898511
@@ -1776,6 +1811,16 @@ PrefabInstance:
       propertyPath: moveSpots.Array.data[3]
       value: 
       objectReference: {fileID: 121956156}
+    - target: {fileID: 5325908998930136079, guid: 56a7d9d5a6f168b458910bd40dc1cfeb,
+        type: 3}
+      propertyPath: bossDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325908998930136079, guid: 56a7d9d5a6f168b458910bd40dc1cfeb,
+        type: 3}
+      propertyPath: enemyMaxHealth
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5325908998930136176, guid: 56a7d9d5a6f168b458910bd40dc1cfeb,
         type: 3}
       propertyPath: m_LocalPosition.x
