@@ -18,7 +18,7 @@ public class Key : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
     }
 
 
