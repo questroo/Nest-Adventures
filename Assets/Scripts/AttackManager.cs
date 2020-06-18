@@ -51,7 +51,7 @@ public class AttackManager : MonoBehaviour
     }
     public IEnumerator MeleeAttack(int comboNumber)
     {
-        if (characterManager.GetCurrentPlayerTag() == "Tanjiro")
+        if (characterManager.GetCurrentPlayerTag() == "Player")
         {
             yield return new WaitForSeconds(meleeAttackWindup);
             Vector3 spawnPosition = transform.position + (transform.forward * meleeAttackRange);
@@ -88,12 +88,14 @@ public class AttackManager : MonoBehaviour
             //Checks if attacking and then starts off the combo
             if (attackControls.ActionMap.Attack.triggered)
             {
+                GetComponent<PlayerController>().isAttacking = true;
                 combo++;
                 if (!disableInput)
                 {
                     GetComponent<AttackManager>().StartCoroutine("MeleeAttack", combo);
                 }
                 Debug.Log("Attack" + combo);
+                GetComponent<AnimationController>().TriggerAttackAnimation();
                 lastTime = Time.time;
 
                 //Combo loop that ends the combo if you reach the maxTime between attacks, or reach the end of the combo
@@ -108,6 +110,7 @@ public class AttackManager : MonoBehaviour
                             StartCoroutine("MeleeAttack", combo);
                         }
                         Debug.Log("Attack " + combo);
+                        GetComponent<AnimationController>().TriggerAttackAnimation();
                         lastTime = Time.time;
                     }
                     yield return null;
@@ -117,6 +120,7 @@ public class AttackManager : MonoBehaviour
                 yield return new WaitForSeconds(comboCooldown - (Time.time - lastTime));
             }
             yield return null;
+            GetComponent<PlayerController>().isAttacking = false;
         }
     }
     private void OnEnable()
