@@ -51,33 +51,32 @@ public class AttackManager : MonoBehaviour
     }
     public IEnumerator MeleeAttack(int comboNumber)
     {
-        if (characterManager.GetCurrentPlayerTag() == "Player")
+        Debug.Log("Spawn orb.");
+        yield return new WaitForSeconds(meleeAttackWindup);
+        Vector3 spawnPosition = transform.position + (transform.forward * meleeAttackRange);
+        spawnPosition.y += 1.0f;
+        GameObject spawnedOrb = Instantiate(meleeOrb, spawnPosition, transform.rotation);
+        switch (comboNumber)
         {
-            yield return new WaitForSeconds(meleeAttackWindup);
-            Vector3 spawnPosition = transform.position + (transform.forward * meleeAttackRange);
-            spawnPosition.y += 1.0f;
-            GameObject spawnedOrb = Instantiate(meleeOrb, spawnPosition, transform.rotation);
-            switch (comboNumber)
-            {
-                case 1:
-                    spawnedOrb.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                    break;
-                case 2:
-                    spawnedOrb.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                    break;
-                case 3:
-                    spawnedOrb.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                    break;
-                default:
-                    break;
-            }
-            yield return new WaitForSeconds(0.1f);
-            Destroy(spawnedOrb);
+            case 1:
+                spawnedOrb.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                break;
+            case 2:
+                spawnedOrb.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                break;
+            case 3:
+                spawnedOrb.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                break;
+            default:
+                break;
         }
-        else
-        {
-            projectileController.StartCoroutine("ShootProjectile", comboNumber);
-        }
+        yield return new WaitForSeconds(0.1f);
+        Destroy(spawnedOrb);
+        //}
+        //else
+        //{
+        //    projectileController.StartCoroutine("ShootProjectile", comboNumber);
+        //}
     }
 
     IEnumerator ComboAttack()
