@@ -25,6 +25,7 @@ public class RangedEnemy : MonoBehaviour, IDamageable
     // Attack State
     public GameObject projectileWeapon;
     public Transform projectileLaunchPosition;
+    public float projectileDamage = 5.0f;
     public float projectileLaunchForce = 35.0f;
     public float attackCooldown = 1.0f;
     public float maxWeaponRange = 9.0f;

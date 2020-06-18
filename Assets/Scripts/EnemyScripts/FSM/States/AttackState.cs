@@ -68,6 +68,7 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
         void Attack()
         {
             GameObject arrow = Instantiate(rangedEnemy.projectileWeapon, rangedEnemy.projectileLaunchPosition.position, rangedEnemy.projectileLaunchPosition.rotation);
+            arrow.GetComponent<Trap_ArrowProjectile>().arrowDamage = rangedEnemy.projectileDamage;
             arrow.GetComponent<Rigidbody>().velocity = navMeshAgent.transform.forward * rangedEnemy.projectileLaunchForce;
         }
 
