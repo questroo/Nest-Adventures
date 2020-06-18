@@ -18,6 +18,8 @@ public class AnimationController : MonoBehaviour
 
         controls.ActionMap.Move.performed += ctx => moveDirection = ctx.ReadValue<Vector2>();
         controls.ActionMap.Move.canceled += ctx => moveDirection = Vector2.zero;
+
+        //controls.ActionMap.Attack.performed += ctx => TriggerAttackAnimation();
     }
     private void Start()
     {
@@ -36,6 +38,11 @@ public class AnimationController : MonoBehaviour
         {
             animator.SetFloat("Blend", 0.0f);
         }
+    }
+    public void TriggerAttackAnimation()
+    {
+        Debug.Log("Attack animation");
+        animator.SetTrigger("Attack");
     }
     private void OnEnable()
     {

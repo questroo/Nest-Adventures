@@ -10,8 +10,6 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
     [CreateAssetMenu(fileName = "IdleState", menuName = "Finite State Machine/States/Idle", order = 1)]
     public class IdleState : AbstractFSMState
     {
-        
-
         float totalDuration;
         float waitTime;
 
@@ -40,7 +38,7 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
             if (enteredState)
             {
                 float distance = Vector3.Distance(navMeshAgent.transform.position, player.transform.position);
-                if (distance <= 10.0f)
+                if (distance <= rangedEnemy.maxWeaponRange)
                 {
                     finiteStateMachine.EnterState(FSMStateType.CHASE);
                     return;
