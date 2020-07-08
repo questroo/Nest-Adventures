@@ -20,7 +20,6 @@ public class ComboManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         //Starts the looping coroutine
         StartCoroutine("ComboAttack");
     }
