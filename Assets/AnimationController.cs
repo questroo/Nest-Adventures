@@ -10,7 +10,7 @@ public class AnimationController : MonoBehaviour
 
     private Vector2 moveDirection;
 
-    private Animator animator;
+    //private Animator animator;
 
     private void Awake()
     {
@@ -23,7 +23,7 @@ public class AnimationController : MonoBehaviour
     }
     private void Start()
     {
-        animator = GetComponentInChildren<Animator>();
+        //animator = GetComponentInChildren<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -32,17 +32,17 @@ public class AnimationController : MonoBehaviour
         {
             RegetAnimator();
 
-            animator.SetFloat("Blend", Mathf.Max(Mathf.Abs(moveDirection.x), Mathf.Abs(moveDirection.y)));
+            //animator.SetFloat("Blend", Mathf.Max(Mathf.Abs(moveDirection.x), Mathf.Abs(moveDirection.y)));
         }
         else
         {
-            animator.SetFloat("Blend", 0.0f);
+            //animator.SetFloat("Blend", 0.0f);
         }
     }
     public void TriggerAttackAnimation()
     {
         Debug.Log("Attack animation");
-        animator.SetTrigger("Attack");
+        //animator.SetTrigger("Attack");
     }
     private void OnEnable()
     {
@@ -54,6 +54,6 @@ public class AnimationController : MonoBehaviour
     }
     public void RegetAnimator()
     {
-        animator = GetComponentInChildren<Animator>();
+        //animator = GetComponentInChildren<Animator>();
     }
 }
