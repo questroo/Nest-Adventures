@@ -34,31 +34,15 @@ public class PlayerController : MonoBehaviour
         controls.ActionMap.Move.performed += ctx => moveDirection = ctx.ReadValue<Vector2>();
         controls.ActionMap.Move.canceled += ctx => moveDirection = Vector2.zero;
 
-        //controls.ActionMap.Attack.performed += ctx => Attack();
-
         controls.ActionMap.DodgeRoll.performed += ctx => DodgeRoll();
     }
     public void Start()
     {
         myDirection = Vector3.forward;
-        //charAnimator = GetComponentInChildren<Animator>();
         cameraTransform = Camera.main.transform;
-        //weaponCollider.enabled = false;
     }
     void Update()
     {
-        //if (disableInput)
-        //{
-        //    isMoving = false;
-        //}
-        //if (isMoving)
-        //{
-        //    charAnimator.SetBool("IsRunning", true);
-        //}
-        //else
-        //{
-        //    charAnimator.SetBool("IsRunning", false);
-        //}
         if (!disableInput && !isAttacking)
         {
             float x = moveDirection.x;
@@ -89,28 +73,10 @@ public class PlayerController : MonoBehaviour
     {
         disableInput = false;
     }
-    //public void ResetCharacterComponents()
-    //{
-    //    charAnimator = GetComponentInChildren<Animator>();
-    //}
-    IEnumerator Attacking()
+    public void ResetCharacterComponents()
     {
-        yield return new WaitForSeconds(1.0f);
-        isAttacking = false;
-        //weaponCollider.enabled = false;
+        charAnimator = GetComponentInChildren<Animator>();
     }
-    //void Attack()
-    //{
-    //    if (!isAttacking)
-    //    {
-    //        //weaponCollider.enabled = true;
-    //        isAttacking = true;
-    //        charAnimator.SetTrigger("Attack");
-    //        StartCoroutine("Attacking");
-    //        isMoving = false;
-    //    }
-    //}
-
     private void DodgeRoll()
     {
         if (!isDodging)
@@ -120,19 +86,13 @@ public class PlayerController : MonoBehaviour
             isMoving = false;
         }
     }
-    //IEnumerator FireProjectile(Vector3 startPos, Vector3 endPos)
-    //{
-    //    Debug.Log("projectile fired");
-    //    GameObject fireBall = Instantiate(fireBlast, startPos, Quaternion.identity, null) as GameObject;
-    //    Rigidbody fireRigid = fireBall.GetComponent<Rigidbody>();
-    //    fireRigid.velocity = Vector3.zero;
-    //    fireRigid.AddForce((endPos - startPos).normalized * fireSpeed * Time.deltaTime);
-    //    yield return new WaitForSeconds(1.5f);
-    //    Destroy(fireBall);
-    //}
     public bool GetAttackBool()
     {
         return isAttacking;
+    }
+    public void TurnOffAttackBool()
+    {
+        isAttacking = false;
     }
     public void TurnOffRunningAnim()
     {

@@ -36,47 +36,12 @@ public class AttackManager : MonoBehaviour
     private void Awake()
     {
         attackControls = new PlayerControls();
-
-        attackControls.ActionMap.Attack.performed += (x) => Attack();
     }
     private void Start()
     {
         projectileController = GetComponent<ProjectileController>();
         playerController = GetComponent<PlayerController>();
         StartCoroutine("ComboAttack");
-    }
-
-    void Attack()
-    {
-    }
-    public IEnumerator MeleeAttack(int comboNumber)
-    {
-        Debug.Log("Spawn orb.");
-        yield return new WaitForSeconds(meleeAttackWindup);
-        Vector3 spawnPosition = transform.position + (transform.forward * meleeAttackRange);
-        spawnPosition.y += 1.0f;
-        GameObject spawnedOrb = Instantiate(meleeOrb, spawnPosition, transform.rotation);
-        switch (comboNumber)
-        {
-            case 1:
-                spawnedOrb.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                break;
-            case 2:
-                spawnedOrb.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                break;
-            case 3:
-                spawnedOrb.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                break;
-            default:
-                break;
-        }
-        yield return new WaitForSeconds(0.1f);
-        Destroy(spawnedOrb);
-        //}
-        //else
-        //{
-        //    projectileController.StartCoroutine("ShootProjectile", comboNumber);
-        //}
     }
 
     IEnumerator ComboAttack()
@@ -89,12 +54,7 @@ public class AttackManager : MonoBehaviour
             {
                 GetComponent<PlayerController>().isAttacking = true;
                 combo++;
-                if (!disableInput)
-                {
-                    GetComponent<AttackManager>().StartCoroutine("MeleeAttack", combo);
-                }
-                Debug.Log("Attack" + combo);
-                GetComponent<AnimationController>().TriggerAttackAnimation();
+                GetComponent<AnimationController>().TriggerAttackAnimation(combo);
                 lastTime = Time.time;
 
                 //Combo loop that ends the combo if you reach the maxTime between attacks, or reach the end of the combo
@@ -104,22 +64,16 @@ public class AttackManager : MonoBehaviour
                     if (attackControls.ActionMap.Attack.triggered && (Time.time - lastTime) > cooldown)
                     {
                         combo++;
-                        if (!disableInput)
-                        {
-                            StartCoroutine("MeleeAttack", combo);
-                        }
-                        Debug.Log("Attack " + combo);
-                        GetComponent<AnimationController>().TriggerAttackAnimation();
+                        Debug.Log("Attack" + combo);
+                        GetComponent<AnimationController>().TriggerAttackAnimation(combo);
                         lastTime = Time.time;
                     }
                     yield return null;
                 }
-                //Resets combo and waits the remaining amount of cooldown time before you can attack again to restart the combo
                 combo = 0;
                 yield return new WaitForSeconds(comboCooldown - (Time.time - lastTime));
             }
             yield return null;
-            GetComponent<PlayerController>().isAttacking = false;
         }
     }
     private void OnEnable()
@@ -143,5 +97,12 @@ public class AttackManager : MonoBehaviour
     public bool CheckDisableInputStatus()
     {
         return disableInput;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Enemy")
+        {
+            other.GetComponent<EnemyStat>().TakeDamage(damage);
+        }
     }
 }
