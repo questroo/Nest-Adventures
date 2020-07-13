@@ -32,11 +32,6 @@ public class BossController : MonoBehaviour
         damageCooldown = damageCooldownStart;
     }
 
-    // void Update()
-    // {
-    //
-    // }
-
     public Transform GetTarget()
     {
         return target;

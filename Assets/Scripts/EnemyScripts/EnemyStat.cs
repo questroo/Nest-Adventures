@@ -38,7 +38,7 @@ public class EnemyStat : MonoBehaviour, IDamageable
             animator.SetInteger("Die", 1);
         }
 
-        healthBar.SetHealth(Health);
+        //healthBar.SetHealth(Health);
     }
 
     public void Die()

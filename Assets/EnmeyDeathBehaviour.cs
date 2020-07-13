@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDeathBehaviour : StateMachineBehaviour
+public class EnmemyDeathBehaviour : StateMachineBehaviour
 {
     public float startTime = 10.0f;
     float currentTime;

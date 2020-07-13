@@ -8,14 +8,46 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent), typeof(FiniteStateMachine))]
 public class RangedEnemy : MonoBehaviour, IDamageable
 {
-    protected NavMeshAgent navMeshAgent;
-    protected FiniteStateMachine finiteStateMachine;
+    /// Enemy behaviour variables
+    // Idle State
+    public float idleWaitTimeMin = 1.0f;
+    public float idleWaitTimeMax = 3.0f;
+
+    // Patrol State
+    public float forcedPositionChangeCooldown = 2.0f;
+    public float waypointDistanceCheck = 0.2f;
+    public float targetLossRange = 15.0f;
+    public float noticeRange = 10.0f;
+
+    // Chase State
+    public float chaseStateSpeedModifier = 1.0f;
+
+    // Attack State
+    public GameObject projectileWeapon;
+    public Transform projectileLaunchPosition;
+    public float projectileDamage = 5.0f;
+    public float projectileLaunchForce = 35.0f;
+    public float attackCooldown = 1.0f;
+    public float maxWeaponRange = 9.0f;
+    public float minWeaponRange = 1.5f;
+
+
+    NavMeshAgent navMeshAgent;
+    FiniteStateMachine finiteStateMachine;
+
+    [SerializeField]
+    Transform[] patrolPoints;
 
     public float health;
     public void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         finiteStateMachine = GetComponent<FiniteStateMachine>();
+    }
+
+    public Transform[] GetPatrolPoints()
+    {
+        return patrolPoints;
     }
 
     #region HEALTH IMPLEMENTATION
@@ -25,14 +57,18 @@ public class RangedEnemy : MonoBehaviour, IDamageable
         set { health = value; }
     }
 
-    public void Die()
-    {
-        
-    }
-
     public void TakeDamage(float damage)
     {
-        
+        health -= damage;
+        if(health <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
     #endregion
 }

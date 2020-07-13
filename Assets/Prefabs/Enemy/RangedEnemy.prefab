@@ -359,8 +359,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6425087325547169134}
-  - component: {fileID: 1684378682445709630}
   - component: {fileID: 8149255187366715434}
+  - component: {fileID: 1684378682445709630}
   - component: {fileID: 1030930659554139293}
   - component: {fileID: 6205215703555714599}
   - component: {fileID: 5898782856778742562}
@@ -387,19 +387,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1684378682445709630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6425087325547169135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40d0819b3e359174fa98622d098ed8f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingState: {fileID: 0}
 --- !u!114 &8149255187366715434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,7 +399,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819f624e03f4c2b42a023e04747361df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idleWaitTimeMin: 1
+  idleWaitTimeMax: 3
+  forcedPositionChangeCooldown: 2
+  waypointDistanceCheck: 0.2
+  targetLossRange: 15
+  noticeRange: 10
+  chaseStateSpeedModifier: 1
+  speedModifier: 1
+  projectileWeapon: {fileID: 2924637953476210342, guid: 1188416341a0eb94fbd22c23cfc9666d,
+    type: 3}
+  projectileLaunchPosition: {fileID: 2466540932817241085}
+  projectileLaunchForce: 35
+  attackCooldown: 1
+  maxWeaponRange: 9
+  minWeaponRange: 1.5
+  patrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
   health: 100
+--- !u!114 &1684378682445709630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6425087325547169135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d0819b3e359174fa98622d098ed8f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingState: {fileID: 11400000, guid: b6a720a82c721e540b48e5ea09b7e1c1, type: 2}
+  validStates:
+  - {fileID: 11400000, guid: 6c6370c6d519c5f4e88d45246f95e446, type: 2}
+  - {fileID: 11400000, guid: b48c9de3f864f2c4b838f9a4883ebf4d, type: 2}
+  - {fileID: 11400000, guid: b6a720a82c721e540b48e5ea09b7e1c1, type: 2}
+  - {fileID: 11400000, guid: b661b2bf4a525284d874d56c60a24d99, type: 2}
+  - {fileID: 11400000, guid: 14618985d8ce2c3489b64837009a716d, type: 2}
 --- !u!136 &1030930659554139293
 CapsuleCollider:
   m_ObjectHideFlags: 0

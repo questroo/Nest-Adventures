@@ -7,27 +7,49 @@ using UnityEngine;
 
 namespace Assets.Scripts.EnemyScripts.FSM.States
 {
-    [CreateAssetMenu(fileName = "IdleState", menuName ="Unity-FSM/States/Idle", order =1)]
+    [CreateAssetMenu(fileName = "IdleState", menuName = "Finite State Machine/States/Idle", order = 1)]
     public class IdleState : AbstractFSMState
     {
-        public float waitTimeMin = 1.0f;
-        public float waitTimeMax = 3.0f;
+        float totalDuration;
+        float waitTime;
 
         public override void OnEnable()
         {
             base.OnEnable();
+            StateType = FSMStateType.IDLE;
         }
 
         public override bool EnterState()
         {
-            base.EnterState();
-            Debug.Log("Entered Idle State");
+            enteredState = base.EnterState();
 
-            return true;
+            if (enteredState)
+            {
+                Debug.Log("Entered Idle State");
+                totalDuration = 0f;
+                waitTime = UnityEngine.Random.Range(rangedEnemy.idleWaitTimeMin, rangedEnemy.idleWaitTimeMax);
+            }
+
+            return enteredState;
         }
 
         public override void UpdateState()
         {
+            if (enteredState)
+            {
+                float distance = Vector3.Distance(navMeshAgent.transform.position, player.transform.position);
+                if (distance <= rangedEnemy.maxWeaponRange)
+                {
+                    finiteStateMachine.EnterState(FSMStateType.CHASE);
+                    return;
+                }
+
+                totalDuration += Time.deltaTime;
+                if (totalDuration >= waitTime)
+                {
+                    finiteStateMachine.EnterState(FSMStateType.PATROL);
+                }
+            }
         }
 
         public override bool ExitState()

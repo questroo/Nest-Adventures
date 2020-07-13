@@ -51,33 +51,32 @@ public class AttackManager : MonoBehaviour
     }
     public IEnumerator MeleeAttack(int comboNumber)
     {
-        if (characterManager.GetCurrentPlayerTag() == "Tanjiro")
+        Debug.Log("Spawn orb.");
+        yield return new WaitForSeconds(meleeAttackWindup);
+        Vector3 spawnPosition = transform.position + (transform.forward * meleeAttackRange);
+        spawnPosition.y += 1.0f;
+        GameObject spawnedOrb = Instantiate(meleeOrb, spawnPosition, transform.rotation);
+        switch (comboNumber)
         {
-            yield return new WaitForSeconds(meleeAttackWindup);
-            Vector3 spawnPosition = transform.position + (transform.forward * meleeAttackRange);
-            spawnPosition.y += 1.0f;
-            GameObject spawnedOrb = Instantiate(meleeOrb, spawnPosition, transform.rotation);
-            switch (comboNumber)
-            {
-                case 1:
-                    spawnedOrb.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                    break;
-                case 2:
-                    spawnedOrb.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                    break;
-                case 3:
-                    spawnedOrb.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                    break;
-                default:
-                    break;
-            }
-            yield return new WaitForSeconds(0.1f);
-            Destroy(spawnedOrb);
+            case 1:
+                spawnedOrb.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                break;
+            case 2:
+                spawnedOrb.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                break;
+            case 3:
+                spawnedOrb.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                break;
+            default:
+                break;
         }
-        else
-        {
-            projectileController.StartCoroutine("ShootProjectile", comboNumber);
-        }
+        yield return new WaitForSeconds(0.1f);
+        Destroy(spawnedOrb);
+        //}
+        //else
+        //{
+        //    projectileController.StartCoroutine("ShootProjectile", comboNumber);
+        //}
     }
 
     IEnumerator ComboAttack()
@@ -88,12 +87,14 @@ public class AttackManager : MonoBehaviour
             //Checks if attacking and then starts off the combo
             if (attackControls.ActionMap.Attack.triggered)
             {
+                GetComponent<PlayerController>().isAttacking = true;
                 combo++;
                 if (!disableInput)
                 {
                     GetComponent<AttackManager>().StartCoroutine("MeleeAttack", combo);
                 }
                 Debug.Log("Attack" + combo);
+                GetComponent<AnimationController>().TriggerAttackAnimation();
                 lastTime = Time.time;
 
                 //Combo loop that ends the combo if you reach the maxTime between attacks, or reach the end of the combo
@@ -108,6 +109,7 @@ public class AttackManager : MonoBehaviour
                             StartCoroutine("MeleeAttack", combo);
                         }
                         Debug.Log("Attack " + combo);
+                        GetComponent<AnimationController>().TriggerAttackAnimation();
                         lastTime = Time.time;
                     }
                     yield return null;
@@ -117,6 +119,7 @@ public class AttackManager : MonoBehaviour
                 yield return new WaitForSeconds(comboCooldown - (Time.time - lastTime));
             }
             yield return null;
+            GetComponent<PlayerController>().isAttacking = false;
         }
     }
     private void OnEnable()

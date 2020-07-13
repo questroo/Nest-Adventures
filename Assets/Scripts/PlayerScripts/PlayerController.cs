@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private Animator charAnimator;
     //Variables
     private bool isMoving = false;
-    private bool isAttacking = false;
+    public bool isAttacking = false;
     private bool isDodging = false;
     private bool lockOnTarget;
     [SerializeField] private bool disableInput = false;

@@ -20,6 +20,7 @@ public class MinionIdleBehaviour : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         float distance = Vector3.Distance(enemy.GetTarget().position, animator.transform.position);
+
         enemy.Movement();
 
         if(distance <= enemy.attackRadius)
