@@ -27,8 +27,8 @@ public class EnemyController : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player").transform;
         randomSpot = Random.Range(0, moveSpots.Length);
         agent = GetComponent<NavMeshAgent>();
-        // boss = GetComponent<BossController>();
 
+        // boss = GetComponent<BossController>();
         //moveSpots.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
     }
 
@@ -44,8 +44,7 @@ public class EnemyController : MonoBehaviour
     public void Movement()
     {
         //transform.position = Vector3.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
-
-
+        
         float distance = Vector3.Distance(target.position, transform.position);
         float spotDistance = Vector3.Distance(transform.position, moveSpots[randomSpot].position);
 
