@@ -18,7 +18,7 @@ public class Attack1Behaviour : StateMachineBehaviour
     {
        // float distance = Vector3.Distance(boss.GetTarget().position, rigidBody.position);
         
-        rigidBody.transform.Translate(Vector3.forward * Time.deltaTime);
+        //rigidBody.transform.Translate(Vector3.forward * Time.deltaTime);
 
     }
 
