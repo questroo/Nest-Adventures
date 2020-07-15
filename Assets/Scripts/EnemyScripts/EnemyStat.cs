@@ -7,6 +7,7 @@ public class EnemyStat : MonoBehaviour, IDamageable
 {
     public float enemyMaxHealth = 100f;
     public float bossDamage = 5f;
+    // TODO: Implement the health bar
     //public HealthBarManager healthBar;
     public float Health { get; set; }
     Animator animator;
@@ -16,7 +17,6 @@ public class EnemyStat : MonoBehaviour, IDamageable
         Health = enemyMaxHealth;
         animator = GetComponentInChildren<Animator>();
         //healthBar.SetMaxHealth(enemyMaxHealth);
-        
     }
 
     private void Update()
@@ -43,6 +43,10 @@ public class EnemyStat : MonoBehaviour, IDamageable
 
     public void Die()
     {
+        //Death Animation
+        //Stop all movement
+        //Remove collision
+        //Model Disappear
         Debug.Log("Boss dead supposedly . . .");
         Destroy(gameObject);
     }

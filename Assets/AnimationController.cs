@@ -32,17 +32,17 @@ public class AnimationController : MonoBehaviour
         {
             RegetAnimator();
 
-            animator.SetFloat("Blend", Mathf.Max(Mathf.Abs(moveDirection.x), Mathf.Abs(moveDirection.y)));
+            animator.SetFloat("Running", Mathf.Max(Mathf.Abs(moveDirection.x), Mathf.Abs(moveDirection.y)));
         }
         else
         {
-            animator.SetFloat("Blend", 0.0f);
+            animator.SetFloat("Running", 0.0f);
         }
     }
-    public void TriggerAttackAnimation()
+    public void TriggerAttackAnimation(int attackNumber)
     {
-        Debug.Log("Attack animation");
-        animator.SetTrigger("Attack");
+        Debug.Log("Animation trigger is Attack" + attackNumber);
+        animator.SetTrigger("Attack" + attackNumber);
     }
     private void OnEnable()
     {
