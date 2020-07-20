@@ -82,7 +82,7 @@ public class CharacterManager : MonoBehaviour
     }
     void Swap()
     {
-        if (!swapping && !GameObject.FindGameObjectWithTag("Player").GetComponent<ProjectileController>().IsWindingUp())
+        if (!swapping)
         {
             StartCoroutine("CharacterSwapping");
         }
