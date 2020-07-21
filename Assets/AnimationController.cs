@@ -41,7 +41,6 @@ public class AnimationController : MonoBehaviour
     }
     public void TriggerAttackAnimation(int attackNumber)
     {
-        Debug.Log("Animation trigger is Attack" + attackNumber);
         animator.SetTrigger("Attack" + attackNumber);
     }
     private void OnEnable()

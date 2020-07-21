@@ -10,7 +10,7 @@ public class AttackManager : MonoBehaviour
 
     public GameObject meleeOrb;
     private PlayerController playerController;
-    private ProjectileController projectileController;
+    private HitBoxProjection hitBoxProjection;
     public float damage = 50.0f;
     public bool canDealDamage = true;
     [SerializeField]
@@ -39,7 +39,7 @@ public class AttackManager : MonoBehaviour
     }
     private void Start()
     {
-        projectileController = GetComponent<ProjectileController>();
+        hitBoxProjection = GetComponent<HitBoxProjection>();
         playerController = GetComponent<PlayerController>();
         StartCoroutine("ComboAttack");
     }
@@ -64,7 +64,6 @@ public class AttackManager : MonoBehaviour
                     if (attackControls.ActionMap.Attack.triggered && (Time.time - lastTime) > cooldown)
                     {
                         combo++;
-                        Debug.Log("Attack" + combo);
                         GetComponent<AnimationController>().TriggerAttackAnimation(combo);
                         lastTime = Time.time;
                     }
@@ -97,12 +96,5 @@ public class AttackManager : MonoBehaviour
     public bool CheckDisableInputStatus()
     {
         return disableInput;
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Enemy")
-        {
-            other.GetComponent<EnemyStat>().TakeDamage(damage);
-        }
     }
 }
