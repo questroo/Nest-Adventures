@@ -21,7 +21,6 @@ public class HitBox : MonoBehaviour
 
         foreach (Collider player in hitPlayer)
         {
-            Debug.Log("we hit " + player.name);
             player.GetComponentInParent<PlayerStats>().TakeDamage(enemyStat.bossDamage);
             
         }
