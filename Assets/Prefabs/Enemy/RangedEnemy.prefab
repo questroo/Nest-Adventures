@@ -406,10 +406,10 @@ MonoBehaviour:
   targetLossRange: 15
   noticeRange: 10
   chaseStateSpeedModifier: 1
-  speedModifier: 1
   projectileWeapon: {fileID: 2924637953476210342, guid: 1188416341a0eb94fbd22c23cfc9666d,
     type: 3}
   projectileLaunchPosition: {fileID: 2466540932817241085}
+  projectileDamage: 5
   projectileLaunchForce: 35
   attackCooldown: 1
   maxWeaponRange: 9
