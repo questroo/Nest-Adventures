@@ -16,6 +16,10 @@ TagManager:
   - Breakable
   - Door
   - Enemy
+  - Ground
+  - Kill
+  - MeleeCharacter
+  - RangedCharacter
   layers:
   - Default
   - TransparentFX
