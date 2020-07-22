@@ -36,7 +36,7 @@ public class RunBehaviour : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger("Idle");
+
         animator.ResetTrigger("Attack1");
     }
 }
