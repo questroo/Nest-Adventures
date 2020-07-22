@@ -53,7 +53,7 @@ public class ObjectPoolManager : MonoBehaviour , IGameModule
     private void InitializePool()
     {
         GameObject PoolManagerGO = new GameObject("Object Pool");
-        PoolManagerGO.transform.SetParent(GameObject.FindWithTag("Services").transform);
+        PoolManagerGO.transform.SetParent(GameLoader.SystemsParent);
         foreach (PooledObject poolObj in objectsToPool)
         {
             if (!_objectPoolByName.ContainsKey(poolObj.name))

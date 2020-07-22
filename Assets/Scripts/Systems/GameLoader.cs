@@ -11,6 +11,9 @@ public class GameLoader : AsyncLoader
 
     public List<Component> moduleComponents = new List<Component>();
 
+    public static Transform SystemsParent { get { return _systemsParent; } }
+    private static Transform _systemsParent;
+
     protected override void Awake()
     {
         Debug.Log("GameLoader Starting");
@@ -41,18 +44,18 @@ public class GameLoader : AsyncLoader
 
         // Setup System GameObject
         GameObject systemsGO = new GameObject("[Systems]");
-        Transform systemsParent = systemsGO.transform;
+        _systemsParent = systemsGO.transform;
         DontDestroyOnLoad(systemsGO);
 
         // Queue up loading routines
-        Enqueue(IntializeCoreSystems(systemsParent), 1);
-        Enqueue(InitializeModularSystems(systemsParent), 2);
+        Enqueue(IntializeCoreSystems(), 1);
+        Enqueue(InitializeModularSystems(), 2);
 
         // Set completion callback
         CallOnComplete(OnComplete);
     }
 
-    private IEnumerator IntializeCoreSystems(Transform systemsParent)
+    private IEnumerator IntializeCoreSystems()
     {
         // Setup Core Systems
         Debug.Log("Loading Core Systems");
@@ -60,7 +63,7 @@ public class GameLoader : AsyncLoader
         yield return null;
     }
 
-    private IEnumerator InitializeModularSystems(Transform systemsParent)
+    private IEnumerator InitializeModularSystems()
     {
         // Setup Additional Systems as needed
         Debug.Log("Loading Modular Systems");
