@@ -9,15 +9,14 @@ public class BossController : MonoBehaviour
     NavMeshAgent agent;
     Rigidbody rb;
     EnemyStat enemyStat;
-
-    [SerializeField]
-    private float meleeAttackRadius;
+    
     private float damageCooldown;
     private float damageCooldownStart = 2.0f;
 
     public Transform hitPoint;
     public LayerMask terrainLayer;
     public float hitRange;
+    public float meleeAttackRadius = 5.0f;
     public float lookRadius = 5.0f;
     public float dashRadius = 5.0f;
 
@@ -35,11 +34,6 @@ public class BossController : MonoBehaviour
     public Transform GetTarget()
     {
         return target;
-    }
-
-    public float GetMeleeRadius()
-    {
-        return meleeAttackRadius;
     }
 
     public float GetDMGCooldown(float reset)

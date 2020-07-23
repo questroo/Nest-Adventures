@@ -23,17 +23,17 @@ public class IdleBehaviour : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        float distance = Vector3.Distance(boss.GetTarget().position, rigidBody.position);
+        float distance = Vector3.Distance(boss.GetTarget().position, animator.transform.position);
 
         boss.LookAtPlayer();
 
         if (idleCooldown <= 0.0f)
         {
-            if (distance <= boss.GetMeleeRadius())
+            if (distance <= boss.meleeAttackRadius)
             {
                 animator.SetTrigger("Attack1");
             }
-            else if (distance <= boss.lookRadius)
+            else if (distance <= boss.lookRadius && distance >= boss.meleeAttackRadius)
             {
                 animator.SetTrigger("Run");
             }

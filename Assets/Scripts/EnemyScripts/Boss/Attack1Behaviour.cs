@@ -31,8 +31,6 @@ public class Attack1Behaviour : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger("Attack");
-        animator.ResetTrigger("Idle");
         moveTime = 0.0f;
     }
 }
