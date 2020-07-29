@@ -9,6 +9,7 @@ public class HitBox : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask playerLayer;
 
+
     private void Start()
     {
         enemyStat = GetComponentInParent<EnemyStat>();
@@ -26,6 +27,7 @@ public class HitBox : MonoBehaviour
         }
     }
 
+   
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null)

@@ -80,6 +80,10 @@ public class CharacterManager : MonoBehaviour
     {
         return Characters[m_CharacterIndex].tag;
     }
+    public bool GetIfMeleeCharacter()
+    {
+        return m_CharacterIndex == 0 ? true : false;
+    }
     void Swap()
     {
         if (!swapping)

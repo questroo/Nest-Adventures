@@ -18,25 +18,26 @@ public class RunBehaviour : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        float distance = Vector3.Distance(boss.GetTarget().position, rigidBody.position);
+        float distance = Vector3.Distance(boss.GetTarget().position, animator.transform.position);
 
-        boss.LookAtPlayer();
+        Debug.Log("Distance " + distance);
 
-        if (distance <= boss.GetMeleeRadius())
+        if (distance < boss.meleeAttackRadius)
         {
-            animator.SetTrigger("Attack1");
+            Debug.Log("ATTACKS PLAYER");
+            animator.SetInteger("Attack", 1);
             boss.StopMovement();
         }
-        else if (distance <= boss.lookRadius)
-        {
-            boss.Movement();
-        }
 
+        boss.Movement();
+        Debug.Log("BOSS MOVING. . .");
+        
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger("Idle");
-        animator.ResetTrigger("Attack1");
+        //animator.ResetTrigger("Attack1");
+        //animator.ResetTrigger("Run");
+        animator.SetInteger("Attack", 0);
     }
 }

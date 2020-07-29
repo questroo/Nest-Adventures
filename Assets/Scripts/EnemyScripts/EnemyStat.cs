@@ -19,18 +19,11 @@ public class EnemyStat : MonoBehaviour, IDamageable
         //healthBar.SetMaxHealth(enemyMaxHealth);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(100.0f);
-        }
-    }
 
     public void TakeDamage(float damage)
     {
         Health -= damage;
-        Debug.Log("Boss takes " + damage + " damage");
+        Debug.Log("Enemy takes " + damage + " damage");
   
         if (Health <= 0.0f)
         {
@@ -47,7 +40,7 @@ public class EnemyStat : MonoBehaviour, IDamageable
         //Stop all movement
         //Remove collision
         //Model Disappear
-        Debug.Log("Boss dead supposedly . . .");
+        Debug.Log("DEAD");
         Destroy(gameObject);
     }
 }
