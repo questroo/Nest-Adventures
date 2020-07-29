@@ -91,4 +91,17 @@ public class GameLoader : AsyncLoader
         Debug.Log("GameLoader Starting Scene Load");
         yield return SceneManager.LoadSceneAsync(index);
     }
+
+    public void RequestSceneLoad(string sceneName)
+    {
+        Scene sc = SceneManager.GetSceneByName(sceneName);
+        if(sc != null)
+        {
+            SceneManager.LoadSceneAsync(sceneName);
+        }
+        else
+        {
+            Debug.LogError("Request to load invalid scene!");
+        }
+    }
 }
