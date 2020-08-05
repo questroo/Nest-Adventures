@@ -1,23 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayButton : MonoBehaviour
 {
-    GameLoader gameLoader;
-    string sceneName = "Level";
-
-    private void Awake()
-    {
-        gameLoader = FindObjectOfType<GameLoader>();
-        if(!gameLoader)
-        {
-            Debug.LogError("GameLoader script not found, cannot start level.");
-        }
-    }
-
+    public int sceneIndex = 2;
+    
     public void PlayButtonPressed()
     {
-        gameLoader.RequestSceneLoad(sceneName);
+        SceneManager.LoadSceneAsync(sceneIndex);
     }
 }
