@@ -29,13 +29,13 @@ public class IdleBehaviour : StateMachineBehaviour
 
         if (idleCooldown <= 0.0f)
         {
-            if (distance <= boss.meleeAttackRadius)
-            {
-                animator.SetTrigger("Attack1");
-            }
-            else if (distance <= boss.lookRadius && distance >= boss.meleeAttackRadius)
+            if (distance <= boss.lookRadius && distance >= boss.meleeAttackRadius)
             {
                 animator.SetTrigger("Run");
+            }
+            else if (distance <= boss.meleeAttackRadius)
+            {
+                animator.SetTrigger("Attack1");
             }
         }
         else
