@@ -19,6 +19,7 @@ public class IdleBehaviour : StateMachineBehaviour
         rigidBody = animator.GetComponentInParent<Rigidbody>();
         dashTime = startDashTime;
         idleCooldown = startIdleCoolddown;
+        animator.ResetTrigger("Hit");
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
