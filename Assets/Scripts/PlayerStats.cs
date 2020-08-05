@@ -3,10 +3,14 @@ using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
+    public delegate void PlayerDeath();
+    public static event PlayerDeath OnPlayerDeath;
+
     public float m_maxHealth = 100.0f;
     private float m_Health;
     public float m_AtkDamage = 14.0f;
     private bool invincible = false;
+    private bool isDead = false;
     public HealthBarManager healthBar;
 
     private EnemyStat enemyStat;
@@ -31,7 +35,7 @@ public class PlayerStats : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
-        if (!invincible)
+        if (!invincible && !isDead)
         {
             m_Health -= damage;
             if (m_Health > m_maxHealth)
@@ -139,8 +143,6 @@ public class PlayerStats : MonoBehaviour
     }
     /// Status Effects End
 
-
-
     private void UpdateHealthBar()
     {
         healthBar.SetHealth(m_Health);
@@ -155,13 +157,19 @@ public class PlayerStats : MonoBehaviour
         invincible = false;
     }
 
+    public bool CheckIsDead()
+    {
+        return isDead;
+    }
+
     private void Die()
     {
-        if (m_Health == 0)
+        isDead = true;
+        //trigger death anim
+        GetComponentInChildren<Animator>().SetTrigger("Death");
+        if(OnPlayerDeath != null)
         {
-            //trigger death anim
-            Destroy(gameObject);
-            //and die
+            OnPlayerDeath();
         }
     }
 }

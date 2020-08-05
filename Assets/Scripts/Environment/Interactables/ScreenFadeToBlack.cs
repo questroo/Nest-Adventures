@@ -18,8 +18,9 @@ public class ScreenFadeToBlack : MonoBehaviour
     [Tooltip("The time it waits until it fades from fully black back to clear")]
     public float blackDuration = 0.5f;
     public CanvasGroup fadeToBlackCanvasGroup;
-    [Tooltip("When the player falls off into a kill volume, the screen will fade to black and they will teleport here...")]
-    public Transform teleportPosition;
+    [Tooltip("When the player falls off into a kill volume without a specific Teleport position, the screen will fade to black and they will teleport here...")]
+    public Transform dungeonStart;
+    private Transform teleportPosition;
 
     GameObject playerHandle;
     float timer;
@@ -28,6 +29,7 @@ public class ScreenFadeToBlack : MonoBehaviour
     private void Start()
     {
         playerHandle = FindObjectOfType<PlayerController>().gameObject;
+        teleportPosition = dungeonStart;
     }
 
     private void Update()
@@ -35,7 +37,6 @@ public class ScreenFadeToBlack : MonoBehaviour
         switch (fadeState)
         {
             case FadeState.FadingIn:
-
                 timer += Time.deltaTime;
                 fadeToBlackCanvasGroup.alpha = timer / fadeDuration;
                 if (timer > fadeDuration)
@@ -43,7 +44,6 @@ public class ScreenFadeToBlack : MonoBehaviour
                     fadeState = FadeState.FullBlack;
                     timer = blackDuration;
                 }
-
                 break;
 
 
@@ -51,19 +51,18 @@ public class ScreenFadeToBlack : MonoBehaviour
                 // Teleport player to dungeon start
                 playerHandle.gameObject.transform.position = teleportPosition.position;
                 playerHandle.gameObject.transform.rotation = teleportPosition.rotation;
+                // Reset to Dungeon Start to ensure there will always be a teleport position ( see TeleportPlayer() )
+                teleportPosition = dungeonStart;
                 fadeState = FadeState.Wait;
-
                 break;
 
             case FadeState.Wait:
-
                 timer -= Time.deltaTime;
                 if (timer < 0)
                 {
                     fadeState = FadeState.FadingOut;
                     timer = fadeDuration;
                 }
-
                 break;
 
 
@@ -80,8 +79,11 @@ public class ScreenFadeToBlack : MonoBehaviour
         }
     }
 
-    public void TriggerFade()
+    public void TeleportPlayer(Transform specificPosition = null)
     {
+        if (specificPosition != null && fadeState == FadeState.Clear)
+            teleportPosition = specificPosition;
+
         if (fadeState == FadeState.Clear)
             fadeState = FadeState.FadingIn;
     }
