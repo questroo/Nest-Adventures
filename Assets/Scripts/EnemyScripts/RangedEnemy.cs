@@ -5,10 +5,18 @@ using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum EnemyBehaviourType
+{
+    Patrol,
+    None
+}
+
 [RequireComponent(typeof(NavMeshAgent), typeof(FiniteStateMachine))]
 public class RangedEnemy : MonoBehaviour, IDamageable
 {
     /// Enemy behaviour variables
+    public EnemyBehaviourType behaviourType = EnemyBehaviourType.None;
+
     // Idle State
     public float idleWaitTimeMin = 1.0f;
     public float idleWaitTimeMax = 3.0f;
