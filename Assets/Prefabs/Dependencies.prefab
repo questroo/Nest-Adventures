@@ -559,6 +559,11 @@ PrefabInstance:
       propertyPath: teleportPosition
       value: 
       objectReference: {fileID: 3360264853581310192}
+    - target: {fileID: 4365094040001768715, guid: baa269732ddbbb946b7c568b6832a13a,
+        type: 3}
+      propertyPath: dungeonStart
+      value: 
+      objectReference: {fileID: 3360264853581310192}
     - target: {fileID: 4365094040001768820, guid: baa269732ddbbb946b7c568b6832a13a,
         type: 3}
       propertyPath: m_LocalPosition.x

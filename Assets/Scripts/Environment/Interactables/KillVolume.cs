@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class KillVolume : MonoBehaviour
 {
+    [Tooltip("Place a transform that this volume should teleport the player to if they fall in. If no position is chosen, player will teleport to the dungeon start.")]
+    public Transform teleportPosition = null;
+
     ScreenFadeToBlack faderHandle;
     void Start()
     {
@@ -16,7 +19,8 @@ public class KillVolume : MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("Bertha") || other.CompareTag("Tanjiro"))
         {
-            faderHandle.TriggerFade();
+            if(faderHandle)
+                faderHandle.TeleportPlayer(teleportPosition);
         }
     }
 }
