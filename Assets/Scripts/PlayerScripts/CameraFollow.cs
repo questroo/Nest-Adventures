@@ -6,11 +6,11 @@ public class CameraFollow : MonoBehaviour
 {
 
     #region LockOnCamera
-    public bool isTargetFollowOn = false;
+    //public bool isTargetFollowOn = false;
     private List<EnemyStat> enemiesInLOS;
     private Transform enemyLockOnTransform;
-    public float cameraSwitchSpeed = 270.0f;
-    [SerializeField]
+    //public float cameraSwitchSpeed = 270.0f;
+    //[SerializeField]
     private int enemyIndex = -1;
     bool isChanging = false;
     #endregion
@@ -49,7 +49,7 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ManageEnemiesInLOSList();
+        //ManageEnemiesInLOSList();
         // We setup the rotation of the sticks here
         float inputX = Input.GetAxis("RightStickHorizontal");
         float inputZ = Input.GetAxis("RightStickVertical");
@@ -89,7 +89,7 @@ public class CameraFollow : MonoBehaviour
         //}
 
         CameraUpdater();
-        isChanging = false;
+        //isChanging = false;
     }
 
     void CameraUpdater()
@@ -135,17 +135,16 @@ public class CameraFollow : MonoBehaviour
             }
         }
     }
-    void LockOn()
-    {
-        isTargetFollowOn = true;
-
-        enemyIndex++;
-        if (enemyIndex >= enemiesInLOS.Count)
-        {
-            isTargetFollowOn = false;
-            enemyIndex = -1;
-        }
-
-        isChanging = true;
-    }
+    //void LockOn()
+    //{
+    //    isTargetFollowOn = true;
+    //
+    //    enemyIndex++;
+    //    if (enemyIndex >= enemiesInLOS.Count)
+    //    {
+    //        isTargetFollowOn = false;
+    //        enemyIndex = -1;
+    //    }
+    //    isChanging = true;
+    //}
 }
