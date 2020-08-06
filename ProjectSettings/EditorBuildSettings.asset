@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JG_Greyblock.unity
     guid: 77c7e43e0b10fae40840ca982d2ae0e6
+  - enabled: 1
+    path: Assets/Scenes/Midterm.unity
+    guid: f1b2fe2b18b16074f98a8752faac4401
   m_configObjects: {}
