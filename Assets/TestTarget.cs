@@ -21,7 +21,7 @@ public class TestTarget : MonoBehaviour, IDamageable
         if(Health <= 0.0f)
         {
             Debug.Log("die");
-            FindObjectOfType<CameraController>().RemoveSelfFromList(this);
+            //FindObjectOfType<CameraController>().RemoveSelfFromList(this);
             Destroy(gameObject);
         }
     }
