@@ -36,9 +36,9 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
         {
             if (enteredState)
             {
-                if (cooldown > 0)
+                if (rangedEnemy.currentAttackCooldown > 0)
                 {
-                    cooldown -= Time.deltaTime;
+                    rangedEnemy.currentAttackCooldown -= Time.deltaTime;
                 }
 
                 float distance = Vector3.Distance(navMeshAgent.transform.position, player.transform.position);
@@ -56,10 +56,10 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
                 {
                     navMeshAgent.transform.LookAt(player.transform.position);
 
-                    if (cooldown <= 0)
+                    if (rangedEnemy.currentAttackCooldown <= 0)
                     {
                         Attack();
-                        cooldown = rangedEnemy.attackCooldown;
+                        rangedEnemy.currentAttackCooldown = rangedEnemy.attackCooldown;
                     }
                 }
             }

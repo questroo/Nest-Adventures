@@ -29,13 +29,13 @@ public abstract class AbstractFSMState : ScriptableObject
 
     protected GameObject player;
 
-    public ExecutionState ExecutionState { get; protected set; }
+    //public ExecutionState ExecutionState { get; protected set; }
     public FSMStateType StateType { get; protected set; }
     public bool enteredState { get; protected set; }
 
     public virtual void OnEnable()
     {
-        ExecutionState = ExecutionState.NONE;
+        
         player = FindObjectOfType<PlayerStats>().gameObject;
     }
 
@@ -44,7 +44,7 @@ public abstract class AbstractFSMState : ScriptableObject
         bool successNavMesh = true;
         bool successRangedEnemy = true;
 
-        ExecutionState = ExecutionState.ACTIVE;
+        
 
         successNavMesh = (navMeshAgent != null);
 
@@ -57,7 +57,7 @@ public abstract class AbstractFSMState : ScriptableObject
 
     public virtual bool ExitState()
     {
-        ExecutionState = ExecutionState.COMPLETED;
+        
         return true;
     }
 

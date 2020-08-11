@@ -399,10 +399,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819f624e03f4c2b42a023e04747361df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  behaviourType: 1
   idleWaitTimeMin: 1
   idleWaitTimeMax: 3
+  patrolIndex: -1
   forcedPositionChangeCooldown: 2
-  waypointDistanceCheck: 0.2
+  waypointDistanceCheck: 1
   targetLossRange: 15
   noticeRange: 10
   chaseStateSpeedModifier: 1
@@ -412,6 +414,7 @@ MonoBehaviour:
   projectileDamage: 5
   projectileLaunchForce: 35
   attackCooldown: 1
+  currentAttackCooldown: 1
   maxWeaponRange: 9
   minWeaponRange: 1.5
   patrolPoints:
