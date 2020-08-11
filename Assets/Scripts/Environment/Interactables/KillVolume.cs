@@ -17,7 +17,7 @@ public class KillVolume : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Bertha") || other.CompareTag("Tanjiro"))
+        if (other.CompareTag("Player") || other.CompareTag("RangedCharacter") || other.CompareTag("MeleeCharacter"))
         {
             if(faderHandle)
                 faderHandle.TeleportPlayer(teleportPosition);
