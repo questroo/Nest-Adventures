@@ -8,39 +8,73 @@ public class HitBoxProjection : MonoBehaviour
     public CameraController cameraController;
     public CharacterManager characterManager;
 
-    public GameObject projectile;
+    public GameObject firstProjectile;
+    public GameObject secondProjectile;
+    public GameObject thirdProjectile;
     public Transform projectileSpawnLocation;
     public float projectileForce = 2.0f;
     public float projectileLifeTime = 0.3f;
 
-    public void DoAttack()
+    public void DoAttack(int combo)
     {
         if (characterManager.GetCurrentPlayerTag() == "MeleeCharacter")
         {
-            ProjectHitbox();
+            ProjectHitbox(combo);
         }
         else
         {
-            ShootProjectile();
+            ShootProjectile(combo);
         }
     }
 
-    public void ProjectHitbox()
+    public void ProjectHitbox(int combo)
     {
-        Debug.Log("Projecting hitbox");
-        GameObject go = Instantiate(projectile, projectileSpawnLocation.position, Quaternion.identity) as GameObject;
-        StartCoroutine(DestroyProjectile(go));
+        switch (combo)
+        {
+            case 1:
+                GameObject go1 = Instantiate(firstProjectile, projectileSpawnLocation.position, Quaternion.identity) as GameObject;
+                StartCoroutine(DestroyProjectile(go1));
+                break;
+            case 2:
+                GameObject go2 = Instantiate(secondProjectile, projectileSpawnLocation.position, Quaternion.identity) as GameObject;
+                StartCoroutine(DestroyProjectile(go2));
+                break;
+            case 3:
+                GameObject go3 = Instantiate(thirdProjectile, projectileSpawnLocation.position, Quaternion.identity) as GameObject;
+                StartCoroutine(DestroyProjectile(go3));
+                break;
+            default:
+                break;
+        }
     }
-    public void ShootProjectile()
+    public void ShootProjectile(int combo)
     {
-        GameObject go = Instantiate(projectile, projectileSpawnLocation.position, Quaternion.identity) as GameObject;
-        
+        GameObject go = new GameObject();
+        switch (combo)
+        {
+            case 1:
+                go = Instantiate(firstProjectile, projectileSpawnLocation.position, Quaternion.identity) as GameObject;
+                StartCoroutine(DestroyProjectile(go));
+                break;
+            case 2:
+                go = Instantiate(secondProjectile, projectileSpawnLocation.position, Quaternion.identity) as GameObject;
+                StartCoroutine(DestroyProjectile(go));
+                break;
+            case 3:
+                go = Instantiate(thirdProjectile, projectileSpawnLocation.position, Quaternion.identity) as GameObject;
+                StartCoroutine(DestroyProjectile(go));
+                break;
+            default:
+                break;
+        }
+
         if (cameraController.GetLockOn())
         {
             Debug.Log("Camera locked on");
             Transform target = cameraController.GetCurrentlyLockedOnTransform();
             if (target)
             {
+
                 go.GetComponent<Rigidbody>().AddForce(Vector3.Normalize(target.position - go.transform.position) * projectileForce);
                 StartCoroutine("DestroyProjectile", go.gameObject);
             }

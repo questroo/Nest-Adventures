@@ -8,8 +8,6 @@ public class AttackManager : MonoBehaviour
     public CharacterManager characterManager;
     PlayerControls attackControls;
 
-    public GameObject meleeOrb;
-    private PlayerController playerController;
     private HitBoxProjection hitBoxProjection;
     public float damage = 50.0f;
     public bool canDealDamage = true;
@@ -40,7 +38,6 @@ public class AttackManager : MonoBehaviour
     private void Start()
     {
         hitBoxProjection = GetComponent<HitBoxProjection>();
-        playerController = GetComponent<PlayerController>();
         StartCoroutine("ComboAttack");
     }
 
@@ -55,6 +52,7 @@ public class AttackManager : MonoBehaviour
                 GetComponent<PlayerController>().isAttacking = true;
                 combo++;
                 GetComponent<AnimationController>().TriggerAttackAnimation(combo);
+                hitBoxProjection.DoAttack(combo);
                 lastTime = Time.time;
 
                 //Combo loop that ends the combo if you reach the maxTime between attacks, or reach the end of the combo
@@ -65,12 +63,12 @@ public class AttackManager : MonoBehaviour
                     {
                         combo++;
                         GetComponent<AnimationController>().TriggerAttackAnimation(combo);
+                        hitBoxProjection.DoAttack(combo);
                         lastTime = Time.time;
                     }
                     yield return null;
                 }
                 combo = 0;
-                yield return new WaitForSeconds(comboCooldown - (Time.time - lastTime));
             }
             yield return null;
         }
