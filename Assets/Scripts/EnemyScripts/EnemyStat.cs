@@ -54,6 +54,7 @@ public class EnemyStat : MonoBehaviour, IDamageable
         //Remove collision
         //Model Disappear
         Debug.Log("DEAD");
+        FindObjectOfType<CameraController>().RemoveSelfFromList(this);
         Destroy(gameObject);
     }
 }
