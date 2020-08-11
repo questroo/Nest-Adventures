@@ -7,8 +7,11 @@ public class EnemyStat : MonoBehaviour, IDamageable
 {
     public float enemyMaxHealth = 100f;
     public float bossDamage = 5f;
+    private float startStaggerCooldown = 5f;
+    private float staggerCooldown;
     // TODO: Implement the health bar
     //public HealthBarManager healthBar;
+
     public float Health { get; set; }
     Animator animator;
 
@@ -19,16 +22,26 @@ public class EnemyStat : MonoBehaviour, IDamageable
         //healthBar.SetMaxHealth(enemyMaxHealth);
     }
 
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            TakeDamage(10);
+        }
+    }
 
     public void TakeDamage(float damage)
     {
         Health -= damage;
+        animator.SetTrigger("Hit");
+
         Debug.Log("Enemy takes " + damage + " damage");
-  
+
         if (Health <= 0.0f)
         {
-            Health = 0.0f; 
-            animator.SetInteger("Die", 1);
+            Health = 0.0f;
+            // animator.SetInteger("Die", 1);
+            Die();
         }
 
         //healthBar.SetHealth(Health);
@@ -41,6 +54,7 @@ public class EnemyStat : MonoBehaviour, IDamageable
         //Remove collision
         //Model Disappear
         Debug.Log("DEAD");
+        FindObjectOfType<CameraController>().RemoveSelfFromList(this);
         Destroy(gameObject);
     }
 }

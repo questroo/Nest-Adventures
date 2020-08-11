@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    // Input System
+    public PlayerControls inputActions;
 
     #region LockOnCamera
-    //public bool isTargetFollowOn = false;
+    private bool isTargetFollowOn = false;
+    [SerializeField]
     private List<EnemyStat> enemiesInLOS;
     private Transform enemyLockOnTransform;
-    //public float cameraSwitchSpeed = 270.0f;
-    //[SerializeField]
+    public float cameraSwitchSpeed = 270.0f;
+    [SerializeField]
     private int enemyIndex = -1;
     bool isChanging = false;
     #endregion
@@ -20,21 +23,19 @@ public class CameraFollow : MonoBehaviour
     Vector3 FollowPOS;
     public float clampAngle = 80.0f;
     public float inputSensitivity = 150.0f;
-    public GameObject CameraObj;
-    public GameObject PlayerObj;
-    public float camDistanceXToPlayer;
-    public float camDistanceYToPlayer;
-    public float camDistanceZToPlayer;
     public float mouseX;
     public float mouseY;
     public float finalInputX;
     public float finalInputZ;
-    public float smoothX;
-    public float smoothY;
     private float rotY = 0.0f;
     private float rotX = 0.0f;
 
+    private void Awake()
+    {
+        inputActions = new PlayerControls();
 
+        inputActions.ActionMap.LockOn.performed += ctx => LockOn();
+    }
 
     // Use this for initialization
     void Start()
@@ -49,57 +50,58 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //ManageEnemiesInLOSList();
-        // We setup the rotation of the sticks here
-        float inputX = Input.GetAxis("RightStickHorizontal");
-        float inputZ = Input.GetAxis("RightStickVertical");
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y");
-        finalInputX = inputX + mouseX;
-        finalInputZ = inputZ + mouseY;
+        if (!isTargetFollowOn)
+        {
+            // We setup the rotation of the sticks here
+            float inputX = Input.GetAxis("RightStickHorizontal");
+            float inputZ = Input.GetAxis("RightStickVertical");
+            mouseX = Input.GetAxis("Mouse X");
+            mouseY = Input.GetAxis("Mouse Y");
+            finalInputX = inputX + mouseX;
+            finalInputZ = inputZ + mouseY;
 
-        rotY += finalInputX * inputSensitivity * Time.deltaTime;
-        rotX += finalInputZ * inputSensitivity * Time.deltaTime;
+            rotY += finalInputX * inputSensitivity * Time.deltaTime;
+            rotX += finalInputZ * inputSensitivity * Time.deltaTime;
 
-        rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
+            rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
 
-        Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
-        transform.rotation = localRotation;
-
-
+            Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
+            transform.rotation = localRotation;
+        }
+        ManageEnemiesInLOSList();
     }
 
     void LateUpdate()
     {
-        //if(isTargetFollowOn)
-        //{
-        //    Vector3 modifiedCameraPosition = transform.position;
-        //    modifiedCameraPosition.y += lockOnAngle;
-        //    cameraToBoss = enemyLockOnTransform.position - modifiedCameraPosition;
-        //    newRot = Quaternion.LookRotation(cameraToBoss);
-        //    transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, Time.deltaTime * cameraSwitchSpeed);
-        //    currentRotation = transform.eulerAngles;
-        //}
-        //if (enemiesInLOS.Count > 0)
-        //{
-        //    if (isTargetFollowOn)
-        //    {
-        //        enemyLockOnTransform = enemiesInLOS[enemyIndex].transform;
-        //    }
-        //}
-
         CameraUpdater();
-        //isChanging = false;
+        if (enemiesInLOS.Count > 0)
+        {
+            if (isTargetFollowOn)
+            {
+                enemyLockOnTransform = enemiesInLOS[enemyIndex].transform;
+            }
+        }
+        isChanging = false;
     }
 
     void CameraUpdater()
     {
-        // set the target object to follow
-        Transform target = CameraFollowObj.transform;
+        if (isTargetFollowOn)
+        {
+            Transform target = enemyLockOnTransform;
 
-        //move towards the game object that is the target
-        float step = CameraMoveSpeed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+            float step = CameraMoveSpeed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+        }
+        else
+        {
+            // set the target object to follow
+            Transform target = CameraFollowObj.transform;
+
+            //move towards the game object that is the target
+            float step = CameraMoveSpeed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+        }
     }
 
     void ManageEnemiesInLOSList()
@@ -135,16 +137,27 @@ public class CameraFollow : MonoBehaviour
             }
         }
     }
-    //void LockOn()
-    //{
-    //    isTargetFollowOn = true;
-    //
-    //    enemyIndex++;
-    //    if (enemyIndex >= enemiesInLOS.Count)
-    //    {
-    //        isTargetFollowOn = false;
-    //        enemyIndex = -1;
-    //    }
-    //    isChanging = true;
-    //}
+    void LockOn()
+    {
+        isTargetFollowOn = true;
+
+        enemyIndex++;
+        if (enemyIndex >= enemiesInLOS.Count)
+        {
+            isTargetFollowOn = false;
+            enemyIndex = -1;
+        }
+        enemyLockOnTransform = enemiesInLOS[enemyIndex].transform;
+        isChanging = true;
+    }
+
+    private void OnEnable()
+    {
+        inputActions.ActionMap.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputActions.ActionMap.Disable();
+    }
 }
