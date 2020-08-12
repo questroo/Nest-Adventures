@@ -88,7 +88,7 @@ public class Trap : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (isReset && (other.CompareTag("Player") || other.CompareTag("Tanjiro") || other.CompareTag("Bertha")))
+        if (isReset && (other.CompareTag("Player") || other.CompareTag("MeleeCharacter") || other.CompareTag("RangedCharacter")))
         {
             isReset = false;
             StartCoroutine(CountDownUntilTrigger());
