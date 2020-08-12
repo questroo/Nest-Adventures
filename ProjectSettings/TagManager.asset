@@ -20,6 +20,7 @@ TagManager:
   - Kill
   - MeleeCharacter
   - RangedCharacter
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - PostProcessing
   - Player
   - Pillars
-  - 
+  - LootCollision
   - 
   - 
   - 
