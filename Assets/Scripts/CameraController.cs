@@ -39,6 +39,7 @@ public class CameraController : MonoBehaviour
     Vector3 currentRotation;
     Vector2 cameraMove;
 
+    public CharacterManager characterManager;
     Quaternion newRot;
     Vector3 cameraToBoss;
     private Transform enemyLockOnTransform;
@@ -86,34 +87,36 @@ public class CameraController : MonoBehaviour
             }
         }
 
-        if (!isTargetFollowOn)
+        if (!characterManager.CheckSwapping())
         {
-            yaw += cameraMove.x * mouseSensitivity;
-            pitch -= cameraMove.y * mouseSensitivity;
-            pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
-
-
-            if (isChanging)
+            if (!isTargetFollowOn)
             {
-                currentRotation = transform.eulerAngles;
-                pitch = transform.eulerAngles.x;
-                yaw = transform.eulerAngles.y;
-            }
-            currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(pitch, yaw, 0.0f), ref rotationSmoothVelocity, rotationSmoothTime);
-            transform.eulerAngles = currentRotation;
-        }
-        else
-        {
-            Vector3 modifiedCameraPosition = transform.position;
-            modifiedCameraPosition.y += lockOnAngle;
-            cameraToBoss = enemyLockOnTransform.position - modifiedCameraPosition;
-            newRot = Quaternion.LookRotation(cameraToBoss);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, Time.deltaTime * cameraSwitchSpeed);
-            currentRotation = transform.eulerAngles;
-        }
+                yaw += cameraMove.x * mouseSensitivity;
+                pitch -= cameraMove.y * mouseSensitivity;
+                pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
 
-        transform.position = target.position - transform.forward * distFromTarget;
-        isChanging = false;
+
+                if (isChanging)
+                {
+                    currentRotation = transform.eulerAngles;
+                    pitch = transform.eulerAngles.x;
+                    yaw = transform.eulerAngles.y;
+                }
+                currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(pitch, yaw, 0.0f), ref rotationSmoothVelocity, rotationSmoothTime);
+                transform.eulerAngles = currentRotation;
+            }
+            else
+            {
+                Vector3 modifiedCameraPosition = transform.position;
+                modifiedCameraPosition.y += lockOnAngle;
+                cameraToBoss = enemyLockOnTransform.position - modifiedCameraPosition;
+                newRot = Quaternion.LookRotation(cameraToBoss);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, Time.deltaTime * cameraSwitchSpeed);
+                currentRotation = transform.eulerAngles;
+            }
+            transform.position = target.position - transform.forward * distFromTarget;
+            isChanging = false;
+        }
     }
     private void OnEnable()
     {
@@ -141,7 +144,7 @@ public class CameraController : MonoBehaviour
         var allEnemies = FindObjectsOfType<EnemyStat>();
         foreach (EnemyStat enemy in allEnemies)
         {
-            if(enemy == null)
+            if (enemy == null)
             {
                 enemiesInLOS.Remove(enemy);
                 if (enemyIndex >= enemiesInLOS.Count)

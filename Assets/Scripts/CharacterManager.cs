@@ -11,6 +11,7 @@ public class CharacterManager : MonoBehaviour
     // Controls
     PlayerControls control;
     public GameObject[] Characters;
+    public Transform mainPlayer;
     private int m_CharacterIndex = 1;
     public float swapTime = 1.0f;
     public float iFrameTime = 1.0f;
@@ -38,8 +39,9 @@ public class CharacterManager : MonoBehaviour
     }
     IEnumerator CharacterSwapping()
     {
-        //StartCoroutine("StartTimer");
         swapping = true;
+        var startPosition = mainPlayer.transform.position;
+        StartCoroutine(MoveToPosition(mainPlayer, Camera.main.transform.position, swapTime / 2));
         m_CharacterIndex = ++m_CharacterIndex % 2;
         //disable input
         Characters[m_CharacterIndex].GetComponentInParent<PlayerController>().DisableInput();
@@ -47,14 +49,8 @@ public class CharacterManager : MonoBehaviour
         //start IFrame
         Characters[m_CharacterIndex].GetComponentInParent<PlayerStats>().StartIFrame();
         //start anim
-        yield return new WaitForSeconds(swapTime);
+        yield return new WaitForSeconds(swapTime / 2);
         //enable input
-        Characters[m_CharacterIndex].GetComponentInParent<PlayerController>().EnableInput();
-        Characters[m_CharacterIndex].GetComponentInParent<AnimationController>().RegetAnimator();
-        Characters[m_CharacterIndex].GetComponentInParent<AttackManager>().EnableInput();
-        //endIframe
-        Characters[m_CharacterIndex].GetComponentInParent<PlayerStats>().EndIFrame();
-        //anim done
         Characters[m_CharacterIndex].SetActive(true);
         if (m_CharacterIndex == 0)
         {
@@ -64,7 +60,14 @@ public class CharacterManager : MonoBehaviour
         {
             Characters[0].SetActive(false);
         }
-        swapping = false;
+        StartCoroutine(MoveToPosition(mainPlayer, startPosition, swapTime / 2));
+        Characters[m_CharacterIndex].GetComponentInParent<PlayerController>().EnableInput();
+        Characters[m_CharacterIndex].GetComponentInParent<AnimationController>().RegetAnimator();
+        Characters[m_CharacterIndex].GetComponentInParent<AttackManager>().EnableInput();
+        //endIframe
+        Characters[m_CharacterIndex].GetComponentInParent<PlayerStats>().EndIFrame();
+        //anim done
+        Invoke("TurnOffSwapping", swapTime / 2);
     }
     public IEnumerator StartTimer()
     {
@@ -91,9 +94,36 @@ public class CharacterManager : MonoBehaviour
             StartCoroutine("CharacterSwapping");
         }
     }
+    public IEnumerator MoveToPosition(Transform transform, Vector3 position, float timeToMove)
+    {
+        var currentPos = transform.position;
+        var t = 0f;
+        while (t < 1)
+        {
+            t += Time.deltaTime / timeToMove;
+            transform.position = Vector3.Lerp(currentPos, position, t);
+            yield return null;
+        }
+    }
+    public IEnumerator JumpBehindCamera()
+    {
+
+        yield return new WaitForSeconds(swapTime / 2);
+    }
+
+    public IEnumerator JumpInFrontOfCamera()
+    {
+        yield return new WaitForSeconds(swapTime / 2);
+    }
+
     public bool CheckSwapping()
     {
         return swapping;
+    }
+
+    private void TurnOffSwapping()
+    {
+        swapping = false;
     }
     private void OnEnable()
     {

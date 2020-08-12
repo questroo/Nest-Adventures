@@ -403,8 +403,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraController: {fileID: 0}
   characterManager: {fileID: 5325392209536943421}
-  projectile: {fileID: 8253023300069038707, guid: fd80f8464ac0e644fab1efc4085f754d,
-    type: 3}
+  firstProjectile: {fileID: 0}
+  secondProjectile: {fileID: 0}
+  thirdProjectile: {fileID: 0}
   projectileSpawnLocation: {fileID: 806750802}
   projectileForce: 1000
   projectileLifeTime: 1
@@ -806,8 +807,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraController: {fileID: 0}
   characterManager: {fileID: 5325392209536943421}
-  projectile: {fileID: 8253023300069038707, guid: fd80f8464ac0e644fab1efc4085f754d,
-    type: 3}
+  firstProjectile: {fileID: 0}
+  secondProjectile: {fileID: 0}
+  thirdProjectile: {fileID: 0}
   projectileSpawnLocation: {fileID: 806750802}
   projectileForce: 2
   projectileLifeTime: 0.3
@@ -1019,6 +1021,7 @@ MonoBehaviour:
   isTargetFollowOn: 0
   lockOnAngle: 0
   enemiesInLOS: []
+  characterManager: {fileID: 5325392209536943421}
   cameraSwitchSpeed: 270
   enemyIndex: -1
 --- !u!1 &3360264853795351058
@@ -1074,6 +1077,7 @@ MonoBehaviour:
   smooth: 10
   dollyDirAdjusted: {x: 0, y: 0, z: 0}
   distance: 0
+  characterManager: {fileID: 0}
 --- !u!114 &206996738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1086,11 +1090,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f32ba41f69b764381062d596aa9217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraController: {fileID: 0}
-  characterManager: {fileID: 0}
-  projectile: {fileID: 0}
-  projectileSpawnLocation: {fileID: 0}
-  projectileForce: 2
+  cameraController: {fileID: 2013789044}
+  characterManager: {fileID: 5325392209536943421}
+  firstProjectile: {fileID: 8253023300069038707, guid: fd80f8464ac0e644fab1efc4085f754d,
+    type: 3}
+  secondProjectile: {fileID: 8253023300069038707, guid: f693bdda0a928c04f8cb4e3960923a97,
+    type: 3}
+  thirdProjectile: {fileID: 8253023300069038707, guid: 9984633ec6e69c545a57789db4197f7e,
+    type: 3}
+  projectileSpawnLocation: {fileID: 806750802}
+  projectileForce: 500
   projectileLifeTime: 1
 --- !u!1001 &776057615
 PrefabInstance:
@@ -1170,6 +1179,14 @@ PrefabInstance:
     - target: {fileID: 400048, guid: e67586301e35f524dbd77309dc957493, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.2242
+      objectReference: {fileID: 0}
+    - target: {fileID: 400060, guid: e67586301e35f524dbd77309dc957493, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.212
+      objectReference: {fileID: 0}
+    - target: {fileID: 400070, guid: e67586301e35f524dbd77309dc957493, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.08
       objectReference: {fileID: 0}
     - target: {fileID: 400072, guid: e67586301e35f524dbd77309dc957493, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1601,6 +1618,11 @@ PrefabInstance:
       propertyPath: Characters.Array.data[1]
       value: 
       objectReference: {fileID: 8570473799283617263}
+    - target: {fileID: 7441522094827338391, guid: b655ae66fda9a6848ba9f7f742d078b9,
+        type: 3}
+      propertyPath: mainPlayer
+      value: 
+      objectReference: {fileID: 8783741950771949437}
     - target: {fileID: 7441522094827338392, guid: b655ae66fda9a6848ba9f7f742d078b9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2068,7 +2090,7 @@ PrefabInstance:
     - target: {fileID: 486015825139837596, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}
       propertyPath: cooldown
-      value: 0.1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 486015825139837596, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}
@@ -2093,12 +2115,12 @@ PrefabInstance:
     - target: {fileID: 486015825508174427, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.91
       objectReference: {fileID: 0}
     - target: {fileID: 486015825508174427, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.6
       objectReference: {fileID: 0}
     - target: {fileID: 486015825508174427, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}

@@ -11,6 +11,7 @@ public class CameraCollision : MonoBehaviour
     Vector3 dollyDir;
     public Vector3 dollyDirAdjusted;
     public float distance;
+    public CharacterManager characterManager;
 
     // Use this for initialization
     void Awake()
@@ -22,17 +23,21 @@ public class CameraCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 desiredCameraPos = transform.parent.TransformPoint(dollyDir * maxDistance);
-        RaycastHit hit;
+        if (!characterManager.CheckSwapping())
+        {
 
-        if (Physics.Linecast(transform.parent.position, desiredCameraPos, out hit))
-        {
-            distance = Mathf.Clamp((hit.distance * 0.87f), minDistance, maxDistance);
+            Vector3 desiredCameraPos = transform.parent.TransformPoint(dollyDir * maxDistance);
+            RaycastHit hit;
+
+            if (Physics.Linecast(transform.parent.position, desiredCameraPos, out hit))
+            {
+                distance = Mathf.Clamp((hit.distance * 0.87f), minDistance, maxDistance);
+            }
+            else
+            {
+                distance = maxDistance;
+            }
+            transform.localPosition = Vector3.Lerp(transform.localPosition, dollyDir * distance, Time.deltaTime * smooth);
         }
-        else
-        {
-            distance = maxDistance;
-        }
-        transform.localPosition = Vector3.Lerp(transform.localPosition, dollyDir * distance, Time.deltaTime * smooth);
     }
 }
