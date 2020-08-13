@@ -21,10 +21,6 @@ public class BreakableObject : MonoBehaviour, IDamageable
         health = objectHealth;
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-    }
-
     public void DestroyThisBreakable()
     {
         if(lootTable)

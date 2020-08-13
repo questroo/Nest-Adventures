@@ -47,7 +47,12 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
                 totalDuration += Time.deltaTime;
                 if (totalDuration >= waitTime)
                 {
-                    finiteStateMachine.EnterState(FSMStateType.PATROL);
+                    if(rangedEnemy.behaviourType == EnemyBehaviourType.Patrol)
+                        finiteStateMachine.EnterState(FSMStateType.PATROL);
+                    else
+                    {
+                        finiteStateMachine.EnterState(FSMStateType.IDLE);
+                    }
                 }
             }
         }

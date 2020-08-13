@@ -26,13 +26,15 @@ public class DialogueTrigger : MonoBehaviour
 
     public void Trigger()
     {
-        dialogueManagerScript = FindObjectOfType<DialogueManager>();
+        if(dialogueManagerScript == null)
+            dialogueManagerScript = FindObjectOfType<DialogueManager>();
+
         dialogueManagerScript.StartDialouge(dialogue);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Tanjiro") || other.CompareTag("Bertha"))
+        if (other.CompareTag("Player") || other.CompareTag("RangedCharacter") || other.CompareTag("MeleeCharacter"))
         {
             isPlayerNear = true;
         }
@@ -40,10 +42,11 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Tanjiro") || other.CompareTag("Bertha"))
+        if (other.CompareTag("Player") || other.CompareTag("RangedCharacter") || other.CompareTag("MeleeCharacter"))
         {
             isPlayerNear = false;
             hasStarted = false;
+            dialogueManagerScript.EndDialogue();
         }
     }
 }

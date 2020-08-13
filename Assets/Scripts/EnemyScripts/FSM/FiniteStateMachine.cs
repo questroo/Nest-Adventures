@@ -19,20 +19,20 @@ namespace Assets.Scripts.EnemyScripts.FSM
         List<AbstractFSMState> validStates;
         Dictionary<FSMStateType, AbstractFSMState> fsmStates;
 
+        NavMeshAgent navMeshAgent;
+        RangedEnemy rangedEnemy;
+
         public void Awake()
         {
             currentState = null;
 
             fsmStates = new Dictionary<FSMStateType, AbstractFSMState>();
 
-            NavMeshAgent navMeshAgent = GetComponent<NavMeshAgent>();
-            RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
+            navMeshAgent = GetComponent<NavMeshAgent>();
+            rangedEnemy = GetComponent<RangedEnemy>();
 
-            foreach(AbstractFSMState state in validStates)
+            foreach (AbstractFSMState state in validStates)
             {
-                state.SetExecutingFSM(this);
-                state.SetExecutingNavMeshAgent(navMeshAgent);
-                state.SetExecutingRangedEnemy(rangedEnemy);
                 fsmStates.Add(state.StateType, state);
             }
         }
@@ -45,10 +45,12 @@ namespace Assets.Scripts.EnemyScripts.FSM
             }
         }
 
-        public void Update()
+        public void FixedUpdate()
         {
             if (currentState)
             {
+                SetActor(currentState);
+
                 currentState.UpdateState();
             }
         }
@@ -67,6 +69,9 @@ namespace Assets.Scripts.EnemyScripts.FSM
             }
 
             currentState = nextState;
+
+            SetActor(currentState);
+
             currentState.EnterState();
         }
 
@@ -80,5 +85,12 @@ namespace Assets.Scripts.EnemyScripts.FSM
             }
         }
         #endregion
+
+        void SetActor(AbstractFSMState state)
+        {
+            state.SetExecutingFSM(this);
+            state.SetExecutingNavMeshAgent(navMeshAgent);
+            state.SetExecutingRangedEnemy(rangedEnemy);
+        }
     }
 }

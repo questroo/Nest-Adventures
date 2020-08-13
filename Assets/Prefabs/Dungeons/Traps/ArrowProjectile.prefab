@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowDamage: 10
-  lifeTime: 10
+  lifeTime: 4
 --- !u!1 &5911809650867220860
 GameObject:
   m_ObjectHideFlags: 0

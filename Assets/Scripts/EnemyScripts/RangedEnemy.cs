@@ -5,15 +5,24 @@ using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum EnemyBehaviourType
+{
+    Patrol,
+    None
+}
+
 [RequireComponent(typeof(NavMeshAgent), typeof(FiniteStateMachine))]
 public class RangedEnemy : MonoBehaviour, IDamageable
 {
     /// Enemy behaviour variables
+    public EnemyBehaviourType behaviourType = EnemyBehaviourType.None;
+
     // Idle State
     public float idleWaitTimeMin = 1.0f;
     public float idleWaitTimeMax = 3.0f;
 
     // Patrol State
+    public int patrolIndex = -1;
     public float forcedPositionChangeCooldown = 2.0f;
     public float waypointDistanceCheck = 0.2f;
     public float targetLossRange = 15.0f;
@@ -28,6 +37,7 @@ public class RangedEnemy : MonoBehaviour, IDamageable
     public float projectileDamage = 5.0f;
     public float projectileLaunchForce = 35.0f;
     public float attackCooldown = 1.0f;
+    public float currentAttackCooldown = 1.0f;
     public float maxWeaponRange = 9.0f;
     public float minWeaponRange = 1.5f;
 

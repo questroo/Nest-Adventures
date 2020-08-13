@@ -11,13 +11,11 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
     class PatrolState : AbstractFSMState
     {
         Transform[] patrolPoints;
-        int patrolIndex;
 
         public override void OnEnable()
         {
             base.OnEnable();
             StateType = FSMStateType.PATROL;
-            patrolIndex = -1;
 
             player = FindObjectOfType<PlayerStats>().gameObject;
         }
@@ -37,22 +35,22 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
                 }
                 else
                 {
-                    if (patrolIndex == -1)
+                    if (rangedEnemy.patrolIndex == -1)
                     {
-                        patrolIndex = Random.Range(0, patrolPoints.Length);
-                        SetDestination(patrolPoints[patrolIndex]);
+                        rangedEnemy.patrolIndex = Random.Range(0, patrolPoints.Length);
+                        SetDestination(patrolPoints[rangedEnemy.patrolIndex]);
                         enteredState = true;
                     }
                     else
                     {
-                        patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
-                        SetDestination(patrolPoints[patrolIndex]);
+                        rangedEnemy.patrolIndex = (rangedEnemy.patrolIndex + 1) % patrolPoints.Length;
+                        SetDestination(patrolPoints[rangedEnemy.patrolIndex]);
                         enteredState = true;
                     }
                 }
             }
 
-            Debug.Log("Entering Patrol State. Heading to waypoint index " + patrolIndex);
+            Debug.Log("Entering Patrol State. Heading to waypoint index " + rangedEnemy.patrolIndex);
             return enteredState;
         }
 
@@ -60,6 +58,8 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
         {
             if (enteredState)
             {
+                patrolPoints = rangedEnemy.GetPatrolPoints();
+
                 float distance = Vector3.Distance(navMeshAgent.transform.position, player.transform.position);
                 if (distance <= 10.0f)
                 {
@@ -67,7 +67,7 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
                     return;
                 }
 
-                distance = Vector3.Distance(navMeshAgent.transform.position, patrolPoints[patrolIndex].position);
+                distance = Vector3.Distance(navMeshAgent.transform.position, patrolPoints[rangedEnemy.patrolIndex].position);
                 if (distance <= rangedEnemy.waypointDistanceCheck)
                 {
                     finiteStateMachine.EnterState(FSMStateType.IDLE);

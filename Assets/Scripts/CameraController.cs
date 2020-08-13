@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour
     public float lockOnAngle;
     [SerializeField]
 
-    private List<TestTarget> enemiesInLOS;
+    private List<EnemyStat> enemiesInLOS;
 
     // Controls
     PlayerControls cameraControls;
@@ -39,6 +39,7 @@ public class CameraController : MonoBehaviour
     Vector3 currentRotation;
     Vector2 cameraMove;
 
+    public CharacterManager characterManager;
     Quaternion newRot;
     Vector3 cameraToBoss;
     private Transform enemyLockOnTransform;
@@ -62,6 +63,8 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         enemyIndex = -1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -84,34 +87,36 @@ public class CameraController : MonoBehaviour
             }
         }
 
-        if (!isTargetFollowOn)
+        if (!characterManager.CheckSwapping())
         {
-            yaw += cameraMove.x * mouseSensitivity;
-            pitch -= cameraMove.y * mouseSensitivity;
-            pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
-
-
-            if (isChanging)
+            if (!isTargetFollowOn)
             {
-                currentRotation = transform.eulerAngles;
-                pitch = transform.eulerAngles.x;
-                yaw = transform.eulerAngles.y;
-            }
-            currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(pitch, yaw, 0.0f), ref rotationSmoothVelocity, rotationSmoothTime);
-            transform.eulerAngles = currentRotation;
-        }
-        else
-        {
-            Vector3 modifiedCameraPosition = transform.position;
-            modifiedCameraPosition.y += lockOnAngle;
-            cameraToBoss = enemyLockOnTransform.position - modifiedCameraPosition;
-            newRot = Quaternion.LookRotation(cameraToBoss);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, Time.deltaTime * cameraSwitchSpeed);
-            currentRotation = transform.eulerAngles;
-        }
+                yaw += cameraMove.x * mouseSensitivity;
+                pitch -= cameraMove.y * mouseSensitivity;
+                pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
 
-        transform.position = target.position - transform.forward * distFromTarget;
-        isChanging = false;
+
+                if (isChanging)
+                {
+                    currentRotation = transform.eulerAngles;
+                    pitch = transform.eulerAngles.x;
+                    yaw = transform.eulerAngles.y;
+                }
+                currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(pitch, yaw, 0.0f), ref rotationSmoothVelocity, rotationSmoothTime);
+                transform.eulerAngles = currentRotation;
+            }
+            else
+            {
+                Vector3 modifiedCameraPosition = transform.position;
+                modifiedCameraPosition.y += lockOnAngle;
+                cameraToBoss = enemyLockOnTransform.position - modifiedCameraPosition;
+                newRot = Quaternion.LookRotation(cameraToBoss);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, Time.deltaTime * cameraSwitchSpeed);
+                currentRotation = transform.eulerAngles;
+            }
+            transform.position = target.position - transform.forward * distFromTarget;
+            isChanging = false;
+        }
     }
     private void OnEnable()
     {
@@ -136,17 +141,17 @@ public class CameraController : MonoBehaviour
     }
     void ManageEnemiesInLOSList()
     {
-        var allEnemies = FindObjectsOfType<TestTarget>();
-        foreach (TestTarget enemy in allEnemies)
+        var allEnemies = FindObjectsOfType<EnemyStat>();
+        foreach (EnemyStat enemy in allEnemies)
         {
-            //if(enemy == null)
-            //{
-            //    enemiesInLOS.Remove(enemy);
-            //    if (enemyIndex >= enemiesInLOS.Count)
-            //    {
-            //        enemyIndex--;
-            //    }
-            //}
+            if (enemy == null)
+            {
+                enemiesInLOS.Remove(enemy);
+                if (enemyIndex >= enemiesInLOS.Count)
+                {
+                    enemyIndex--;
+                }
+            }
             var tempVect = Camera.main.WorldToViewportPoint(enemy.transform.position);
             if (tempVect.x >= 0 && tempVect.x <= 1 &&
                 tempVect.y >= 0 && tempVect.y <= 1 &&
@@ -171,11 +176,11 @@ public class CameraController : MonoBehaviour
 
     public Transform GetCurrentlyLockedOnTransform() { return enemyLockOnTransform; }
 
-    public void RemoveSelfFromList(TestTarget testTarget)
+    public void RemoveSelfFromList(EnemyStat targetEnemy)
     {
-        if (enemiesInLOS.Contains(testTarget))
+        if (enemiesInLOS.Contains(targetEnemy))
         {
-            enemiesInLOS.Remove(testTarget);
+            enemiesInLOS.Remove(targetEnemy);
             if (enemyIndex >= enemiesInLOS.Count)
             {
                 enemyIndex--;
