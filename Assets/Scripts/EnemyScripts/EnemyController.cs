@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     public float alertRadius = 8.0f;
     public float attackRadius = 4.0f;
     public Transform[] moveSpots;
+    public float startIdleCooldown = 0f;
 
     private Transform target;
     private NavMeshAgent agent;
@@ -27,7 +28,6 @@ public class EnemyController : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player").transform;
         randomSpot = Random.Range(0, moveSpots.Length);
         agent = GetComponent<NavMeshAgent>();
-
         // boss = GetComponent<BossController>();
         //moveSpots.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
     }
