@@ -2272,7 +2272,7 @@ PrefabInstance:
     - target: {fileID: 3360264853795351059, guid: 723a87b0a914b1f4f9d565b1ec7cb3b8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.21
+      value: -20.12
       objectReference: {fileID: 0}
     - target: {fileID: 3360264853795351059, guid: 723a87b0a914b1f4f9d565b1ec7cb3b8,
         type: 3}
@@ -4168,6 +4168,11 @@ PrefabInstance:
       propertyPath: moveSpots.Array.data[3]
       value: 
       objectReference: {fileID: 121956156}
+    - target: {fileID: 5325908998930136078, guid: 56a7d9d5a6f168b458910bd40dc1cfeb,
+        type: 3}
+      propertyPath: startIdleCooldown
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5325908998930136176, guid: 56a7d9d5a6f168b458910bd40dc1cfeb,
         type: 3}
       propertyPath: m_LocalPosition.x

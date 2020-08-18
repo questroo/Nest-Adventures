@@ -9,11 +9,13 @@ public class MinionIdleBehaviour : StateMachineBehaviour
     Rigidbody rigidBody;
     private float dashTime;
     private float startDashTime = 5.0f;
+    private float idleCooldown;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         enemy = animator.GetComponentInParent<EnemyController>();
         rigidBody = animator.GetComponentInParent<Rigidbody>();
+        idleCooldown = enemy.startIdleCooldown;
 
     }
 
@@ -23,9 +25,17 @@ public class MinionIdleBehaviour : StateMachineBehaviour
 
         enemy.Movement();
 
-        if(distance <= enemy.attackRadius)
+        if (idleCooldown <= 0f)
         {
-            animator.SetTrigger("Attack");
+            if (distance <= enemy.attackRadius)
+            {
+                animator.SetTrigger("Attack");
+            }
+        }
+        else
+        {
+            idleCooldown -= Time.deltaTime;
+            Debug.Log(idleCooldown + "s before next attack");
         }
     }
 
