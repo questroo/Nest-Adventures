@@ -16,7 +16,7 @@ public class HitBehaviour : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         float distance = Vector3.Distance(boss.GetTarget().position, animator.transform.position);
-
+        
         if (hitCount <= 0)
         {
             animator.SetTrigger("Counter");
@@ -32,7 +32,6 @@ public class HitBehaviour : StateMachineBehaviour
             animator.SetTrigger("Idle");
            
         }
-
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

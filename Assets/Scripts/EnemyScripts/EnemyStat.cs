@@ -33,7 +33,7 @@ public class EnemyStat : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         Health -= damage;
-        animator.SetTrigger("Hit");
+        //animator.SetTrigger("Hit");
 
         Debug.Log("Enemy takes " + damage + " damage");
 
@@ -55,6 +55,11 @@ public class EnemyStat : MonoBehaviour, IDamageable
         //Model Disappear
         Debug.Log("DEAD");
         FindObjectOfType<CameraController>().RemoveSelfFromList(this);
+        var boss = GetComponent<BossDeath>();
+        if (boss)
+        {
+            boss.BossIsDead();
+        }
         Destroy(gameObject);
     }
 }

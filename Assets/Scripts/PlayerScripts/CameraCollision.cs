@@ -25,7 +25,6 @@ public class CameraCollision : MonoBehaviour
     {
         if (!characterManager.CheckSwapping())
         {
-
             Vector3 desiredCameraPos = transform.parent.TransformPoint(dollyDir * maxDistance);
             RaycastHit hit;
 

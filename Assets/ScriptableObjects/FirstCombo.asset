@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3709a36c1dd481488ed567b742ecdc5, type: 3}
   m_Name: FirstCombo
   m_EditorClassIdentifier: 
-  comboDamage: 10
+  comboDamage: 8

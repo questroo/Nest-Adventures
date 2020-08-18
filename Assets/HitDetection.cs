@@ -8,10 +8,17 @@ public class HitDetection : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var target = other.gameObject.GetComponent<IDamageable>();
-        if(target != null)
+        if (target != null)
         {
             Debug.Log("Hitting target");
-            target.TakeDamage(comboDamage.comboDamage);
+            if (BossKillSceneResetter.hasBossDied)
+            {
+                target.TakeDamage(comboDamage.comboDamage * 2);
+            }
+            else
+            {
+                target.TakeDamage(comboDamage.comboDamage);
+            }
             Destroy(gameObject);
         }
     }
