@@ -11,7 +11,7 @@ public class HitDetection : MonoBehaviour
         if (target != null)
         {
             Debug.Log("Hitting target");
-            if (BossKillSceneResetter.hasBossDied)
+            if (SecondWaveSpawner.hasBossDied)
             {
                 target.TakeDamage(comboDamage.comboDamage * 2);
             }
