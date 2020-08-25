@@ -52,6 +52,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Health Potion",
+                    "type": "Button",
+                    "id": "6b79913d-bcd8-452e-879c-5009289b828d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -272,6 +280,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "CharacterSwap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d967f1c7-5988-477b-9a6a-b7dc0da85c9d",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Health Potion",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

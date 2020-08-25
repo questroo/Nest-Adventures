@@ -38,7 +38,7 @@ public class Trap_ArrowProjectile : MonoBehaviour
             rb.isKinematic = true;
             rb.useGravity = false;
 
-            if (other.CompareTag("Player") || other.CompareTag("Bertha") || other.CompareTag("Tanjiro"))
+            if (other.CompareTag("Player") || other.CompareTag("RangedCharacter") || other.CompareTag("MeleeCharacter"))
             {
                 playerScript = other.GetComponentInParent<PlayerStats>();
 

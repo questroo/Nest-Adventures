@@ -15,6 +15,11 @@ public class PlayerStats : MonoBehaviour
 
     private EnemyStat enemyStat;
 
+    /// Health Potion
+    [HideInInspector]public bool hasHealthPotion = false;
+    public int maxHealthPotionUses = 3;
+    [HideInInspector]public int currentHealthPotionUses = 0;
+    public float healthPotionValue = 25.0f;
 
     /// Status Effects
     // Poison
@@ -32,6 +37,8 @@ public class PlayerStats : MonoBehaviour
         m_Health = m_maxHealth;
         enemyStat = FindObjectOfType<EnemyStat>();
         healthBar.SetMaxHealth(m_maxHealth);
+
+        currentHealthPotionUses = 0;
     }
     public void TakeDamage(float damage)
     {
@@ -58,6 +65,11 @@ public class PlayerStats : MonoBehaviour
             UpdatePoison();
         if (isAttackDown)
             UpdateAttackDown();
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            UseHealthPotion();
+        }
     }
 
     public void UpdatePoison()
@@ -143,6 +155,41 @@ public class PlayerStats : MonoBehaviour
     }
     /// Status Effects End
 
+    /// Health Potion Start
+    public bool PickupHealthPotion()
+    {
+        if (!hasHealthPotion)
+        {
+            hasHealthPotion = true;
+        }
+
+        ++currentHealthPotionUses;
+
+        if (currentHealthPotionUses > maxHealthPotionUses)
+        {
+            currentHealthPotionUses = maxHealthPotionUses;
+            return false;
+        }
+        else
+        {
+            healthBar.UIAddHealthPotion(currentHealthPotionUses);
+            return true;
+        }
+    }
+
+    public void UseHealthPotion()
+    {
+        if (hasHealthPotion)
+        {
+            if (currentHealthPotionUses > 0)
+            {
+                healthBar.UIUseHealthPotion(--currentHealthPotionUses);
+                TakeDamage(-healthPotionValue);
+            }
+        }
+    }
+    /// Health Potion End
+
     private void UpdateHealthBar()
     {
         healthBar.SetHealth(m_Health);
@@ -167,7 +214,7 @@ public class PlayerStats : MonoBehaviour
         isDead = true;
         //trigger death anim
         GetComponentInChildren<Animator>().SetTrigger("Death");
-        if(OnPlayerDeath != null)
+        if (OnPlayerDeath != null)
         {
             OnPlayerDeath();
         }

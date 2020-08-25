@@ -5,6 +5,7 @@ using UnityEngine;
 public class Trap_Explosion : MonoBehaviour
 {
     public float bossExplosionDamage = 10.0f;
+    public float enemyExplosionDamage = 20.0f;
     public float playerExplosionDamage = 30.0f;
 
     float t = 0.0f;
@@ -31,7 +32,7 @@ public class Trap_Explosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!playerIsHit && other.CompareTag("Player") || other.CompareTag("Tanjiro") || other.CompareTag("Bertha"))
+        if (!playerIsHit && other.CompareTag("Player") || other.CompareTag("RangedCharacter") || other.CompareTag("MeleeCharacter"))
         {
             playerIsHit = true;
             other.GetComponentInParent<PlayerStats>().TakeDamage(playerExplosionDamage);
@@ -44,6 +45,10 @@ public class Trap_Explosion : MonoBehaviour
         else if (other.CompareTag("Breakable"))
         {
             other.GetComponent<BreakableObject>().DestroyThisBreakable();
+        }
+        else if (other.CompareTag("RangedEnemy"))
+        {
+            other.GetComponent<RangedEnemy>().TakeDamage(enemyExplosionDamage);
         }
     }
 }
