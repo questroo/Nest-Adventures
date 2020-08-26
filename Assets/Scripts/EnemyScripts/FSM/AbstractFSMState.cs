@@ -35,7 +35,6 @@ public abstract class AbstractFSMState : ScriptableObject
 
     public virtual void OnEnable()
     {
-        
         player = FindObjectOfType<PlayerStats>().gameObject;
     }
 
