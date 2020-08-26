@@ -21,6 +21,7 @@ TagManager:
   - MeleeCharacter
   - RangedCharacter
   - Fire
+  - RangedEnemy
   layers:
   - Default
   - TransparentFX

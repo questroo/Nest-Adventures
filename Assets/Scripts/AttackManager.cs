@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class AttackManager : MonoBehaviour
 {
@@ -47,7 +45,7 @@ public class AttackManager : MonoBehaviour
         while (true)
         {
             //Checks if attacking and then starts off the combo
-            if (attackControls.ActionMap.Attack.triggered)
+            if (attackControls.ActionMap.Attack.triggered && (Time.time - lastTime) > cooldown)
             {
                 GetComponent<PlayerController>().isAttacking = true;
                 combo++;

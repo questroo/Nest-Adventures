@@ -65,6 +65,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Health Potion"",
+                    ""type"": ""Button"",
+                    ""id"": ""6b79913d-bcd8-452e-879c-5009289b828d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -287,6 +295,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""CharacterSwap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d967f1c7-5988-477b-9a6a-b7dc0da85c9d"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Health Potion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -301,6 +320,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_ActionMap_LockOn = m_ActionMap.FindAction("LockOn", throwIfNotFound: true);
         m_ActionMap_DodgeRoll = m_ActionMap.FindAction("DodgeRoll", throwIfNotFound: true);
         m_ActionMap_CharacterSwap = m_ActionMap.FindAction("CharacterSwap", throwIfNotFound: true);
+        m_ActionMap_HealthPotion = m_ActionMap.FindAction("Health Potion", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -356,6 +376,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_ActionMap_LockOn;
     private readonly InputAction m_ActionMap_DodgeRoll;
     private readonly InputAction m_ActionMap_CharacterSwap;
+    private readonly InputAction m_ActionMap_HealthPotion;
     public struct ActionMapActions
     {
         private @PlayerControls m_Wrapper;
@@ -366,6 +387,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @LockOn => m_Wrapper.m_ActionMap_LockOn;
         public InputAction @DodgeRoll => m_Wrapper.m_ActionMap_DodgeRoll;
         public InputAction @CharacterSwap => m_Wrapper.m_ActionMap_CharacterSwap;
+        public InputAction @HealthPotion => m_Wrapper.m_ActionMap_HealthPotion;
         public InputActionMap Get() { return m_Wrapper.m_ActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -393,6 +415,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @CharacterSwap.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnCharacterSwap;
                 @CharacterSwap.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnCharacterSwap;
                 @CharacterSwap.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnCharacterSwap;
+                @HealthPotion.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnHealthPotion;
+                @HealthPotion.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnHealthPotion;
+                @HealthPotion.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnHealthPotion;
             }
             m_Wrapper.m_ActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -415,6 +440,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @CharacterSwap.started += instance.OnCharacterSwap;
                 @CharacterSwap.performed += instance.OnCharacterSwap;
                 @CharacterSwap.canceled += instance.OnCharacterSwap;
+                @HealthPotion.started += instance.OnHealthPotion;
+                @HealthPotion.performed += instance.OnHealthPotion;
+                @HealthPotion.canceled += instance.OnHealthPotion;
             }
         }
     }
@@ -427,5 +455,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnLockOn(InputAction.CallbackContext context);
         void OnDodgeRoll(InputAction.CallbackContext context);
         void OnCharacterSwap(InputAction.CallbackContext context);
+        void OnHealthPotion(InputAction.CallbackContext context);
     }
 }
