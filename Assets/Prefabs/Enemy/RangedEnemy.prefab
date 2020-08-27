@@ -435,11 +435,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingState: {fileID: 11400000, guid: b6a720a82c721e540b48e5ea09b7e1c1, type: 2}
   validStates:
+  - {fileID: 11400000, guid: b6a720a82c721e540b48e5ea09b7e1c1, type: 2}
+  - {fileID: 11400000, guid: 14618985d8ce2c3489b64837009a716d, type: 2}
   - {fileID: 11400000, guid: 6c6370c6d519c5f4e88d45246f95e446, type: 2}
   - {fileID: 11400000, guid: b48c9de3f864f2c4b838f9a4883ebf4d, type: 2}
-  - {fileID: 11400000, guid: b6a720a82c721e540b48e5ea09b7e1c1, type: 2}
   - {fileID: 11400000, guid: b661b2bf4a525284d874d56c60a24d99, type: 2}
-  - {fileID: 11400000, guid: 14618985d8ce2c3489b64837009a716d, type: 2}
 --- !u!136 &1030930659554139293
 CapsuleCollider:
   m_ObjectHideFlags: 0

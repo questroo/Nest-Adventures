@@ -33,9 +33,14 @@ public abstract class AbstractFSMState : ScriptableObject
     public FSMStateType StateType { get; protected set; }
     public bool enteredState { get; protected set; }
 
+    public virtual void Awake()
+    {
+
+    }
+
     public virtual void OnEnable()
     {
-        player = FindObjectOfType<PlayerStats>().gameObject;
+        player = ServiceLocator.Get<PlayerStats>().gameObject;
     }
 
     public virtual bool EnterState()
@@ -55,8 +60,7 @@ public abstract class AbstractFSMState : ScriptableObject
     public abstract void UpdateState();
 
     public virtual bool ExitState()
-    {
-        
+    {   
         return true;
     }
 

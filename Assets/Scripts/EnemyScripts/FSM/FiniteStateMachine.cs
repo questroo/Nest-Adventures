@@ -22,7 +22,7 @@ namespace Assets.Scripts.EnemyScripts.FSM
         NavMeshAgent navMeshAgent;
         RangedEnemy rangedEnemy;
 
-        public void Awake()
+        public void Start()
         {
             currentState = null;
 
@@ -35,10 +35,7 @@ namespace Assets.Scripts.EnemyScripts.FSM
             {
                 fsmStates.Add(state.StateType, state);
             }
-        }
 
-        public void Start()
-        {
             if (startingState)
             {
                 EnterState(startingState);

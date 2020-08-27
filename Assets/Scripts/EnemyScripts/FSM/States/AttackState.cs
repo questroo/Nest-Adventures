@@ -12,10 +12,14 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
     {
         float cooldown = 0.0f;
 
+        public override void Awake()
+        {
+            StateType = FSMStateType.ATTACK;
+        }
+
         public override void OnEnable()
         {
             base.OnEnable();
-            StateType = FSMStateType.ATTACK;
         }
 
         public override bool EnterState()

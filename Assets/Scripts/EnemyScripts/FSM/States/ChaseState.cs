@@ -15,11 +15,14 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
 
         float distance;
 
+        public override void Awake()
+        {
+            StateType = FSMStateType.CHASE;
+        }
+
         public override void OnEnable()
         {
             base.OnEnable();
-            StateType = FSMStateType.CHASE;
-            player = FindObjectOfType<PlayerStats>().gameObject;
         }
 
         public override bool EnterState()

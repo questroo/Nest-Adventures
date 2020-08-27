@@ -31,6 +31,10 @@ public class PlayerStats : MonoBehaviour
     float attackDownDurationRemaining = 0.0f;
     float currentAttackDownStrength = 0.0f;
 
+    private void Awake()
+    {
+        ServiceLocator.Register<PlayerStats>(gameObject);
+    }
 
     private void Start()
     {
