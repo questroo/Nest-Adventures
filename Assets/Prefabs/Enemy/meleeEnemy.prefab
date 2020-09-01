@@ -1294,6 +1294,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  startIdleCooldown: 0
 --- !u!65 &316674142232991587
 BoxCollider:
   m_ObjectHideFlags: 0
