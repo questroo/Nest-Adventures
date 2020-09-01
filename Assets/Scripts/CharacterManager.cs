@@ -15,6 +15,7 @@ public class CharacterManager : MonoBehaviour
     private int m_CharacterIndex = 1;
     public float swapTime = 1.0f;
     public float iFrameTime = 1.0f;
+    public float jumpForwardDistance = 1.0f;
 
     private bool swapping = false;
     private void Awake()
@@ -40,7 +41,7 @@ public class CharacterManager : MonoBehaviour
     IEnumerator CharacterSwapping()
     {
         swapping = true;
-        var startPosition = mainPlayer.transform.position;
+        var nextPosition = mainPlayer.transform.position + (mainPlayer.transform.forward * jumpForwardDistance);
         StartCoroutine(MoveToPosition(mainPlayer, Camera.main.transform.position, swapTime / 2));
         m_CharacterIndex = ++m_CharacterIndex % 2;
         //disable input
@@ -60,7 +61,7 @@ public class CharacterManager : MonoBehaviour
         {
             Characters[0].SetActive(false);
         }
-        StartCoroutine(MoveToPosition(mainPlayer, startPosition, swapTime / 2));
+        StartCoroutine(MoveToPosition(mainPlayer, nextPosition, swapTime / 2));
         Characters[m_CharacterIndex].GetComponentInParent<PlayerController>().EnableInput();
         Characters[m_CharacterIndex].GetComponentInParent<AnimationController>().RegetAnimator();
         Characters[m_CharacterIndex].GetComponentInParent<AttackManager>().EnableInput();
