@@ -10,7 +10,8 @@ public class EnemyStat : MonoBehaviour, IDamageable
     private float startStaggerCooldown = 5f;
     private float staggerCooldown;
     // TODO: Implement the health bar
-    public EnemyHealthBar healthBar;
+    [SerializeField]
+    private EnemyHealthBar healthBar;
 
     public float Health { get; set; }
     Animator animator;
