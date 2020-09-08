@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 97218288}
   - component: {fileID: 97218287}
   - component: {fileID: 97218289}
+  - component: {fileID: 97218290}
   m_Layer: 0
   m_Name: GameLoader
   m_TagString: Untagged
@@ -154,6 +155,7 @@ MonoBehaviour:
   sceneIndexToLoad: 1
   moduleComponents:
   - {fileID: 97218289}
+  - {fileID: 97218290}
 --- !u!4 &97218288
 Transform:
   m_ObjectHideFlags: 0
@@ -181,6 +183,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsToPool: []
+--- !u!114 &97218290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97218286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a7f9003cac8db84abcb0e118c8a4b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instance: {fileID: 0}
 --- !u!1 &349401458
 GameObject:
   m_ObjectHideFlags: 0

@@ -44,7 +44,7 @@ namespace Assets.Scripts.EnemyScripts.FSM
 
         public void FixedUpdate()
         {
-            if (currentState)
+            if (currentState && currentState.IsInitialized())
             {
                 SetActor(currentState);
 

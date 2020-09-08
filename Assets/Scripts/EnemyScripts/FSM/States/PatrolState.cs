@@ -12,14 +12,14 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
     {
         Transform[] patrolPoints;
 
-        public override void Awake()
+        public override void OnEnable()
         {
             StateType = FSMStateType.PATROL;
         }
 
-        public override void OnEnable()
+        public override void Awake()
         {
-            base.OnEnable();
+            base.Awake();
         }
 
         public override bool EnterState()

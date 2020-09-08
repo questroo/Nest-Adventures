@@ -15,14 +15,14 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
 
         float distance;
 
-        public override void Awake()
+        public override void OnEnable()
         {
             StateType = FSMStateType.CHASE;
         }
 
-        public override void OnEnable()
+        public override void Awake()
         {
-            base.OnEnable();
+            base.Awake();
         }
 
         public override bool EnterState()

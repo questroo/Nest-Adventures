@@ -33,7 +33,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
-        ServiceLocator.Register<PlayerStats>(gameObject);
+        ServiceLocator.Register<PlayerStats>(this);
     }
 
     private void Start()

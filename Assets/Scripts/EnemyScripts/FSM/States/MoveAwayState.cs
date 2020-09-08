@@ -13,14 +13,14 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
     {
         float changePositionCooldown = 0.0f;
 
-        public override void Awake()
+        public override void OnEnable()
         {
             StateType = FSMStateType.MOVEAWAY;
         }
 
-        public override void OnEnable()
+        public override void Awake()
         {
-            base.OnEnable();
+            base.Awake();
         }
 
         public override bool EnterState()

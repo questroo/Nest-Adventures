@@ -33,7 +33,8 @@ public class Trap_ArrowProjectile : MonoBehaviour
         if (!other.CompareTag("Trap") && !stuck)
         {
             stuck = true;
-            transform.SetParent(other.transform); // Sticks to target hit
+            //transform.SetParent(other.transform); // Sticks to target hit
+            StickToObject(other);
             Rigidbody rb = GetComponent<Rigidbody>();
             rb.isKinematic = true;
             rb.useGravity = false;
@@ -52,5 +53,14 @@ public class Trap_ArrowProjectile : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void StickToObject(Collider other)
+    {
+        Vector3 scale = other.transform.localScale;
+
+        Vector3 reverseScale = new Vector3(1f / scale.x, 1f / scale.y, 1f / scale.z);
+
+        Vector3 myScale = transform.localScale;
     }
 }

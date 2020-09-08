@@ -1,8 +1,10 @@
 ﻿using Assets.Scripts.EnemyScripts.FSM;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public enum ExecutionState
 {
@@ -23,6 +25,7 @@ public enum FSMStateType
 
 public abstract class AbstractFSMState : ScriptableObject
 {
+    protected bool isInitialized = false;
     protected NavMeshAgent navMeshAgent;
     protected RangedEnemy rangedEnemy;
     protected FiniteStateMachine finiteStateMachine;
@@ -33,14 +36,25 @@ public abstract class AbstractFSMState : ScriptableObject
     public FSMStateType StateType { get; protected set; }
     public bool enteredState { get; protected set; }
 
-    public virtual void Awake()
-    {
+    public virtual void OnEnable()
+    {}
 
+    public virtual void Awake ()
+    {
+        ServiceLocator.Get<CoroutineCaller>().instance.StartCoroutine(Initialize());
     }
 
-    public virtual void OnEnable()
+    public virtual IEnumerator Initialize()
     {
-        player = ServiceLocator.Get<PlayerStats>().gameObject;
+        while(player == null)
+        {
+            PlayerStats temp = ServiceLocator.Get<PlayerStats>();
+            if (temp)
+                player = temp.gameObject;
+            yield return null;
+        }
+        Debug.Log("PlayerStats found.");
+        isInitialized = true;
     }
 
     public virtual bool EnterState()
@@ -48,7 +62,6 @@ public abstract class AbstractFSMState : ScriptableObject
         bool successNavMesh = true;
         bool successRangedEnemy = true;
 
-        
 
         successNavMesh = (navMeshAgent != null);
 
@@ -85,5 +98,10 @@ public abstract class AbstractFSMState : ScriptableObject
         {
             rangedEnemy = _rangedEnemy;
         }
+    }
+
+    public virtual bool IsInitialized()
+    {
+        return isInitialized;
     }
 }

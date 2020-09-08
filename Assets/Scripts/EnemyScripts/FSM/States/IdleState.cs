@@ -13,14 +13,14 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
         float totalDuration;
         float waitTime;
 
-        public override void Awake()
+        public override void OnEnable()
         {
             StateType = FSMStateType.IDLE;
         }
 
-        public override void OnEnable()
+        public override void Awake()
         {
-            base.OnEnable();
+            base.Awake();
         }
 
         public override bool EnterState()
