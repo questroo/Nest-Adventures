@@ -16,9 +16,9 @@ public class PlayerStats : MonoBehaviour
     private EnemyStat enemyStat;
 
     /// Health Potion
-    [HideInInspector]public bool hasHealthPotion = false;
+    [HideInInspector] public bool hasHealthPotion = false;
     public int maxHealthPotionUses = 3;
-    [HideInInspector]public int currentHealthPotionUses = 0;
+    [HideInInspector] public int currentHealthPotionUses = 0;
     public float healthPotionValue = 25.0f;
 
     /// Status Effects
@@ -30,6 +30,12 @@ public class PlayerStats : MonoBehaviour
     bool isAttackDown = false;
     float attackDownDurationRemaining = 0.0f;
     float currentAttackDownStrength = 0.0f;
+    // Healing Potion
+    bool isHealing = false;
+    public float healingPotionStrength = 5.0f;
+    public float healingPotionDuration = 8.0f;
+    float healingPotionDurationRemaining = 0.0f;
+    float lastHealth = 0.0f;
 
     private void Awake()
     {
@@ -43,6 +49,7 @@ public class PlayerStats : MonoBehaviour
         healthBar.SetMaxHealth(m_maxHealth);
 
         currentHealthPotionUses = 0;
+        lastHealth = m_Health;
     }
     public void TakeDamage(float damage)
     {
@@ -69,8 +76,10 @@ public class PlayerStats : MonoBehaviour
             UpdatePoison();
         if (isAttackDown)
             UpdateAttackDown();
+        if (isHealing)
+            UpdateHealingPotion();
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             UseHealthPotion();
         }
@@ -96,6 +105,29 @@ public class PlayerStats : MonoBehaviour
         {
             isAttackDown = false;
             m_AtkDamage += currentAttackDownStrength;
+        }
+    }
+    public void UpdateHealingPotion()
+    {
+        healingPotionDuration -= Time.deltaTime;
+        if(healingPotionDurationRemaining <= 0.0f)
+        {
+            isHealing = false;
+        }
+        else
+        {
+            TakeDamage(-healingPotionStrength * Time.deltaTime);
+        }
+
+        // Check if player took damage so we can stop healing
+        if(m_Health < lastHealth)
+        {
+            isHealing = false;
+            healingPotionDurationRemaining = 0.0f;
+        }
+        else
+        {
+            lastHealth = m_Health;
         }
     }
     public void ModifyStatus(StatusType stat, float strength, float duration)
@@ -155,6 +187,20 @@ public class PlayerStats : MonoBehaviour
                     m_AtkDamage -= currentAttackDownStrength;
                 }
                 break;
+
+            case StatusType.HealingPotion:
+                if(isHealing)
+                {
+                    // Only trigger if not already running.
+                    // Could implement duration extension?
+                }
+                else
+                {
+                    isHealing = true;
+                    lastHealth = m_Health;
+                    healingPotionDurationRemaining = healingPotionDuration;
+                }
+                break;
         }
     }
     /// Status Effects End
@@ -188,7 +234,8 @@ public class PlayerStats : MonoBehaviour
             if (currentHealthPotionUses > 0)
             {
                 healthBar.UIUseHealthPotion(--currentHealthPotionUses);
-                TakeDamage(-healthPotionValue);
+                //TakeDamage(-healthPotionValue);  CHANGED TO A HEAL OVER TIME
+                ModifyStatus(StatusType.HealingPotion, healingPotionStrength, healingPotionDuration);
             }
         }
     }

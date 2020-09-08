@@ -13,14 +13,14 @@ public class Condition : MonoBehaviour
 
     private void Awake()
     {
-        doorHandle = transform.parent.GetComponentInChildren<ConditionalDoor>();
+        doorHandle = GetComponent<ConditionalDoor>();
         if (!doorHandle)
             Debug.LogError("No ConditionalDoor script found in parent!");
     }
 
-    private void Update()
+    void Update()
     {
-        if (conditionType != ConditionType.PlayerEnter)
+        if (conditionType == ConditionType.EnemiesKilled)
         {
             bool areEnemiesStillLiving = false;
             foreach (GameObject enemy in enemyList)
@@ -32,16 +32,23 @@ public class Condition : MonoBehaviour
             }
             if(!areEnemiesStillLiving)
             {
-                doorHandle.UnlockDoor();
+                doorHandle.Unlock();
             }
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        if(conditionType == ConditionType.PlayerEnter && other.CompareTag("Player"))
+        if(conditionType == ConditionType.PlayerEnter && (other.CompareTag("Player") || other.CompareTag("MeleeCharacter") || other.CompareTag("RangedCharacter")))
         {
-            doorHandle.UnlockDoor();
+            doorHandle.Unlock();
+        }
+        else if (conditionType == ConditionType.PlayerUse && (other.CompareTag("Player") || other.CompareTag("MeleeCharacter") || other.CompareTag("RangedCharacter")))
+        {
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                doorHandle.Unlock();
+            }
         }
     }
 }

@@ -6,7 +6,8 @@ using UnityEngine.VFX;
 public enum StatusType
 {
     Poison,
-    AttackDown
+    AttackDown,
+    HealingPotion,
 }
 
 public class Trap_StatMod : MonoBehaviour

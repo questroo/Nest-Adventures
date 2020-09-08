@@ -10,8 +10,6 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
     [CreateAssetMenu(fileName = "AttackState", menuName = "Finite State Machine/States/AttackState", order = 5)]
     public class AttackState : AbstractFSMState
     {
-        float cooldown = 0.0f;
-
         public override void OnEnable()
         {
             StateType = FSMStateType.ATTACK;

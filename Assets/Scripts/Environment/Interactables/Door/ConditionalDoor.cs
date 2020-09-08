@@ -11,17 +11,34 @@ public enum DoorState
 public enum ConditionType
 {
     PlayerEnter,
+    PlayerUse,
     EnemiesKilled,
 }
 
 public class ConditionalDoor : MonoBehaviour
 {
-    public Vector3 upPosition;
-    public Vector3 downPosition;
+    public enum MovementType
+    { 
+        Up, 
+        Down
+    };
+
+    public MovementType movementDirection = MovementType.Up;
     public float timeToFullyMove = 4.0f;
 
     float t = 0.0f;
     DoorState doorState = DoorState.Locked;
+    Vector3 closedPosition;
+    Vector3 openPosition;
+
+    private void Start()
+    {
+        closedPosition = openPosition = transform.position;
+        if (movementDirection == MovementType.Up)
+            openPosition.y += transform.localScale.y;
+        else
+            openPosition.y -= (transform.localScale.y + 0.1f);
+    }
 
     private void Update()
     {
@@ -33,22 +50,23 @@ public class ConditionalDoor : MonoBehaviour
                 t = timeToFullyMove;
                 doorState = DoorState.Open;
 
-                MoveTrap();
+                Move();
             }
             else
             {
-                MoveTrap();
+                Move();
             }
         }
     }
 
-    void MoveTrap()
+    void Move()
     {
-        transform.localPosition = Vector3.Lerp(upPosition, downPosition, (t / timeToFullyMove));
+        transform.localPosition = Vector3.Lerp(closedPosition, openPosition, (t / timeToFullyMove));
     }
 
-    public void UnlockDoor()
+    public void Unlock()
     {
+        Debug.Log("Called Unlock");
         if(doorState == DoorState.Locked)
             doorState = DoorState.Opening;
     }
