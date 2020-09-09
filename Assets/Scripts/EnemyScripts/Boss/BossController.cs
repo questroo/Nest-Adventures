@@ -19,7 +19,6 @@ public class BossController : MonoBehaviour
     public float meleeAttackRadius = 5.0f;
     public float lookRadius = 5.0f;
     public float dashRadius = 5.0f;
-
     public float damageFromObstacle = 10.0f;
 
     void Start()

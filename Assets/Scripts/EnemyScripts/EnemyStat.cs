@@ -10,7 +10,8 @@ public class EnemyStat : MonoBehaviour, IDamageable
     private float startStaggerCooldown = 5f;
     private float staggerCooldown;
     // TODO: Implement the health bar
-    //public HealthBarManager healthBar;
+    [SerializeField]
+    private EnemyHealthBar healthBar;
 
     public float Health { get; set; }
     Animator animator;
@@ -19,7 +20,7 @@ public class EnemyStat : MonoBehaviour, IDamageable
     {
         Health = enemyMaxHealth;
         animator = GetComponentInChildren<Animator>();
-        //healthBar.SetMaxHealth(enemyMaxHealth);
+        healthBar.SetMaxHealth(enemyMaxHealth);
     }
 
     void Update()
@@ -33,7 +34,7 @@ public class EnemyStat : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         Health -= damage;
-        //animator.SetTrigger("Hit");
+        animator.SetTrigger("Hit");
 
         Debug.Log("Enemy takes " + damage + " damage");
 
@@ -44,7 +45,7 @@ public class EnemyStat : MonoBehaviour, IDamageable
             Die();
         }
 
-        //healthBar.SetHealth(Health);
+        healthBar.SetHealth(Health);
     }
 
     public void Die()
