@@ -1015,7 +1015,7 @@ MonoBehaviour:
   mouseSensitivity: 1
   target: {fileID: 514298785}
   distFromTarget: 0
-  pitchMinMax: {x: 10, y: 80}
+  pitchMinMax: {x: -25, y: 80}
   rotationSmoothTime: 0.15
   turnOffCursor: 0
   isTargetFollowOn: 0
