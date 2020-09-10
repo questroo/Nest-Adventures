@@ -22,7 +22,8 @@ public class HitBehaviour : StateMachineBehaviour
             animator.SetTrigger("Counter");
             hitCount = startHitcount;
         }
-        else if(hitCount <= 0 && distance > boss.meleeAttackRadius)
+
+        if(hitCount <= 0 && distance > boss.meleeAttackRadius)
         {
             animator.SetTrigger("Attack1");
             hitCount = startHitcount;
