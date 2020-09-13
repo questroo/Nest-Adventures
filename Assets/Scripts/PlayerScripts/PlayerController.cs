@@ -73,6 +73,11 @@ public class PlayerController : MonoBehaviour
     {
         disableInput = false;
     }
+    // Returns true if input is disabled
+    public bool GetInputStatus()
+    {
+        return disableInput;
+    }
     public void ResetCharacterComponents()
     {
         charAnimator = GetComponentInChildren<Animator>();
