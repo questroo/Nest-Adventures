@@ -47,6 +47,7 @@ public class AttackManager : MonoBehaviour
             //Checks if attacking and then starts off the combo
             if (attackControls.ActionMap.Attack.triggered && (Time.time - lastTime) > cooldown)
             {
+                //GetComponent<PlayerController>().DisableInput();
                 GetComponent<PlayerController>().isAttacking = true;
                 combo++;
                 GetComponent<AnimationController>().TriggerAttackAnimation(combo);
@@ -68,6 +69,7 @@ public class AttackManager : MonoBehaviour
                 }
                 combo = 0;
             }
+            //GetComponent<PlayerController>().EnableInput();
             yield return null;
         }
     }

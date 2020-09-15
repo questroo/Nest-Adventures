@@ -11,6 +11,9 @@ public class HitBoxProjection : MonoBehaviour
     public GameObject firstProjectile;
     public GameObject secondProjectile;
     public GameObject thirdProjectile;
+    public GameObject firstProjectileClear;
+    public GameObject secondProjectileClear;
+    public GameObject thirdProjectileClear;
     public Transform projectileSpawnLocation;
     public float projectileForce = 2.0f;
     public float projectileLifeTime = 0.3f;
@@ -32,15 +35,15 @@ public class HitBoxProjection : MonoBehaviour
         switch (combo)
         {
             case 1:
-                GameObject go1 = Instantiate(firstProjectile, projectileSpawnLocation.position, Quaternion.identity) as GameObject;
+                GameObject go1 = Instantiate(firstProjectileClear, projectileSpawnLocation.position, Quaternion.identity) as GameObject;
                 StartCoroutine(DestroyProjectile(go1));
                 break;
             case 2:
-                GameObject go2 = Instantiate(secondProjectile, projectileSpawnLocation.position, Quaternion.identity) as GameObject;
+                GameObject go2 = Instantiate(secondProjectileClear, projectileSpawnLocation.position, Quaternion.identity) as GameObject;
                 StartCoroutine(DestroyProjectile(go2));
                 break;
             case 3:
-                GameObject go3 = Instantiate(thirdProjectile, projectileSpawnLocation.position, Quaternion.identity) as GameObject;
+                GameObject go3 = Instantiate(thirdProjectileClear, projectileSpawnLocation.position, Quaternion.identity) as GameObject;
                 StartCoroutine(DestroyProjectile(go3));
                 break;
             default:
@@ -67,7 +70,7 @@ public class HitBoxProjection : MonoBehaviour
             default:
                 break;
         }
-
+        go.transform.forward = transform.forward;
         if (cameraController.GetLockOn())
         {
             Debug.Log("Camera locked on");
@@ -81,7 +84,6 @@ public class HitBoxProjection : MonoBehaviour
         }
         else
         {
-            Debug.Log("Adding force");
             go.GetComponent<Rigidbody>().AddForce(transform.forward * projectileForce);
             StartCoroutine("DestroyProjectile", go.gameObject);
         }

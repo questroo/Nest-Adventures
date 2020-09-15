@@ -10,7 +10,6 @@ public class HitDetection : MonoBehaviour
         var target = other.gameObject.GetComponent<IDamageable>();
         if (target != null)
         {
-            Debug.Log("Hitting target");
             if (SecondWaveSpawner.hasBossDied)
             {
                 target.TakeDamage(comboDamage.comboDamage * 2);
@@ -19,7 +18,8 @@ public class HitDetection : MonoBehaviour
             {
                 target.TakeDamage(comboDamage.comboDamage);
             }
-            Destroy(gameObject);
+            Debug.Log("Projectile should die");
         }
+        Destroy(gameObject);
     }
 }
