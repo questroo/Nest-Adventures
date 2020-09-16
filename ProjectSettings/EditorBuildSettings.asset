@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Greyblock_2.unity
     guid: ea781f1ce2674ef4298a3ad0ea82c3cf
+  - enabled: 1
+    path: Assets/Scenes/Empty.unity
+    guid: c31d0d9b02733584192f47427c17ecf3
   m_configObjects: {}

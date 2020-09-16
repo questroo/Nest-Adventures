@@ -24,7 +24,10 @@ public class PlayOnPlayerDeath : MonoBehaviour
 
     public void ReloadCurrentScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        ServiceLocator.Get<SessionData>().SceneRedirectIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene("Scenes/Empty");
     }
 
     public void LoadMainMenu()

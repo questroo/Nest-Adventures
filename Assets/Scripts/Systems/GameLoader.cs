@@ -60,6 +60,12 @@ public class GameLoader : AsyncLoader
         // Setup Core Systems
         Debug.Log("Loading Core Systems");
 
+        Debug.Log("Loading Session Data");
+        var sessionDataObj = new GameObject("SessionData");
+        sessionDataObj.transform.SetParent(SystemsParent);
+        var sessionDataComp = sessionDataObj.AddComponent<SessionData>();
+        ServiceLocator.Register<SessionData>(sessionDataComp);
+
         yield return null;
     }
 
