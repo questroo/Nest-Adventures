@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     PlayerControls controls;
     //Components
     private Animator charAnimator;
+    private PlayerStats playerStats;
     //Variables
     private bool isMoving = false;
     public bool isAttacking = false;
@@ -38,12 +39,13 @@ public class PlayerController : MonoBehaviour
     }
     public void Start()
     {
+        playerStats = GetComponent<PlayerStats>();
         myDirection = Vector3.forward;
         cameraTransform = Camera.main.transform;
     }
     void Update()
     {
-        if (!disableInput && !isAttacking)
+        if (!disableInput && !isAttacking && !playerStats.CheckIsDead())
         {
             float x = moveDirection.x;
             float z = moveDirection.y;

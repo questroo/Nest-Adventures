@@ -73,7 +73,6 @@ public class HitBoxProjection : MonoBehaviour
         go.transform.forward = transform.forward;
         if (cameraController.GetLockOn())
         {
-            Debug.Log("Camera locked on");
             Transform target = cameraController.GetCurrentlyLockedOnTransform();
             if (target)
             {
