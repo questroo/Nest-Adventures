@@ -20,12 +20,15 @@ public class EnemyStat : MonoBehaviour, IDamageable
     {
         Health = enemyMaxHealth;
         animator = GetComponentInChildren<Animator>();
-        healthBar.SetMaxHealth(enemyMaxHealth);
+        if (healthBar != null)
+        {
+            healthBar.SetMaxHealth(enemyMaxHealth);
+        }
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             TakeDamage(10);
         }
