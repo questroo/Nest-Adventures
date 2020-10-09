@@ -39,8 +39,6 @@ public class EnemyStat : MonoBehaviour, IDamageable
         Health -= damage;
         animator.SetTrigger("Hit");
 
-        Debug.Log("Enemy takes " + damage + " damage");
-
         if (Health <= 0.0f)
         {
             Health = 0.0f;
@@ -57,7 +55,6 @@ public class EnemyStat : MonoBehaviour, IDamageable
         //Stop all movement
         //Remove collision
         //Model Disappear
-        Debug.Log("DEAD");
         FindObjectOfType<CameraController>().RemoveSelfFromList(this);
         var boss = GetComponent<BossDeath>();
         if (boss)

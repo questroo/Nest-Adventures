@@ -29,7 +29,6 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
 
             if (enteredState)
             {
-                Debug.Log("Entered Idle State");
                 totalDuration = 0f;
                 waitTime = UnityEngine.Random.Range(rangedEnemy.idleWaitTimeMin, rangedEnemy.idleWaitTimeMax);
             }

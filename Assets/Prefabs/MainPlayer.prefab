@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486015824989561601}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.18, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 486015825462711341}
@@ -150,6 +150,12 @@ MonoBehaviour:
   m_maxHealth: 100
   m_AtkDamage: 14
   healthBar: {fileID: 7582922388913440915}
+  hasHealthPotion: 0
+  maxHealthPotionUses: 3
+  currentHealthPotionUses: 0
+  healthPotionValue: 25
+  healingPotionStrength: 5
+  healingPotionDuration: 8
 --- !u!114 &486015825139837596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,8 +169,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterManager: {fileID: 0}
-  meleeOrb: {fileID: 8253023300069038707, guid: fd80f8464ac0e644fab1efc4085f754d,
-    type: 3}
   damage: 50
   canDealDamage: 1
   disableInput: 0
@@ -257,7 +261,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696020093938747593}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 2681766459718690328}

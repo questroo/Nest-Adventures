@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
+    public Image targetIndicator;
+
     [Tooltip("Controls The Mouse Sensitivity")]
     public float mouseSensitivity = 5.0f;
 
@@ -86,6 +89,11 @@ public class CameraController : MonoBehaviour
                 enemyLockOnTransform = enemiesInLOS[enemyIndex].transform;
             }
         }
+        else
+        {
+            enemyLockOnTransform = null;
+            isTargetFollowOn = false;
+        }
 
         if (!characterManager.CheckSwapping())
         {
@@ -116,6 +124,12 @@ public class CameraController : MonoBehaviour
             }
             transform.position = target.position - transform.forward * distFromTarget;
             isChanging = false;
+        }
+        targetIndicator.enabled = isTargetFollowOn;
+        if (targetIndicator.enabled == true)
+        {
+            targetIndicator.transform.position = enemyLockOnTransform.position;
+            targetIndicator.transform.LookAt(transform.position);
         }
     }
     private void OnEnable()

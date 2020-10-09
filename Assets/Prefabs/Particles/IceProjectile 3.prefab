@@ -2706,6 +2706,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   comboDamage: {fileID: 11400000, guid: 05a8ad7c704c266409ededbc7e1eae5c, type: 2}
+  iceParticle: {fileID: 1920325297268671343, guid: 889dd67908ff48640a817f0b0074814e,
+    type: 3}
 --- !u!1 &5041622930852749034
 GameObject:
   m_ObjectHideFlags: 0

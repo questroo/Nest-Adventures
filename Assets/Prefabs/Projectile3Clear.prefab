@@ -85,6 +85,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   comboDamage: {fileID: 11400000, guid: 05a8ad7c704c266409ededbc7e1eae5c, type: 2}
+  iceParticle: {fileID: 1073001761810537095, guid: 7801eaf2bfc83e544b1c50e89120cdc9,
+    type: 3}
 --- !u!23 &-4775007831054219999
 MeshRenderer:
   m_ObjectHideFlags: 0
