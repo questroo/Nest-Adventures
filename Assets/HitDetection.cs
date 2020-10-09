@@ -5,11 +5,14 @@ using UnityEngine;
 public class HitDetection : MonoBehaviour
 {
     public ComboDamage comboDamage;
+    public GameObject iceParticle;
     private void OnTriggerEnter(Collider other)
     {
-        var target = other.gameObject.GetComponent<IDamageable>();
+        var target = other.gameObject.GetComponent<EnemyStat>();
         if (target != null)
         {
+            var particle = Instantiate(iceParticle, transform.position, Quaternion.identity) as GameObject;
+            Destroy(particle, 0.6f);
             if (SecondWaveSpawner.hasBossDied)
             {
                 target.TakeDamage(comboDamage.comboDamage * 2);
@@ -18,7 +21,6 @@ public class HitDetection : MonoBehaviour
             {
                 target.TakeDamage(comboDamage.comboDamage);
             }
-            Debug.Log("Projectile should die");
         }
         Destroy(gameObject);
     }

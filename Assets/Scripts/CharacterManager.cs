@@ -41,8 +41,12 @@ public class CharacterManager : MonoBehaviour
     IEnumerator CharacterSwapping()
     {
         swapping = true;
-        var nextPosition = mainPlayer.transform.position + (mainPlayer.transform.forward * jumpForwardDistance);
-        StartCoroutine(MoveToPosition(mainPlayer, Camera.main.transform.position, swapTime / 2));
+        Characters[m_CharacterIndex].GetComponentInChildren<Animator>().SetTrigger("Jump");
+        yield return new WaitForSeconds(0.7f);
+        var nextPosition = mainPlayer.transform.position;
+        var positionAbove = nextPosition;
+        positionAbove.y += 7.0f;
+        StartCoroutine(MoveToPosition(mainPlayer, positionAbove, swapTime / 2));
         m_CharacterIndex = ++m_CharacterIndex % 2;
         //disable input
         Characters[m_CharacterIndex].GetComponentInParent<PlayerController>().DisableInput();
@@ -62,13 +66,15 @@ public class CharacterManager : MonoBehaviour
             Characters[0].SetActive(false);
         }
         StartCoroutine(MoveToPosition(mainPlayer, nextPosition, swapTime / 2));
+
         Characters[m_CharacterIndex].GetComponentInParent<PlayerController>().EnableInput();
         Characters[m_CharacterIndex].GetComponentInParent<AnimationController>().RegetAnimator();
         Characters[m_CharacterIndex].GetComponentInParent<AttackManager>().EnableInput();
+        Characters[m_CharacterIndex].GetComponentInChildren<Animator>().SetTrigger("Landing");
         //endIframe
         Characters[m_CharacterIndex].GetComponentInParent<PlayerStats>().EndIFrame();
         //anim done
-        Invoke("TurnOffSwapping", swapTime / 2);
+        Invoke("TurnOffSwapping", Characters[m_CharacterIndex].GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length);
     }
     public IEnumerator StartTimer()
     {
