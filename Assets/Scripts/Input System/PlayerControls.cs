@@ -46,7 +46,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""Health Potion"",
                     ""type"": ""Button"",
                     ""id"": ""6b79913d-bcd8-452e-879c-5009289b828d"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -100,6 +100,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""5a535a9c-aaac-485a-8cd6-b43b5b9e56bd"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox Controller"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aa38f2d5-5d0c-441d-af7c-950008fb219f"",
+                    ""path"": ""<SwitchProControllerHID>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Switch Pro Controller"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""7871f02b-9213-4505-8318-95ec10641f82"",
                     ""path"": ""<DualShockGamepad>/buttonSouth"",
                     ""interactions"": """",
@@ -116,6 +138,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
+                    ""action"": ""DodgeRoll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10f803b5-e458-400a-a693-ee4a2fb2ce35"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox Controller"",
+                    ""action"": ""DodgeRoll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a94be095-acb4-4190-8269-e6d68869777a"",
+                    ""path"": ""<SwitchProControllerHID>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Switch Pro Controller"",
                     ""action"": ""DodgeRoll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -144,6 +188,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""a76e4672-23b9-4454-a812-168c06c9691a"",
+                    ""path"": ""<XInputController>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox Controller"",
+                    ""action"": ""LockOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca054006-ca6f-4b09-9841-03426d17a7e0"",
+                    ""path"": ""<SwitchProControllerHID>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Switch Pro Controller"",
+                    ""action"": ""LockOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""ad54847b-8b3b-4d63-9316-e6d84e8d0c15"",
                     ""path"": ""<DualShockGamepad>/buttonEast"",
                     ""interactions"": """",
@@ -166,6 +232,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""deebc0c2-54c7-4691-9f6a-925fc81acc8f"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox Controller"",
+                    ""action"": ""Health Potion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""40396ba3-6ecf-4fa2-a8c2-37bb6661984b"",
+                    ""path"": ""<SwitchProControllerHID>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Switch Pro Controller"",
+                    ""action"": ""Health Potion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""35853fcd-6814-465c-92f6-b623dfb712b6"",
                     ""path"": ""<DualShockGamepad>/leftStick"",
                     ""interactions"": """",
@@ -176,12 +264,78 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""4798e611-5dca-4385-83a6-2e106fd48d7c"",
-                    ""path"": """",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""8f2e0081-4abe-475a-ad0e-88fc05172dd7"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""fc549934-89ad-4759-b14c-e380e448ae61"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""3438a19b-66b0-48e5-aa91-1b575ae3ad65"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""54fb81c3-0539-4482-9546-d6c8075e4b54"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""7e6cc19c-3ed8-4ef9-a7cc-435989cea002"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""84d861db-8c64-4b90-aa61-d6c250ed12dd"",
+                    ""path"": ""<XInputController>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox Controller"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b7306167-af9e-49e2-b2dc-a8cc669012fd"",
+                    ""path"": ""<SwitchProControllerHID>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Switch Pro Controller"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -210,11 +364,66 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""4e7ab93e-8845-480f-8ec8-93fd86dac420"",
+                    ""path"": ""<XInputController>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox Controller"",
+                    ""action"": ""MoveCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03456402-2427-4c4d-8e4a-a13463a2643a"",
+                    ""path"": ""<SwitchProControllerHID>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Switch Pro Controller"",
+                    ""action"": ""MoveCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""329f1540-dfe2-4233-a002-ebd441638aed"",
-                    ""path"": ""<DualShockGamepad>/dpad/down"",
+                    ""path"": ""<DualShockGamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PS4 Controller"",
+                    ""action"": ""CharacterSwap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""526dbbc1-e16d-4ee0-9446-0a0f1c22476c"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""CharacterSwap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""809f349e-fdce-4891-ac81-182771f56e6e"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox Controller"",
+                    ""action"": ""CharacterSwap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f8d972a7-4064-471c-a0d8-3da38dc9600b"",
+                    ""path"": ""<SwitchProControllerHID>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Switch Pro Controller"",
                     ""action"": ""CharacterSwap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -245,6 +454,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Xbox Controller"",
+            ""bindingGroup"": ""Xbox Controller"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<XInputController>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Switch Pro Controller"",
+            ""bindingGroup"": ""Switch Pro Controller"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<SwitchProControllerHID>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
@@ -403,6 +634,24 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         {
             if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
             return asset.controlSchemes[m_KeyboardSchemeIndex];
+        }
+    }
+    private int m_XboxControllerSchemeIndex = -1;
+    public InputControlScheme XboxControllerScheme
+    {
+        get
+        {
+            if (m_XboxControllerSchemeIndex == -1) m_XboxControllerSchemeIndex = asset.FindControlSchemeIndex("Xbox Controller");
+            return asset.controlSchemes[m_XboxControllerSchemeIndex];
+        }
+    }
+    private int m_SwitchProControllerSchemeIndex = -1;
+    public InputControlScheme SwitchProControllerScheme
+    {
+        get
+        {
+            if (m_SwitchProControllerSchemeIndex == -1) m_SwitchProControllerSchemeIndex = asset.FindControlSchemeIndex("Switch Pro Controller");
+            return asset.controlSchemes[m_SwitchProControllerSchemeIndex];
         }
     }
     public interface IActionMapActions
