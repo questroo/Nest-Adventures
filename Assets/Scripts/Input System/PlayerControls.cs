@@ -19,33 +19,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             ""id"": ""c9c4f5ab-ebbc-4b7c-bbae-10c5839a23d5"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
-                    ""type"": ""Button"",
-                    ""id"": ""a8cb8abf-b70a-4286-b5c4-0be0bf180ced"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""59233ea5-1927-4e62-8641-f4b615e5cca6"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""MoveCamera"",
-                    ""type"": ""Button"",
-                    ""id"": ""27fc3cd0-ec95-445c-8b65-ed31c504e588"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""LockOn"",
-                    ""type"": ""Button"",
-                    ""id"": ""be0daf1f-f848-4470-b97f-ca76586106f2"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -59,9 +35,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""CharacterSwap"",
+                    ""name"": ""LockOn"",
                     ""type"": ""Button"",
-                    ""id"": ""23c6a0dd-2628-48b3-8be3-d0862b1e8c0c"",
+                    ""id"": ""be0daf1f-f848-4470-b97f-ca76586106f2"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -73,254 +49,218 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""a8cb8abf-b70a-4286-b5c4-0be0bf180ced"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MoveCamera"",
+                    ""type"": ""Value"",
+                    ""id"": ""27fc3cd0-ec95-445c-8b65-ed31c504e588"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""CharacterSwap"",
+                    ""type"": ""Button"",
+                    ""id"": ""23c6a0dd-2628-48b3-8be3-d0862b1e8c0c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""fd8c7ce8-ebc4-4390-bf3b-bdddc1c4b03b"",
-                    ""path"": ""<Gamepad>/leftStick"",
+                    ""id"": ""17abe301-c350-4286-97fa-fea5af25d099"",
+                    ""path"": ""<DualShockGamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""a03f9fe5-9939-46e6-a4ee-4795434ec054"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""72bfc6b2-29c5-45d0-8d62-8a7fe45d67dc"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""4389186f-c5bc-48a4-a229-b542913ad48c"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""a43c86b8-eaf2-4a6f-8f02-a846f4fa9379"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""d3d55d13-c78b-45f1-8142-919b188e25f5"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f1945fac-bfed-42c6-9581-0505a819d191"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""PS4 Controller"",
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7dfa35ec-bde3-4c81-abc6-a59479b42eec"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""id"": ""7eee5226-5b20-49c6-8a9d-a7edd7f3d3ee"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e48e7585-f2b3-4bd6-9d58-0a65fd70cb7b"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""id"": ""7871f02b-9213-4505-8318-95ec10641f82"",
+                    ""path"": ""<DualShockGamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6453bebc-ea32-4ea4-b111-cf308ebbb067"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""29924483-6119-467a-acc0-648ecb53ba66"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveCamera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b88a32b1-372f-4cc0-ad86-3ad57c74ac20"",
-                    ""path"": ""<Mouse>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveCamera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""aba0fa7f-97aa-44a5-83e3-6afe88a525cf"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": ""Hold"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LockOn"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e734f628-2757-41d8-aa97-e4347380931d"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LockOn"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fdf2b610-0ca9-4ff0-bdb1-8e51ebe8fbb7"",
-                    ""path"": ""<Gamepad>/rightStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LockOn"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b5d3e2c9-5f48-4b8a-833a-c5eb4b9cb3dd"",
-                    ""path"": ""<Keyboard>/l"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LockOn"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7f91a4b2-2641-4e45-9830-cc7779d956cf"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""PS4 Controller"",
                     ""action"": ""DodgeRoll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8711c09f-d817-4130-9bea-dd6b28aff79f"",
-                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""id"": ""2a1da1e1-786e-45c9-a6e9-4b04d48b3e31"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CharacterSwap"",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""DodgeRoll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""afa3a57e-cbf8-44c8-b39d-80db8a4aaa6b"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""id"": ""38c81d79-cad7-4406-ae4f-f27edfecba66"",
+                    ""path"": ""<DualShockGamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CharacterSwap"",
+                    ""groups"": ""PS4 Controller"",
+                    ""action"": ""LockOn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""fa2b3350-4824-48c1-925a-ee07835a0885"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""id"": ""3e2a31e9-5c3c-4d1e-96f3-a2831516d288"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CharacterSwap"",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""LockOn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d967f1c7-5988-477b-9a6a-b7dc0da85c9d"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""ad54847b-8b3b-4d63-9316-e6d84e8d0c15"",
+                    ""path"": ""<DualShockGamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""PS4 Controller"",
                     ""action"": ""Health Potion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4609c6fb-371a-4367-bc43-d67c16acf84d"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Health Potion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""35853fcd-6814-465c-92f6-b623dfb712b6"",
+                    ""path"": ""<DualShockGamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PS4 Controller"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4798e611-5dca-4385-83a6-2e106fd48d7c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""135c2910-cca9-4931-8bdd-7c58faa36c9c"",
+                    ""path"": ""<DualShockGamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PS4 Controller"",
+                    ""action"": ""MoveCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bafbacd2-8262-41b5-b399-90007632a6cf"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""MoveCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""329f1540-dfe2-4233-a002-ebd441638aed"",
+                    ""path"": ""<DualShockGamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PS4 Controller"",
+                    ""action"": ""CharacterSwap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""PS4 Controller"",
+            ""bindingGroup"": ""PS4 Controller"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<DualShockGamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Keyboard"",
+            ""bindingGroup"": ""Keyboard"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // ActionMap
         m_ActionMap = asset.FindActionMap("ActionMap", throwIfNotFound: true);
-        m_ActionMap_Move = m_ActionMap.FindAction("Move", throwIfNotFound: true);
         m_ActionMap_Attack = m_ActionMap.FindAction("Attack", throwIfNotFound: true);
-        m_ActionMap_MoveCamera = m_ActionMap.FindAction("MoveCamera", throwIfNotFound: true);
-        m_ActionMap_LockOn = m_ActionMap.FindAction("LockOn", throwIfNotFound: true);
         m_ActionMap_DodgeRoll = m_ActionMap.FindAction("DodgeRoll", throwIfNotFound: true);
-        m_ActionMap_CharacterSwap = m_ActionMap.FindAction("CharacterSwap", throwIfNotFound: true);
+        m_ActionMap_LockOn = m_ActionMap.FindAction("LockOn", throwIfNotFound: true);
         m_ActionMap_HealthPotion = m_ActionMap.FindAction("Health Potion", throwIfNotFound: true);
+        m_ActionMap_Move = m_ActionMap.FindAction("Move", throwIfNotFound: true);
+        m_ActionMap_MoveCamera = m_ActionMap.FindAction("MoveCamera", throwIfNotFound: true);
+        m_ActionMap_CharacterSwap = m_ActionMap.FindAction("CharacterSwap", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -370,24 +310,24 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     // ActionMap
     private readonly InputActionMap m_ActionMap;
     private IActionMapActions m_ActionMapActionsCallbackInterface;
-    private readonly InputAction m_ActionMap_Move;
     private readonly InputAction m_ActionMap_Attack;
-    private readonly InputAction m_ActionMap_MoveCamera;
-    private readonly InputAction m_ActionMap_LockOn;
     private readonly InputAction m_ActionMap_DodgeRoll;
-    private readonly InputAction m_ActionMap_CharacterSwap;
+    private readonly InputAction m_ActionMap_LockOn;
     private readonly InputAction m_ActionMap_HealthPotion;
+    private readonly InputAction m_ActionMap_Move;
+    private readonly InputAction m_ActionMap_MoveCamera;
+    private readonly InputAction m_ActionMap_CharacterSwap;
     public struct ActionMapActions
     {
         private @PlayerControls m_Wrapper;
         public ActionMapActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_ActionMap_Move;
         public InputAction @Attack => m_Wrapper.m_ActionMap_Attack;
-        public InputAction @MoveCamera => m_Wrapper.m_ActionMap_MoveCamera;
-        public InputAction @LockOn => m_Wrapper.m_ActionMap_LockOn;
         public InputAction @DodgeRoll => m_Wrapper.m_ActionMap_DodgeRoll;
-        public InputAction @CharacterSwap => m_Wrapper.m_ActionMap_CharacterSwap;
+        public InputAction @LockOn => m_Wrapper.m_ActionMap_LockOn;
         public InputAction @HealthPotion => m_Wrapper.m_ActionMap_HealthPotion;
+        public InputAction @Move => m_Wrapper.m_ActionMap_Move;
+        public InputAction @MoveCamera => m_Wrapper.m_ActionMap_MoveCamera;
+        public InputAction @CharacterSwap => m_Wrapper.m_ActionMap_CharacterSwap;
         public InputActionMap Get() { return m_Wrapper.m_ActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -397,64 +337,82 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_ActionMapActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnMove;
                 @Attack.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnAttack;
-                @MoveCamera.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnMoveCamera;
-                @MoveCamera.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnMoveCamera;
-                @MoveCamera.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnMoveCamera;
-                @LockOn.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLockOn;
-                @LockOn.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLockOn;
-                @LockOn.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLockOn;
                 @DodgeRoll.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnDodgeRoll;
                 @DodgeRoll.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnDodgeRoll;
                 @DodgeRoll.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnDodgeRoll;
-                @CharacterSwap.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnCharacterSwap;
-                @CharacterSwap.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnCharacterSwap;
-                @CharacterSwap.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnCharacterSwap;
+                @LockOn.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLockOn;
+                @LockOn.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLockOn;
+                @LockOn.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnLockOn;
                 @HealthPotion.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnHealthPotion;
                 @HealthPotion.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnHealthPotion;
                 @HealthPotion.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnHealthPotion;
+                @Move.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnMove;
+                @MoveCamera.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnMoveCamera;
+                @MoveCamera.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnMoveCamera;
+                @MoveCamera.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnMoveCamera;
+                @CharacterSwap.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnCharacterSwap;
+                @CharacterSwap.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnCharacterSwap;
+                @CharacterSwap.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnCharacterSwap;
             }
             m_Wrapper.m_ActionMapActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
-                @MoveCamera.started += instance.OnMoveCamera;
-                @MoveCamera.performed += instance.OnMoveCamera;
-                @MoveCamera.canceled += instance.OnMoveCamera;
-                @LockOn.started += instance.OnLockOn;
-                @LockOn.performed += instance.OnLockOn;
-                @LockOn.canceled += instance.OnLockOn;
                 @DodgeRoll.started += instance.OnDodgeRoll;
                 @DodgeRoll.performed += instance.OnDodgeRoll;
                 @DodgeRoll.canceled += instance.OnDodgeRoll;
-                @CharacterSwap.started += instance.OnCharacterSwap;
-                @CharacterSwap.performed += instance.OnCharacterSwap;
-                @CharacterSwap.canceled += instance.OnCharacterSwap;
+                @LockOn.started += instance.OnLockOn;
+                @LockOn.performed += instance.OnLockOn;
+                @LockOn.canceled += instance.OnLockOn;
                 @HealthPotion.started += instance.OnHealthPotion;
                 @HealthPotion.performed += instance.OnHealthPotion;
                 @HealthPotion.canceled += instance.OnHealthPotion;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @MoveCamera.started += instance.OnMoveCamera;
+                @MoveCamera.performed += instance.OnMoveCamera;
+                @MoveCamera.canceled += instance.OnMoveCamera;
+                @CharacterSwap.started += instance.OnCharacterSwap;
+                @CharacterSwap.performed += instance.OnCharacterSwap;
+                @CharacterSwap.canceled += instance.OnCharacterSwap;
             }
         }
     }
     public ActionMapActions @ActionMap => new ActionMapActions(this);
+    private int m_PS4ControllerSchemeIndex = -1;
+    public InputControlScheme PS4ControllerScheme
+    {
+        get
+        {
+            if (m_PS4ControllerSchemeIndex == -1) m_PS4ControllerSchemeIndex = asset.FindControlSchemeIndex("PS4 Controller");
+            return asset.controlSchemes[m_PS4ControllerSchemeIndex];
+        }
+    }
+    private int m_KeyboardSchemeIndex = -1;
+    public InputControlScheme KeyboardScheme
+    {
+        get
+        {
+            if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
+            return asset.controlSchemes[m_KeyboardSchemeIndex];
+        }
+    }
     public interface IActionMapActions
     {
-        void OnMove(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
-        void OnMoveCamera(InputAction.CallbackContext context);
-        void OnLockOn(InputAction.CallbackContext context);
         void OnDodgeRoll(InputAction.CallbackContext context);
-        void OnCharacterSwap(InputAction.CallbackContext context);
+        void OnLockOn(InputAction.CallbackContext context);
         void OnHealthPotion(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
+        void OnMoveCamera(InputAction.CallbackContext context);
+        void OnCharacterSwap(InputAction.CallbackContext context);
     }
 }
