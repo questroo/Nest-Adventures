@@ -8,7 +8,7 @@ using UnityEngine.AI;
 
 namespace Assets.Scripts.EnemyScripts.FSM.States
 {
-    [CreateAssetMenu(fileName = "ChaseState", menuName = "Finite State Machine/States/Chase", order = 3)]
+    //[CreateAssetMenu(fileName = "ChaseState", menuName = "Finite State Machine/States/Chase", order = 3)]
     public class ChaseState : AbstractFSMState
     {
         float cooldownRemaining = 0.0f;
