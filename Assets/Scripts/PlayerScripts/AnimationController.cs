@@ -28,7 +28,7 @@ public class AnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!FindObjectOfType<CharacterManager>().CheckSwapping())
+        if (!FindObjectOfType<CharacterManager>().IsCharacterSwapping())
         {
             RegetAnimator();
 

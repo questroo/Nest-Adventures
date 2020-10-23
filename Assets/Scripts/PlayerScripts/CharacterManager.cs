@@ -13,11 +13,11 @@ public class CharacterManager : MonoBehaviour
     public GameObject[] Characters;
     public Transform mainPlayer;
     private int m_CharacterIndex = 1;
-    public float swapTime = 1.0f;
+    public float swapTime = 0.10f;
     public float iFrameTime = 1.0f;
     public float jumpForwardDistance = 1.0f;
 
-    private bool swapping = false;
+    private bool isSwapping = false;
     private void Awake()
     {
         if (instance == null)
@@ -40,9 +40,8 @@ public class CharacterManager : MonoBehaviour
     }
     IEnumerator CharacterSwapping()
     {
-        swapping = true;
+        isSwapping = true;
         Characters[m_CharacterIndex].GetComponentInChildren<Animator>().SetTrigger("Jump");
-        yield return new WaitForSeconds(0.7f);
         var nextPosition = mainPlayer.transform.position;
         var positionAbove = nextPosition;
         positionAbove.y += 7.0f;
@@ -54,7 +53,6 @@ public class CharacterManager : MonoBehaviour
         //start IFrame
         Characters[m_CharacterIndex].GetComponentInParent<PlayerStats>().StartIFrame();
         //start anim
-        yield return new WaitForSeconds(swapTime / 2);
         //enable input
         Characters[m_CharacterIndex].SetActive(true);
         if (m_CharacterIndex == 0)
@@ -74,7 +72,9 @@ public class CharacterManager : MonoBehaviour
         //endIframe
         Characters[m_CharacterIndex].GetComponentInParent<PlayerStats>().EndIFrame();
         //anim done
-        Invoke("TurnOffSwapping", Characters[m_CharacterIndex].GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        //Invoke("TurnOffSwapping", Characters[m_CharacterIndex].GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        isSwapping = false;
+        yield return null;
     }
     public IEnumerator StartTimer()
     {
@@ -96,7 +96,7 @@ public class CharacterManager : MonoBehaviour
     }
     void Swap()
     {
-        if (!swapping)
+        if (!isSwapping)
         {
             StartCoroutine("CharacterSwapping");
         }
@@ -123,14 +123,14 @@ public class CharacterManager : MonoBehaviour
         yield return new WaitForSeconds(swapTime / 2);
     }
 
-    public bool CheckSwapping()
+    public bool IsCharacterSwapping()
     {
-        return swapping;
+        return isSwapping;
     }
 
     private void TurnOffSwapping()
     {
-        swapping = false;
+        isSwapping = false;
     }
     private void OnEnable()
     {

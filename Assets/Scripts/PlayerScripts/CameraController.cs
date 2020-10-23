@@ -95,7 +95,7 @@ public class CameraController : MonoBehaviour
             isTargetFollowOn = false;
         }
 
-        if (!characterManager.CheckSwapping())
+        if (!characterManager.IsCharacterSwapping())
         {
             if (!isTargetFollowOn)
             {
