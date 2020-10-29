@@ -8,7 +8,7 @@ using UnityEngine.SocialPlatforms;
 
 namespace Assets.Scripts.EnemyScripts.FSM.States
 {
-    [CreateAssetMenu(fileName = "MoveAwayState", menuName = "Finite State Machine/States/MoveAwayState", order = 4)]
+    //[CreateAssetMenu(fileName = "MoveAwayState", menuName = "Finite State Machine/States/MoveAwayState", order = 4)]
     public class MoveAwayState : AbstractFSMState
     {
         float changePositionCooldown = 0.0f;

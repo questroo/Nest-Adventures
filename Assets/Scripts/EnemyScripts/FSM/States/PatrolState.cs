@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 namespace Assets.Scripts.EnemyScripts.FSM.States
 {
-    [CreateAssetMenu(fileName = "PatrolState", menuName = "Finite State Machine/States/Patrol", order = 2)]
+    //[CreateAssetMenu(fileName = "PatrolState", menuName = "Finite State Machine/States/Patrol", order = 2)]
     class PatrolState : AbstractFSMState
     {
         Transform[] patrolPoints;

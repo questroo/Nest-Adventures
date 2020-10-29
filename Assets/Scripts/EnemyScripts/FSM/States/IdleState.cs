@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.EnemyScripts.FSM.States
 {
-    [CreateAssetMenu(fileName = "IdleState", menuName = "Finite State Machine/States/Idle", order = 1)]
+    //[CreateAssetMenu(fileName = "IdleState", menuName = "Finite State Machine/States/Idle", order = 1)]
     public class IdleState : AbstractFSMState
     {
         float totalDuration;
