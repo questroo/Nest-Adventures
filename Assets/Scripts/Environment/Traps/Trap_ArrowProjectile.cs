@@ -33,7 +33,7 @@ public class Trap_ArrowProjectile : MonoBehaviour
         if (!other.CompareTag("Trap") && !stuck)
         {
             stuck = true;
-            //transform.SetParent(other.transform); // Sticks to target hit
+            transform.SetParent(other.transform); // Sticks to target hit
             StickToObject(other);
             Rigidbody rb = GetComponent<Rigidbody>();
             rb.isKinematic = true;

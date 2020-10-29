@@ -57,15 +57,15 @@ public class HitBoxProjection : MonoBehaviour
         {
             case 1:
                 go = Instantiate(firstProjectile, projectileSpawnLocation.position, Quaternion.identity) as GameObject;
-                StartCoroutine(DestroyProjectile(go));
+                //StartCoroutine(DestroyProjectile(go));
                 break;
             case 2:
                 go = Instantiate(secondProjectile, projectileSpawnLocation.position, Quaternion.identity) as GameObject;
-                StartCoroutine(DestroyProjectile(go));
+                //StartCoroutine(DestroyProjectile(go));
                 break;
             case 3:
                 go = Instantiate(thirdProjectile, projectileSpawnLocation.position, Quaternion.identity) as GameObject;
-                StartCoroutine(DestroyProjectile(go));
+                //StartCoroutine(DestroyProjectile(go));
                 break;
             default:
                 break;
