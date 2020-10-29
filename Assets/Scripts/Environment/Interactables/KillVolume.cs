@@ -23,4 +23,12 @@ public class KillVolume : MonoBehaviour
                 faderHandle.TeleportPlayer(teleportPosition);
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        // Draw Cube showing position of volume
+        Gizmos.color = Color.magenta;
+        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
+    }
 }
