@@ -7,7 +7,7 @@ public class CharacterManager : MonoBehaviour
 {
     // Singleton Instance
     public static CharacterManager instance = null;
-    //public Text countdownText;
+    // public Text countdownText;
     // Controls
     PlayerControls control;
     public GameObject[] Characters;
@@ -76,6 +76,13 @@ public class CharacterManager : MonoBehaviour
         isSwapping = false;
         yield return null;
     }
+
+    IEnumerator StartRoll()
+    {
+        Characters[m_CharacterIndex].GetComponentInChildren<Animator>().SetTrigger("FirstHalfRoll");
+        yield return null;
+    }
+
     public IEnumerator StartTimer()
     {
         float totalTime = swapTime;
@@ -98,7 +105,8 @@ public class CharacterManager : MonoBehaviour
     {
         if (!isSwapping)
         {
-            StartCoroutine("CharacterSwapping");
+            //StartCoroutine("CharacterSwapping");
+            StartCoroutine("StartRoll");
         }
     }
     public IEnumerator MoveToPosition(Transform transform, Vector3 position, float timeToMove)

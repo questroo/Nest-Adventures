@@ -2110,6 +2110,11 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.07395141
       objectReference: {fileID: 0}
+    - target: {fileID: 486015824989561631, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 486015825139837595, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}
       propertyPath: healthSlider
@@ -2265,6 +2270,31 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4953559224653157419, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Height
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953559224653157419, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953559224653157419, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.24279268
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953559224653157419, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953559224653157419, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5140921179933014295, guid: 0cb52d520b9232b45855313bf6fbce61,
         type: 3}
       propertyPath: m_RootOrder
@@ -2290,7 +2320,23 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6239368257359434551, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.24279268
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239368257359434551, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239368257359434551, guid: 0cb52d520b9232b45855313bf6fbce61,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 486015824989561631, guid: 0cb52d520b9232b45855313bf6fbce61, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0cb52d520b9232b45855313bf6fbce61, type: 3}
 --- !u!1 &8570473799283617263 stripped
 GameObject:

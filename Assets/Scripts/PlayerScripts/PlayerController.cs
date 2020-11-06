@@ -83,6 +83,10 @@ public class PlayerController : MonoBehaviour
     public void ResetCharacterComponents()
     {
         charAnimator = GetComponentInChildren<Animator>();
+        if(!charAnimator)
+        {
+            charAnimator = GetComponent<Animator>();
+        }
     }
     private void DodgeRoll()
     {
