@@ -12,6 +12,9 @@ public class Trap_ArrowProjectile : MonoBehaviour
     float lifetimeLeft = 0.0f;
     bool stuck = false;
 
+    [SerializeField]
+    private ParticleSystem hitEffect;
+
     private void Start()
     {
         lifetimeLeft = lifeTime;
@@ -33,7 +36,7 @@ public class Trap_ArrowProjectile : MonoBehaviour
         if (!other.CompareTag("Trap") && !stuck)
         {
             stuck = true;
-            //transform.SetParent(other.transform); // Sticks to target hit
+            transform.SetParent(other.transform); // Sticks to target hit
             StickToObject(other);
             Rigidbody rb = GetComponent<Rigidbody>();
             rb.isKinematic = true;
@@ -41,6 +44,7 @@ public class Trap_ArrowProjectile : MonoBehaviour
 
             if (other.CompareTag("Player") || other.CompareTag("RangedCharacter") || other.CompareTag("MeleeCharacter"))
             {
+                hitEffect.Play();
                 playerScript = other.GetComponentInParent<PlayerStats>();
 
                 if (playerScript)

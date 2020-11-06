@@ -23,7 +23,7 @@ public enum FSMStateType
     ATTACK,
 };
 
-public abstract class AbstractFSMState : ScriptableObject
+public abstract class AbstractFSMState : MonoBehaviour
 {
     protected bool isInitialized = false;
     protected NavMeshAgent navMeshAgent;
@@ -41,20 +41,22 @@ public abstract class AbstractFSMState : ScriptableObject
 
     public virtual void Awake ()
     {
-        ServiceLocator.Get<CoroutineCaller>().instance.StartCoroutine(Initialize());
+        //ServiceLocator.Get<CoroutineCaller>().instance.StartCoroutine(Initialize());
+        while (player == null)
+        {
+            //PlayerStats temp = ServiceLocator.Get<PlayerStats>();
+            //if (temp)
+            //    player = temp.gameObject;
+            player = FindObjectOfType<PlayerStats>()?.gameObject;
+        }
+        Debug.Log("PlayerStats found.");
+        isInitialized = true;
+
     }
 
     public virtual IEnumerator Initialize()
     {
-        while(player == null)
-        {
-            PlayerStats temp = ServiceLocator.Get<PlayerStats>();
-            if (temp)
-                player = temp.gameObject;
-            yield return null;
-        }
-        Debug.Log("PlayerStats found.");
-        isInitialized = true;
+        yield return null;
     }
 
     public virtual bool EnterState()

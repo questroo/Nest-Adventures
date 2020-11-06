@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.EnemyScripts.FSM.States
 {
-    [CreateAssetMenu(fileName = "AttackState", menuName = "Finite State Machine/States/AttackState", order = 5)]
+    //[CreateAssetMenu(fileName = "AttackState", menuName = "Finite State Machine/States/AttackState", order = 5)]
     public class AttackState : AbstractFSMState
     {
         public override void OnEnable()

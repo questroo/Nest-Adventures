@@ -46,7 +46,7 @@ public class EnemyStat : MonoBehaviour, IDamageable
             Die();
         }
 
-        healthBar.SetHealth(Health);
+        //healthBar.SetHealth(Health);
     }
 
     public void Die()
