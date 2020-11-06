@@ -31,6 +31,7 @@ Transform:
   m_LocalScale: {x: 0.14292951, y: 1.2538013, z: 0.095015414}
   m_Children:
   - {fileID: 1878062840}
+  - {fileID: 7086483672104137865}
   m_Father: {fileID: 1965363831}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.066, y: 0.033, z: 3.305}
@@ -287,6 +288,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
+  trail_particle: {fileID: 7086483672104137863}
 --- !u!1 &244945568957674505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,6 +1275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMaxHealth: 100
   bossDamage: 5
+  healthBar: {fileID: 0}
 --- !u!114 &5325908998930136078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1882,3 +1885,149 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &5209348783238627997
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 46443934}
+    m_Modifications:
+    - target: {fileID: 3031886016254457364, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457364, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.461
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457364, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457364, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457364, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457364, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457364, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457364, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457364, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457364, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457364, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457365, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: m_Name
+      value: TrailParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457370, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457370, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457370, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457370, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457370, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457370, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457370, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.g
+      value: 0.3310163
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457370, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457370, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 0.0509078
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457370, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 0.9811321
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457370, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 0.91057146
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031886016254457371, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 3031886016254457371, guid: 101cef0dfbfb9da4f9f180498f098c56,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 101cef0dfbfb9da4f9f180498f098c56, type: 3}
+--- !u!4 &7086483672104137865 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3031886016254457364, guid: 101cef0dfbfb9da4f9f180498f098c56,
+    type: 3}
+  m_PrefabInstance: {fileID: 5209348783238627997}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7086483672104137863 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3031886016254457370, guid: 101cef0dfbfb9da4f9f180498f098c56,
+    type: 3}
+  m_PrefabInstance: {fileID: 5209348783238627997}
+  m_PrefabAsset: {fileID: 0}
