@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class TestSound : MonoBehaviour
 {
+    private void Awake()
+    {
+        SoundManager.Initialize();
+    }
+
     public void PlayTest1()
     {
-        SoundManager.PlaySound(SoundManager.Sound.test1);
+        SoundManager.PlaySound(SoundManager.Sound.test1, Vector3.left);
     }
 
     public void PlayTest2()
