@@ -26,12 +26,14 @@ public class EnemyWalkBehaviour : StateMachineBehaviour
         {
             enemy.Movement();
             animator.SetTrigger("Walk");
+            //animator.SetBool("isWalking", true);
         }
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.ResetTrigger("Walk");
+        //animator.SetBool("isWalking", false);
     }
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state

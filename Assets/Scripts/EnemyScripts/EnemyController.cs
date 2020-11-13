@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
     //private float minZ = -10.0f;
     //private float maxX = -24.5f;
     //private float maxZ = 10.0f;
-
+    private Animator animator;
     void Start()
     {
         waitTime = startWaitTime;
@@ -30,6 +30,7 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         // boss = GetComponent<BossController>();
         //moveSpots.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -45,11 +46,12 @@ public class EnemyController : MonoBehaviour
     {
         //transform.position = Vector3.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
         
-        float distance = Vector3.Distance(target.position, transform.position);
+        float distance = Vector3.Distance(target.position, animator.transform.position);
         float spotDistance = Vector3.Distance(transform.position, moveSpots[randomSpot].position);
-
+        animator.SetTrigger("Walk");
         if (distance >= alertRadius)
         {
+            
             LookAtDirection();
             agent.SetDestination(moveSpots[randomSpot].position);
             agent.isStopped = false;
@@ -60,6 +62,7 @@ public class EnemyController : MonoBehaviour
                     //moveSpots.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
                     randomSpot = Random.Range(0, moveSpots.Length);
                     waitTime = startWaitTime;
+                    
                 }
                 else
                 {
@@ -77,6 +80,9 @@ public class EnemyController : MonoBehaviour
                 agent.isStopped = false;
             }
         }
+       
+
+
     }
 
     public void LookAtDirection()
