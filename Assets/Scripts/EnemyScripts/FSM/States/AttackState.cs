@@ -65,6 +65,7 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
                     }
                 }
             }
+            AnimStateCheck();
         }
 
         void Attack()

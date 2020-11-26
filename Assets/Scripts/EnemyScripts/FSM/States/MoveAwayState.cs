@@ -12,7 +12,6 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
     public class MoveAwayState : AbstractFSMState
     {
         float changePositionCooldown = 0.0f;
-
         public override void OnEnable()
         {
             StateType = FSMStateType.MOVEAWAY;
@@ -65,6 +64,7 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
                     return;
                 }
             }
+            AnimStateCheck();
         }
 
         void ChangePositionToMoveAway()
