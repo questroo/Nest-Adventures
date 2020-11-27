@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     // InputSystem
-    PlayerControls controls;
+    [HideInInspector]
+    public PlayerControls controls;
     //Components
     private Animator charAnimator;
     private PlayerStats playerStats;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         controls = new PlayerControls();
+        ServiceLocator.Register<PlayerControls>(controls);
 
         controls.ActionMap.Move.performed += ctx => moveDirection = ctx.ReadValue<Vector2>();
         controls.ActionMap.Move.canceled += ctx => moveDirection = Vector2.zero;
