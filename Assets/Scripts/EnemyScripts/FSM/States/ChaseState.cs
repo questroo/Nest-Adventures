@@ -65,12 +65,12 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
                     return;
                 }
             }
+            AnimStateCheck();
         }
 
         public override bool ExitState()
         {
             base.ExitState();
-
             Debug.Log("Exiting Chase State");
 
             navMeshAgent.speed -= rangedEnemy.chaseStateSpeedModifier;

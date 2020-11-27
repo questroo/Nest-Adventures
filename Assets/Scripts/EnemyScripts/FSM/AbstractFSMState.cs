@@ -32,6 +32,8 @@ public abstract class AbstractFSMState : MonoBehaviour
 
     protected GameObject player;
 
+    Animator animator;
+
     //public ExecutionState ExecutionState { get; protected set; }
     public FSMStateType StateType { get; protected set; }
     public bool enteredState { get; protected set; }
@@ -51,6 +53,8 @@ public abstract class AbstractFSMState : MonoBehaviour
         }
         Debug.Log("PlayerStats found.");
         isInitialized = true;
+
+        animator = GetComponent<Animator>();
 
     }
 
@@ -105,5 +109,31 @@ public abstract class AbstractFSMState : MonoBehaviour
     public virtual bool IsInitialized()
     {
         return isInitialized;
+    }
+
+    public void AnimStateCheck()
+    {
+        switch (StateType)
+        {
+            case FSMStateType.IDLE:
+                animator.SetTrigger("Idle");
+                break;
+            case FSMStateType.PATROL:
+                animator.SetTrigger("Walk");
+                break;
+            //case FSMStateType.CHASE:
+            //    break;
+            case FSMStateType.MOVEAWAY:
+                animator.SetTrigger("Walk");
+                break;
+            case FSMStateType.ATTACK:
+                animator.SetTrigger("Shot");
+                break;
+            default:
+                animator.SetTrigger("Idle");
+                animator.ResetTrigger("Walk");
+                animator.ResetTrigger("Shot");
+                break;
+        }
     }
 }
