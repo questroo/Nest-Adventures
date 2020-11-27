@@ -24,12 +24,14 @@ public class MinionIdleBehaviour : StateMachineBehaviour
         float distance = Vector3.Distance(enemy.GetTarget().position, animator.transform.position);
 
         enemy.Movement();
-
+        
         if (idleCooldown <= 0f)
         {
             if (distance <= enemy.attackRadius)
             {
                 animator.SetTrigger("Attack");
+                
+                animator.ResetTrigger("Walk");
             }
         }
         else

@@ -24,6 +24,8 @@ public class EnemyAttackBehaviour : StateMachineBehaviour
         if (distance >= enemy.attackRadius)
         {
             animator.SetTrigger("Idle");
+            
+            animator.ResetTrigger("Walk");
         }
     }
 

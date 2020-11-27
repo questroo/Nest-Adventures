@@ -11,7 +11,6 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
     class PatrolState : AbstractFSMState
     {
         Transform[] patrolPoints;
-
         public override void OnEnable()
         {
             StateType = FSMStateType.PATROL;
@@ -25,7 +24,6 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
         public override bool EnterState()
         {
             enteredState = false;
-
             if (base.EnterState())
             {
                 patrolPoints = rangedEnemy.GetPatrolPoints();
@@ -75,6 +73,7 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
                     finiteStateMachine.EnterState(FSMStateType.IDLE);
                 }
             }
+            AnimStateCheck();
         }
 
         private void SetDestination(Transform destination)

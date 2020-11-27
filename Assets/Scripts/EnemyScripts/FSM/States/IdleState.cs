@@ -12,7 +12,6 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
     {
         float totalDuration;
         float waitTime;
-
         public override void OnEnable()
         {
             StateType = FSMStateType.IDLE;
@@ -58,6 +57,7 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
                     }
                 }
             }
+            AnimStateCheck();
         }
 
         public override bool ExitState()
