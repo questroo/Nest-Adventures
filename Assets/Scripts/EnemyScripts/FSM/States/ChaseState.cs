@@ -41,6 +41,7 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
 
         public override void UpdateState()
         {
+            SoundManager.PlaySound(SoundManager.Sound.archer_walk, gameObject.transform.position);
             if (enteredState)
             {
                 float distance;

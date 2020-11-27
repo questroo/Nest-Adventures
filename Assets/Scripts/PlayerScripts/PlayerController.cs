@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
             if (inputDir != Vector2.zero)
             {
                 isMoving = true;
-
+                SoundManager.PlaySound(SoundManager.Sound.player2_walk, gameObject.transform.position);
                 float targetRotation = Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
                 transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
             }

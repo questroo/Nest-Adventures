@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SoundLibrary : MonoBehaviour
 {
+    public float player2_walk_delay;
+    public float archer_walk_delay;
+    public float skeleton_walk_delay;
+
     public static SoundLibrary Instance { get; set; }
 
     [System.Serializable]
