@@ -55,6 +55,11 @@ public class RangedEnemy : MonoBehaviour, IDamageable
         finiteStateMachine = GetComponent<FiniteStateMachine>();
     }
 
+    private void Start()
+    {
+        ServiceLocator.Get<EnemyLockController>().RegisterEnemy(gameObject);
+    }
+
     public Transform[] GetPatrolPoints()
     {
         return patrolPoints;
@@ -81,4 +86,9 @@ public class RangedEnemy : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
     #endregion
+
+    private void OnDestroy()
+    {
+        ServiceLocator.Get<EnemyLockController>().DeregisterEnemy(gameObject);
+    }
 }
