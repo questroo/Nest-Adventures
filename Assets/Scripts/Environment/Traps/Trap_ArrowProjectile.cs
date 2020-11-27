@@ -44,6 +44,7 @@ public class Trap_ArrowProjectile : MonoBehaviour
 
             if (other.CompareTag("Player") || other.CompareTag("RangedCharacter") || other.CompareTag("MeleeCharacter"))
             {
+                SoundManager.PlaySound(SoundManager.Sound.player2_arrow);
                 hitEffect.Play();
                 playerScript = other.GetComponentInParent<PlayerStats>();
 

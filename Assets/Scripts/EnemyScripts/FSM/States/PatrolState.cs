@@ -60,6 +60,8 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
         {
             if (enteredState)
             {
+                SoundManager.PlaySound(SoundManager.Sound.archer_walk, gameObject.transform.position);
+
                 patrolPoints = rangedEnemy.GetPatrolPoints();
 
                 float distance = Vector3.Distance(navMeshAgent.transform.position, player.transform.position);

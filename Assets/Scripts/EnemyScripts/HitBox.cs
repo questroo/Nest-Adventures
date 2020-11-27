@@ -19,6 +19,7 @@ public class HitBox : MonoBehaviour
 
     public void Attack()
     {
+        SoundManager.PlaySound(SoundManager.Sound.skeleton_swing, gameObject.transform.position);
         trail_particle.Play();
         Collider[] hitPlayer = Physics.OverlapSphere(attackPoint.position, attackRange, playerLayer);
 

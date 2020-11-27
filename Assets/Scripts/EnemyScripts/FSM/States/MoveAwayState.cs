@@ -45,7 +45,7 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
                 {
                     changePositionCooldown -= Time.deltaTime;
                 }
-
+                SoundManager.PlaySound(SoundManager.Sound.archer_walk, gameObject.transform.position);
                 float distance = Vector3.Distance(navMeshAgent.transform.position, player.transform.position);
                 if (distance <= rangedEnemy.minWeaponRange)
                 {

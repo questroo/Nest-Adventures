@@ -52,6 +52,7 @@ public class HitBoxProjection : MonoBehaviour
     }
     public void ShootProjectile(int combo)
     {
+        SoundManager.PlaySound(SoundManager.Sound.player2_windup, gameObject.transform.position);
         GameObject go = new GameObject();
         switch (combo)
         {
