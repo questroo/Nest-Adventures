@@ -28,7 +28,7 @@ public class ScreenFadeToBlack : MonoBehaviour
 
     private void Start()
     {
-        playerHandle = FindObjectOfType<PlayerController>().gameObject;
+        playerHandle = ServiceLocator.Get<DualPlayerController>().gameObject;
         teleportPosition = dungeonStart;
     }
 

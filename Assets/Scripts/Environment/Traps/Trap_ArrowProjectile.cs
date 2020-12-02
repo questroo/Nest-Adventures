@@ -25,7 +25,7 @@ public class Trap_ArrowProjectile : MonoBehaviour
         lifetimeLeft -= Time.deltaTime;
         if (lifetimeLeft <= 0)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         transform.LookAt(transform.position + GetComponent<Rigidbody>().velocity.normalized);

@@ -4,43 +4,56 @@ using UnityEngine;
 
 public class HitBox : MonoBehaviour
 {
-    public Transform attackPoint;
+    //public Transform attackPoint;
     private EnemyStat enemyStat;
-    public float attackRange = 0.5f;
-    public LayerMask playerLayer;
+    private PlayerStats ps;
+    //public float attackRange = 0.5f;
+    //public LayerMask playerLayer;
 
-    [SerializeField]
-    private ParticleSystem trail_particle;
+    //[SerializeField]
+    //private ParticleSystem trail_particle;
 
     private void Start()
     {
         enemyStat = GetComponentInParent<EnemyStat>();
+        ps = ServiceLocator.Get<PlayerStats>();
     }
 
     public void Attack()
     {
-        SoundManager.PlaySound(SoundManager.Sound.skeleton_swing, gameObject.transform.position);
-        trail_particle.Play();
-        Collider[] hitPlayer = Physics.OverlapSphere(attackPoint.position, attackRange, playerLayer);
+    //    trail_particle.Play();
+    //    Collider[] hitPlayer = Physics.OverlapSphere(attackPoint.position, attackRange);
 
-        foreach (Collider player in hitPlayer)
-        {
-            player.GetComponentInParent<PlayerStats>().TakeDamage(enemyStat.bossDamage);
-            
-        }
-        StartCoroutine(TurnOffParticles());
+    //    if(hitPlayer.Length == 0)
+    //    {
+    //        int i = 0;
+    //    }
+
+    //    foreach (Collider player in hitPlayer)
+    //    {
+    //        player.GetComponent<PlayerStats>().TakeDamage(enemyStat.bossDamage);            
+    //    }
+    //    StartCoroutine(TurnOffParticles());
     }
 
-    IEnumerator TurnOffParticles()
-    {
-        yield return new WaitForSeconds(0.5f);
-        trail_particle.Stop();
-    }
+    //IEnumerator TurnOffParticles()
+    //{
+    //    yield return new WaitForSeconds(0.5f);
+    //    trail_particle.Stop();
+    //}
    
-    private void OnDrawGizmosSelected()
+    //private void OnDrawGizmosSelected()
+    //{
+    //    if (attackPoint == null)
+    //        return;
+    //    Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    //}
+
+    private void OnTriggerEnter(Collider collider)
     {
-        if (attackPoint == null)
-            return;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        if (collider.CompareTag("Player"))
+        {
+            ps.TakeDamage(enemyStat.bossDamage);
+        }
     }
 }

@@ -31,6 +31,8 @@ public class EnemyController : MonoBehaviour
         // boss = GetComponent<BossController>();
         //moveSpots.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
         animator = GetComponent<Animator>();
+
+        ServiceLocator.Get<EnemyLockController>().RegisterEnemy(gameObject);
     }
 
     // Update is called once per frame
@@ -111,5 +113,10 @@ public class EnemyController : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackRadius);
+    }
+
+    private void OnDestroy()
+    {
+        ServiceLocator.Get<EnemyLockController>().DeregisterEnemy(gameObject);
     }
 }
