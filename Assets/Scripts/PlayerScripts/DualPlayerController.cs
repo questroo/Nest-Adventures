@@ -210,7 +210,7 @@ public class DualPlayerController : MonoBehaviour
         }
     }
 
-    void AttemptCameraLock()
+    void AttemptCameraLock() // cancelled
     {
         // isLockPerformed ensures that the lock will only trigger once per button press at most
         if (!isLockPerformed)
@@ -220,7 +220,7 @@ public class DualPlayerController : MonoBehaviour
         isLockPerformed = false;
     }
 
-    void UnlockCameraFromEnemy()
+    void UnlockCameraFromEnemy() // performed
     {
         lockController.RemoveEnemyFromLockGroup();
         isLockPerformed = true;
