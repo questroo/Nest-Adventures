@@ -9,24 +9,16 @@ public class PauseMenu : MonoBehaviour
     private GameObject pauseMenuGO;
 
     private bool isPause;
+    private PlayerControls mainControls;
+
+    private void Awake()
+    {
+        mainControls = ServiceLocator.Get<PlayerControls>();
+        mainControls.ActionMap.PauseGame.performed += ctx => PauseGame();
+    }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            if (isPause)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                isPause = true;
-                pauseMenuGO.SetActive(true);
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-                Time.timeScale = 0.0f;
-            }
-        }
     }
 
     public void ResumeGame()
@@ -42,5 +34,21 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("Main Menu");
+    }
+
+    private void PauseGame()
+    {
+        if (isPause)
+        {
+            ResumeGame();
+        }
+        else
+        {
+            isPause = true;
+            pauseMenuGO.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0.0f;
+        }
     }
 }

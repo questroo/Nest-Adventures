@@ -73,6 +73,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""d24bff0e-bcde-428e-af7d-9642e244545f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -427,6 +435,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""CharacterSwap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff428463-38cf-4b27-8f76-5e72c075b1be"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -492,6 +511,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_ActionMap_Move = m_ActionMap.FindAction("Move", throwIfNotFound: true);
         m_ActionMap_MoveCamera = m_ActionMap.FindAction("MoveCamera", throwIfNotFound: true);
         m_ActionMap_CharacterSwap = m_ActionMap.FindAction("CharacterSwap", throwIfNotFound: true);
+        m_ActionMap_PauseGame = m_ActionMap.FindAction("PauseGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -548,6 +568,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_ActionMap_Move;
     private readonly InputAction m_ActionMap_MoveCamera;
     private readonly InputAction m_ActionMap_CharacterSwap;
+    private readonly InputAction m_ActionMap_PauseGame;
     public struct ActionMapActions
     {
         private @PlayerControls m_Wrapper;
@@ -559,6 +580,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_ActionMap_Move;
         public InputAction @MoveCamera => m_Wrapper.m_ActionMap_MoveCamera;
         public InputAction @CharacterSwap => m_Wrapper.m_ActionMap_CharacterSwap;
+        public InputAction @PauseGame => m_Wrapper.m_ActionMap_PauseGame;
         public InputActionMap Get() { return m_Wrapper.m_ActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -589,6 +611,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @CharacterSwap.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnCharacterSwap;
                 @CharacterSwap.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnCharacterSwap;
                 @CharacterSwap.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnCharacterSwap;
+                @PauseGame.started -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnPauseGame;
+                @PauseGame.performed -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnPauseGame;
+                @PauseGame.canceled -= m_Wrapper.m_ActionMapActionsCallbackInterface.OnPauseGame;
             }
             m_Wrapper.m_ActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -614,6 +639,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @CharacterSwap.started += instance.OnCharacterSwap;
                 @CharacterSwap.performed += instance.OnCharacterSwap;
                 @CharacterSwap.canceled += instance.OnCharacterSwap;
+                @PauseGame.started += instance.OnPauseGame;
+                @PauseGame.performed += instance.OnPauseGame;
+                @PauseGame.canceled += instance.OnPauseGame;
             }
         }
     }
@@ -663,5 +691,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnMoveCamera(InputAction.CallbackContext context);
         void OnCharacterSwap(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
     }
 }

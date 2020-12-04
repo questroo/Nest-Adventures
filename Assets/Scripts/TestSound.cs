@@ -6,7 +6,7 @@ public class TestSound : MonoBehaviour
 {
     private void Awake()
     {
-        SoundManager.Initialize();
+        //SoundManager.Initialize();
     }
 
     public void PlayTest1()
