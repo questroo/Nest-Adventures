@@ -71,7 +71,7 @@ public class DualPlayerController : MonoBehaviour
         mainControls.ActionMap.LockOn.canceled += ctx => AttemptCameraLock();
         mainControls.ActionMap.LockOn.performed += ctx => UnlockCameraFromEnemy();
 
-        mainControls.ActionMap.Attack.performed += ctx => pugilistController.SendAttack();
+        mainControls.ActionMap.Attack.performed += ctx => Attack();
 
         mainControls.ActionMap.Enable();
     }
@@ -161,6 +161,18 @@ public class DualPlayerController : MonoBehaviour
         if (lockedEnemy)
         {
             transform.LookAt(new Vector3(lockedEnemy.position.x, transform.position.y, lockedEnemy.position.z));
+        }
+    }
+
+    void Attack()
+    {
+        if(currentCharacter == CharacterClass.Pugilist)
+        {
+            pugilistController.SendAttack();
+        }
+        else if(currentCharacter == CharacterClass.Sorcerer)
+        {
+            sorcererController.SendAttack(lockedEnemy);
         }
     }
 
