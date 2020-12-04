@@ -11,7 +11,7 @@ public class PauseMenu : MonoBehaviour
     private bool isPause;
     private PlayerControls mainControls;
 
-    private void Awake()
+    private void Start()
     {
         mainControls = ServiceLocator.Get<PlayerControls>();
         mainControls.ActionMap.PauseGame.performed += ctx => PauseGame();
