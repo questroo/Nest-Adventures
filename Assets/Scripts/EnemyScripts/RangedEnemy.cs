@@ -41,6 +41,7 @@ public class RangedEnemy : MonoBehaviour, IDamageable
     public float maxWeaponRange = 9.0f;
     public float minWeaponRange = 1.5f;
 
+    Animator anim;
 
     NavMeshAgent navMeshAgent;
     FiniteStateMachine finiteStateMachine;
@@ -53,6 +54,7 @@ public class RangedEnemy : MonoBehaviour, IDamageable
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         finiteStateMachine = GetComponent<FiniteStateMachine>();
+        anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -77,6 +79,7 @@ public class RangedEnemy : MonoBehaviour, IDamageable
         health -= damage;
         if(health <= 0)
         {
+            anim.SetTrigger("Dead");
             Die();
         }
     }
