@@ -41,6 +41,7 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
 
         public override void UpdateState()
         {
+            SoundManager.PlaySound(SoundManager.Sound.archer_walk, gameObject.transform.position);
             if (enteredState)
             {
                 float distance;
@@ -64,12 +65,12 @@ namespace Assets.Scripts.EnemyScripts.FSM.States
                     return;
                 }
             }
+            AnimStateCheck();
         }
 
         public override bool ExitState()
         {
             base.ExitState();
-
             Debug.Log("Exiting Chase State");
 
             navMeshAgent.speed -= rangedEnemy.chaseStateSpeedModifier;

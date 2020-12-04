@@ -31,6 +31,8 @@ public class EnemyController : MonoBehaviour
         // boss = GetComponent<BossController>();
         //moveSpots.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
         animator = GetComponent<Animator>();
+
+        ServiceLocator.Get<EnemyLockController>().RegisterEnemy(gameObject);
     }
 
     // Update is called once per frame
@@ -46,9 +48,11 @@ public class EnemyController : MonoBehaviour
     {
         //transform.position = Vector3.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
         
+
         float distance = Vector3.Distance(target.position, animator.transform.position);
         float spotDistance = Vector3.Distance(transform.position, moveSpots[randomSpot].position);
         animator.SetTrigger("Walk");
+        SoundManager.PlaySound(SoundManager.Sound.skeleton_walk, gameObject.transform.position);
         if (distance >= alertRadius)
         {
             
@@ -109,5 +113,10 @@ public class EnemyController : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackRadius);
+    }
+
+    private void OnDestroy()
+    {
+        ServiceLocator.Get<EnemyLockController>().DeregisterEnemy(gameObject);
     }
 }

@@ -25,7 +25,7 @@ public class Trap_ArrowProjectile : MonoBehaviour
         lifetimeLeft -= Time.deltaTime;
         if (lifetimeLeft <= 0)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         transform.LookAt(transform.position + GetComponent<Rigidbody>().velocity.normalized);
@@ -44,6 +44,7 @@ public class Trap_ArrowProjectile : MonoBehaviour
 
             if (other.CompareTag("Player") || other.CompareTag("RangedCharacter") || other.CompareTag("MeleeCharacter"))
             {
+                SoundManager.PlaySound(SoundManager.Sound.player2_arrow);
                 hitEffect.Play();
                 playerScript = other.GetComponentInParent<PlayerStats>();
 

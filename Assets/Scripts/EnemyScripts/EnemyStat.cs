@@ -42,7 +42,7 @@ public class EnemyStat : MonoBehaviour, IDamageable
         if (Health <= 0.0f)
         {
             Health = 0.0f;
-            // animator.SetInteger("Die", 1);
+            animator.SetInteger("Die", 1);
             Die();
         }
 
