@@ -28,5 +28,6 @@ public class SoundLibrary : MonoBehaviour
         }
         else
             Destroy(gameObject);
+        SoundManager.Initialize();
     }
 }
