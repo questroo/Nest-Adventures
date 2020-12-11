@@ -16,7 +16,8 @@ public static class SoundManager
         skeleton_walk, skeleton_ambient, skeleton_swing, skeleton_strike, skeleton_get_hit, skeleton_death,
         archer_walk, archer_ambient, archer_pull_bow, archer_release_arrow, archer_rearm, archer_get_hit,
         door_open, door_close,
-        boss_land, boss_swing, boss_slam, boss_walk, boss_death, boss_get_hit
+        boss_land, boss_swing, boss_slam, boss_walk, boss_death, boss_get_hit,
+        switchPlayer
     }
 
     private static Dictionary<Sound, float> soundTimeDictionary;

@@ -118,6 +118,7 @@ public class DualPlayerController : MonoBehaviour
         if (inputDir != Vector2.zero)
         {
             currentCharacterAnimator.SetBool("IsRunning", true);
+            SoundManager.PlaySound(SoundManager.Sound.player2_walk, gameObject.transform.position);
             CancelAttack();
         }
         else
@@ -168,6 +169,7 @@ public class DualPlayerController : MonoBehaviour
     {
         if (!isDodging && !disableInput)
         {
+            SoundManager.PlaySound(SoundManager.Sound.switchPlayer);
             isDodging = true;
             disableInput = true;
             currentCharacterAnimator.SetTrigger("StartRoll");
