@@ -37,6 +37,10 @@ public class PlayerStats : MonoBehaviour
     float healingPotionDurationRemaining = 0.0f;
     float lastHealth = 0.0f;
 
+    // CheckPoint
+    [HideInInspector]
+    public bool reachCheakPoint = false;
+
     private void Awake()
     {
         ServiceLocator.Register<PlayerStats>(this);
