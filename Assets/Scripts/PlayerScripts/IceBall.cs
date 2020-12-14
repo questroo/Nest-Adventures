@@ -22,7 +22,7 @@ public class IceBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        child.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+        child.localRotation = Quaternion.Euler(child.rotation.x, child.rotation.y, child.rotation.z + rotationSpeed);
         if (target)
         {
             transform.LookAt(target);
