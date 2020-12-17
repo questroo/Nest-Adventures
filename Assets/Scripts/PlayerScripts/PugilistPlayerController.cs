@@ -20,6 +20,7 @@ public class PugilistPlayerController : MonoBehaviour
     public float attackRadius = 0.8f;
     public float attackDistance = 1.0f;
     public LayerMask enemyHitLayerMask;
+    public Transform attackPosition;
 
     private void Awake()
     {
@@ -92,21 +93,19 @@ public class PugilistPlayerController : MonoBehaviour
     void LaunchAttack(float damage)
     {
         Debug.Log("Launching SphereCast");
-        // Launch a spherecast (ALL HITS) starting at the position (located at the bottom of the character, hence + Vector3.up) with a radius and direction (in front of player, transform.forward) and a distance.
-        // Only return hits with things on the Enemy layer (or whatever layer you choose)
-        RaycastHit[] raycastHits = Physics.SphereCastAll(transform.position + Vector3.up, attackRadius, transform.forward, attackDistance, enemyHitLayerMask);
-        Debug.Log("recieved hitcount: " + raycastHits.Length);
-        foreach(RaycastHit hit in raycastHits)
+
+        Collider[] hitColliders = Physics.OverlapSphere(attackPosition.position, attackRadius);
+        Debug.Log("Hit Collider Count: " + hitColliders.Length);
+        if(hitColliders.Length > 0)
         {
-            // Should only return enemy colliders
-            EnemyStat stat = hit.collider.GetComponent<EnemyStat>();
-            if(stat == null)
+            Debug.Log(hitColliders[0].gameObject.name);
+        }
+
+        foreach(Collider col in hitColliders)
+        {
+            if(col.CompareTag("Enemy"))
             {
-                Debug.LogError("Enemy stat script not found for object " + stat.name + ". Unable to do damage to this 'Enemy'");
-            }
-            else
-            {
-                stat.TakeDamage(damage);
+                col.GetComponent<EnemyStat>().TakeDamage(damage);
             }
         }
     }

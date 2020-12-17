@@ -44,4 +44,9 @@ public class AnimatorAlert : MonoBehaviour
     {
         sorcerer.AlertEndOfIceBall();
     }
+
+    public void AlertLaunchIceBall()
+    {
+        sorcerer.AlertLaunchIceBall();
+    }
 }

@@ -43,8 +43,10 @@ public class SorcererPlayerController : MonoBehaviour
     public void AlertEndOfIceBall()
     {
         sorcererAnimator.SetBool("IsAttacking", false);
-        GameObject attack = Instantiate(iceBall, launchPoint.position);
-        attack.GetComponent<IceBall>().Init(target, iceBallDamage);
-        target = null;
+    }
+
+    public void AlertLaunchIceBall()
+    {
+
     }
 }
