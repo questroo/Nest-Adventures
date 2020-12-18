@@ -66,6 +66,9 @@ public class DualPlayerController : MonoBehaviour
     Animator sorcererAnimator;
     Animator currentCharacterAnimator;
 
+    [HideInInspector]
+    public bool isReload = false;
+
     private void Awake()
     {
         mainControls = new PlayerControls();
@@ -215,6 +218,7 @@ public class DualPlayerController : MonoBehaviour
     {
         if (!isDodging && !disableInput)
         {
+            SoundManager.PlaySound(SoundManager.Sound.switchPlayer);
             isDodging = true;
             disableInput = true;
             currentCharacterAnimator.SetTrigger("StartRoll");
@@ -244,7 +248,7 @@ public class DualPlayerController : MonoBehaviour
             sorcererController.CancelAttack();
     }
 
-    void SwitchToCharacter(CharacterClass characterClass)
+    public void SwitchToCharacter(CharacterClass characterClass)
     {
         if (characterClass == CharacterClass.Pugilist)
         {

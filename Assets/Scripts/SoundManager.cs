@@ -16,7 +16,8 @@ public static class SoundManager
         skeleton_walk, skeleton_ambient, skeleton_swing, skeleton_strike, skeleton_get_hit, skeleton_death,
         archer_walk, archer_ambient, archer_pull_bow, archer_release_arrow, archer_rearm, archer_get_hit,
         door_open, door_close,
-        boss_land, boss_swing, boss_slam, boss_walk, boss_death, boss_get_hit
+        boss_land, boss_swing, boss_slam, boss_walk, boss_death, boss_get_hit,
+        switchPlayer
     }
 
     private static Dictionary<Sound, float> soundTimeDictionary;
@@ -41,6 +42,7 @@ public static class SoundManager
                 oneshotGO = new GameObject("One Shot Sound");
                 oneshotAudioSource  = oneshotGO.AddComponent<AudioSource>();
             }
+            oneshotAudioSource.volume = 0.5f;
             oneshotAudioSource.PlayOneShot(GetAudioClip(sound));
         }
     }
@@ -50,8 +52,13 @@ public static class SoundManager
         if(CanPlaySound(sound))
         {
             GameObject soundGO = new GameObject("Sound");
+            soundGO.transform.position = position;
             AudioSource audioSource = soundGO.AddComponent<AudioSource>();
             audioSource.clip = GetAudioClip(sound);
+            //audioSource.volume = 0.5f;
+            audioSource.spatialBlend = 1.0f;
+            audioSource.rolloffMode = AudioRolloffMode.Linear;
+            audioSource.maxDistance = 20.0f;
             audioSource.Play();
 
             GameObject.Destroy(soundGO, audioSource.clip.length);
