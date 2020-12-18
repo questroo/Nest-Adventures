@@ -37,6 +37,12 @@ public class PlayerStats : MonoBehaviour
     float healingPotionDurationRemaining = 0.0f;
     float lastHealth = 0.0f;
 
+    // CheckPoint
+    [HideInInspector]
+    public bool reachCheakPoint = false;
+    [SerializeField]
+    private DefeatScreenControl defeatScreen;
+
     private void Awake()
     {
         ServiceLocator.Register<PlayerStats>(this);
@@ -55,7 +61,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (!invincible && !isDead)
         {
-            SoundManager.PlaySound(SoundManager.Sound.player2_get_hit, gameObject.transform.position);
+            SoundManager.PlaySound(SoundManager.Sound.player2_get_hit);
             m_Health -= damage;
             if (m_Health > m_maxHealth)
                 m_Health = m_maxHealth;
@@ -84,6 +90,10 @@ public class PlayerStats : MonoBehaviour
         {
             UseHealthPotion();
         }
+        //if (Input.GetKeyDown(KeyCode.U))
+        //{
+        //    Die();
+        //}
     }
 
     public void UpdatePoison()
@@ -264,11 +274,18 @@ public class PlayerStats : MonoBehaviour
     private void Die()
     {
         isDead = true;
-        //trigger death anim
-        GetComponentInChildren<Animator>().SetTrigger("Death");
-        if (OnPlayerDeath != null)
-        {
-            OnPlayerDeath();
-        }
+        defeatScreen.ShowDefeatScreen();
+        //ServiceLocator.Deregister<DualPlayerController>();
+        ////trigger death anim
+        //GetComponentInChildren<Animator>().SetTrigger("Death");
+        //if (OnPlayerDeath != null)
+        //{
+        //    OnPlayerDeath();
+        //}
+    }
+
+    public void Respawn()
+    {
+        isDead = false;
     }
 }

@@ -12,6 +12,7 @@ public class AnimatorAlert : MonoBehaviour
     {
         controller = ServiceLocator.Get<DualPlayerController>();
         pugilist = ServiceLocator.Get<PugilistPlayerController>();
+        sorcerer = ServiceLocator.Get<SorcererPlayerController>();
     }
 
     public void AlertEndOfFirstRoll()
@@ -37,5 +38,15 @@ public class AnimatorAlert : MonoBehaviour
     public void AlertEndOfPunchCombo()
     {
         pugilist.AlertEndOfPunchCombo();
+    }
+
+    public void AlertEndOfIceBall()
+    {
+        sorcerer.AlertEndOfIceBall();
+    }
+
+    public void AlertLaunchIceBall()
+    {
+        sorcerer.AlertLaunchIceBall();
     }
 }

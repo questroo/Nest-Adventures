@@ -44,12 +44,13 @@ public class Trap_ArrowProjectile : MonoBehaviour
 
             if (other.CompareTag("Player") || other.CompareTag("RangedCharacter") || other.CompareTag("MeleeCharacter"))
             {
-                SoundManager.PlaySound(SoundManager.Sound.player2_arrow);
-                hitEffect.Play();
+                
                 playerScript = other.GetComponentInParent<PlayerStats>();
 
                 if (playerScript)
                 {
+                    SoundManager.PlaySound(SoundManager.Sound.player2_arrow, gameObject.transform.position);
+                    hitEffect.Play();
                     playerScript.TakeDamage(arrowDamage);
                 }
                 else

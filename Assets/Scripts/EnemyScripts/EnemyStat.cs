@@ -18,6 +18,7 @@ public class EnemyStat : MonoBehaviour, IDamageable
 
     void Start()
     {
+        ServiceLocator.Get<EnemyLockController>().RegisterEnemy(gameObject);
         Health = enemyMaxHealth;
         animator = GetComponentInChildren<Animator>();
         if (healthBar != null)
@@ -54,8 +55,8 @@ public class EnemyStat : MonoBehaviour, IDamageable
         //Death Animation
         //Stop all movement
         //Remove collision
-        //Model Disappear
-        FindObjectOfType<CameraController>().RemoveSelfFromList(this);
+        //Model Disappear        
+        ServiceLocator.Get<EnemyLockController>().DeregisterEnemy(gameObject);
         var boss = GetComponent<BossDeath>();
         if (boss)
         {

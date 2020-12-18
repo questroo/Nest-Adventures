@@ -52,7 +52,7 @@ public class EnemyController : MonoBehaviour
         float distance = Vector3.Distance(target.position, animator.transform.position);
         float spotDistance = Vector3.Distance(transform.position, moveSpots[randomSpot].position);
         animator.SetTrigger("Walk");
-        SoundManager.PlaySound(SoundManager.Sound.skeleton_walk, gameObject.transform.position);
+        //SoundManager.PlaySound(SoundManager.Sound.skeleton_walk, gameObject.transform.position);
         if (distance >= alertRadius)
         {
             

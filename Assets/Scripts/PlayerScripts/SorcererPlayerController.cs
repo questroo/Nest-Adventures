@@ -4,9 +4,15 @@ using UnityEngine.InputSystem;
 
 public class SorcererPlayerController : MonoBehaviour
 {
+    [Header("Animation Variables")]
     Animator sorcererAnimator;
-    int attackCount = 0;
-    bool isAttacking = false;
+    public bool isAttacking = false;
+
+    [Header("Attack Variables")]
+    public float iceBallDamage = 20.0f;
+    public GameObject iceBall;
+    public Transform launchPoint;
+    Transform target;
 
     private void Awake()
     {
@@ -18,18 +24,30 @@ public class SorcererPlayerController : MonoBehaviour
         sorcererAnimator = GetComponentInChildren<Animator>();
     }
 
-    public void SendAttack()
+    public void SendAttack(Transform _target)
     {
-        attackCount++;
+        target = _target;
+        sorcererAnimator.SetBool("IsAttacking", true);
     }
 
     public void CancelAttack()
     {
-        attackCount = 0;
+        sorcererAnimator.SetBool("IsAttacking", false);
     }
 
     public bool IsSorcererAttacking()
     {
         return isAttacking;
+    }
+
+    public void AlertEndOfIceBall()
+    {
+        sorcererAnimator.SetBool("IsAttacking", false);
+    }
+
+    public void AlertLaunchIceBall()
+    {
+        GameObject ball = Instantiate(iceBall, launchPoint.position, transform.parent.rotation);
+        ball.GetComponent<IceBall>().Init(target);
     }
 }
