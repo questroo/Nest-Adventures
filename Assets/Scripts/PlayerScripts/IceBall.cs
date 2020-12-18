@@ -13,13 +13,25 @@ public class IceBall : MonoBehaviour
     float timing = 0.0f;
     float maxTiming = 10.0f;
 
+    public void Init(Transform _target)
+    {
+        // Set up ball parameters within SorcererPlayerController
+        target = _target;
+    }
+
     private void Start()
     {
-
+        
     }
 
     private void Update()
     {
+        if(target != null)
+        {
+            transform.LookAt(target.position);
+            Debug.Log("Looking at Target");
+        }
+
         transform.Translate(Vector3.forward.normalized * Time.deltaTime * maxSpeed);
         Debug.Log(transform.forward);
 
@@ -33,6 +45,7 @@ public class IceBall : MonoBehaviour
         if(collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<EnemyStat>().TakeDamage(damage);
+            Destroy(gameObject);
         }
         else if(collision.gameObject.CompareTag("Player"))
         {
