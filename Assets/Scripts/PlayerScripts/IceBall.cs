@@ -10,6 +10,9 @@ public class IceBall : MonoBehaviour
 
     Transform target;
 
+    float timing = 0.0f;
+    float maxTiming = 10.0f;
+
     private void Start()
     {
 
@@ -17,7 +20,12 @@ public class IceBall : MonoBehaviour
 
     private void Update()
     {
-        
+        transform.Translate(Vector3.forward.normalized * Time.deltaTime * maxSpeed);
+        Debug.Log(transform.forward);
+
+        timing += Time.deltaTime;
+        if (timing >= maxTiming)
+            Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)

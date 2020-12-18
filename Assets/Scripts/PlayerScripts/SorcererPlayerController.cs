@@ -47,6 +47,6 @@ public class SorcererPlayerController : MonoBehaviour
 
     public void AlertLaunchIceBall()
     {
-
+        GameObject ball = Instantiate(iceBall, launchPoint.position, transform.parent.rotation);
     }
 }
