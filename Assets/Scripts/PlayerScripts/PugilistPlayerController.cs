@@ -12,6 +12,8 @@ public class PugilistPlayerController : MonoBehaviour
     public int lastAttackCount = 0;
     public bool isPugilistAttacking = false;
 
+    public ParticleSystem punchParticleDust;
+    public ParticleSystem punchParticleExplosion;
     private void Awake()
     {
         ServiceLocator.Register<PugilistPlayerController>(this);
@@ -36,6 +38,8 @@ public class PugilistPlayerController : MonoBehaviour
 
     public void SendAttack()
     {
+        punchParticleDust.Emit(1);
+        punchParticleExplosion.Emit(1);
         isPugilistAttacking = true;
         attackCount++;
         timeRemaining = comboCooldownTime;
