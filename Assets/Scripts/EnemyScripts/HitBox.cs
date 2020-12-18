@@ -53,6 +53,7 @@ public class HitBox : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
+            SoundManager.PlaySound(SoundManager.Sound.player2_get_hit);
             ps.TakeDamage(enemyStat.bossDamage);
         }
     }
