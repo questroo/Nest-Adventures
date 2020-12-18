@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 2612184637689832983}
   - component: {fileID: 939845221950901181}
   - component: {fileID: 939845221950901182}
+  - component: {fileID: 3544223026650585878}
   m_Layer: 9
   m_Name: DualPlayer
   m_TagString: Player
@@ -248,7 +249,11 @@ MonoBehaviour:
   turnSmoothDampener: 100
   turnSmoothVelocity: 0
   turnSmoothTime: 0.08
+  maxSpeed: 7.5
+  maxAcceleration: 30
   disableInput: 0
+  regularCollider: {fileID: 939845221950901182}
+  dodgeCollider: {fileID: 3544223026650585878}
   moveDirection: {x: 0, y: 0}
   dodgeDirection: {x: 0, y: 0, z: 0}
   currentCharacter: 0
@@ -286,9 +291,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &939845221950901182
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -296,13 +301,27 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6619796741259868994}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 233e888abd392534ba63b2532edadd00, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.25711006
   m_Height: 1.5672145
   m_Direction: 1
   m_Center: {x: 0.0026629567, y: 0.76360726, z: 0.08426514}
+--- !u!136 &3544223026650585878
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6619796741259868994}
+  m_Material: {fileID: 13400000, guid: 233e888abd392534ba63b2532edadd00, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.24
+  m_Height: 0.2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.2, z: 0.08}
 --- !u!1 &7421508809186022838
 GameObject:
   m_ObjectHideFlags: 0

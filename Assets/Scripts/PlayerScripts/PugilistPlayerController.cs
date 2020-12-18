@@ -64,11 +64,11 @@ public class PugilistPlayerController : MonoBehaviour
 
     public void CancelAttack()
     {
-        isPugilistAttacking = false;
         attackCount = 0;
         pugilistAnimator.SetBool("PunchOne", false);
         pugilistAnimator.SetBool("PunchTwo", false);
         pugilistAnimator.SetBool("PunchCombo", false);
+        isPugilistAttacking = false;
     }
 
     public void AlertEndOfFirstPunch()
@@ -101,11 +101,12 @@ public class PugilistPlayerController : MonoBehaviour
             Debug.Log(hitColliders[0].gameObject.name);
         }
 
-        foreach(Collider col in hitColliders)
+        foreach (Collider col in hitColliders)
         {
-            if(col.CompareTag("Enemy"))
+            if (col.CompareTag("Enemy"))
             {
-                col.GetComponent<EnemyStat>().TakeDamage(damage);
+                //col.GetComponent<EnemyStat>().TakeDamage(damage);
+                col.GetComponent<IDamageable>().TakeDamage(damage);
             }
         }
     }
