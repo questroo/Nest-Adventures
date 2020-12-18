@@ -27,6 +27,7 @@ public class HealthPickup : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
+            SoundManager.PlaySound(SoundManager.Sound.player2_get_hit);
             collision.gameObject.GetComponent<PlayerStats>().TakeDamage(-1.0f * healthValue);
             Destroy(gameObject);
         }
