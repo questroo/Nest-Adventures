@@ -28,6 +28,7 @@ public class SorcererPlayerController : MonoBehaviour
     {
         target = _target;
         sorcererAnimator.SetBool("IsAttacking", true);
+        isAttacking = true;
     }
 
     public void CancelAttack()
@@ -43,6 +44,7 @@ public class SorcererPlayerController : MonoBehaviour
     public void AlertEndOfIceBall()
     {
         sorcererAnimator.SetBool("IsAttacking", false);
+        isAttacking = false;
     }
 
     public void AlertLaunchIceBall()

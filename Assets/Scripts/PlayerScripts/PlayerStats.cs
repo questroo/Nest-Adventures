@@ -61,7 +61,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (!invincible && !isDead)
         {
-            SoundManager.PlaySound(SoundManager.Sound.player2_get_hit);
+            //SoundManager.PlaySound(SoundManager.Sound.player2_get_hit);
             m_Health -= damage;
             if (m_Health > m_maxHealth)
                 m_Health = m_maxHealth;

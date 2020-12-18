@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 2157316700002513993}
   m_Layer: 0
   m_Name: RangedEnemy
-  m_TagString: RangedEnemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -457,7 +457,7 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
-  health: 100
+  health: 20
 --- !u!114 &1684378682445709630
 MonoBehaviour:
   m_ObjectHideFlags: 0

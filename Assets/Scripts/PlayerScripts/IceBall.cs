@@ -44,7 +44,7 @@ public class IceBall : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<EnemyStat>().TakeDamage(damage);
+            collision.gameObject.GetComponent<IDamageable>().TakeDamage(damage);
             Destroy(gameObject);
         }
         else if(collision.gameObject.CompareTag("Player"))
