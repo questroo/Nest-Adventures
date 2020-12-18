@@ -116,23 +116,30 @@ public abstract class AbstractFSMState : MonoBehaviour
         switch (StateType)
         {
             case FSMStateType.IDLE:
-                animator.SetTrigger("Idle");
+                //animator.SetTrigger("Idle");
+                animator.SetBool("isIdle", true);
+                animator.SetBool("isWalking", false);
+                animator.SetBool("isShoting", false);
                 break;
             case FSMStateType.PATROL:
-                animator.SetTrigger("Walk");
+                //animator.SetTrigger("Walk");
+                animator.SetBool("isWalking", true);
+                animator.SetBool("isIdle", false);
+                animator.SetBool("isShoting", false);
                 break;
             //case FSMStateType.CHASE:
             //    break;
             case FSMStateType.MOVEAWAY:
-                animator.SetTrigger("Walk");
+                //animator.SetTrigger("Walk");
+                animator.SetBool("isWalking", true);
+                animator.SetBool("isIdle", false);
+                animator.SetBool("isShoting", false);
                 break;
             case FSMStateType.ATTACK:
-                animator.SetTrigger("Shot");
-                break;
-            default:
-                animator.SetTrigger("Idle");
-                animator.ResetTrigger("Walk");
-                animator.ResetTrigger("Shot");
+                //animator.SetTrigger("Shot");
+                animator.SetBool("isShoting", true);
+                animator.SetBool("isIdle", false);
+                animator.SetBool("isWalking", false);
                 break;
         }
     }
