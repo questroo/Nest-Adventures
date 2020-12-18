@@ -40,6 +40,8 @@ public class PlayerStats : MonoBehaviour
     // CheckPoint
     [HideInInspector]
     public bool reachCheakPoint = false;
+    [SerializeField]
+    private DefeatScreenControl defeatScreen;
 
     private void Awake()
     {
@@ -88,6 +90,10 @@ public class PlayerStats : MonoBehaviour
         {
             UseHealthPotion();
         }
+        //if (Input.GetKeyDown(KeyCode.U))
+        //{
+        //    Die();
+        //}
     }
 
     public void UpdatePoison()
@@ -268,11 +274,18 @@ public class PlayerStats : MonoBehaviour
     private void Die()
     {
         isDead = true;
-        //trigger death anim
-        GetComponentInChildren<Animator>().SetTrigger("Death");
-        if (OnPlayerDeath != null)
-        {
-            OnPlayerDeath();
-        }
+        defeatScreen.ShowDefeatScreen();
+        //ServiceLocator.Deregister<DualPlayerController>();
+        ////trigger death anim
+        //GetComponentInChildren<Animator>().SetTrigger("Death");
+        //if (OnPlayerDeath != null)
+        //{
+        //    OnPlayerDeath();
+        //}
+    }
+
+    public void Respawn()
+    {
+        isDead = false;
     }
 }

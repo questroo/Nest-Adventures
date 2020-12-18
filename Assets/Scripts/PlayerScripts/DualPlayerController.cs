@@ -58,6 +58,9 @@ public class DualPlayerController : MonoBehaviour
     Animator sorcererAnimator;
     Animator currentCharacterAnimator;
 
+    [HideInInspector]
+    public bool isReload = false;
+
     private void Awake()
     {
         mainControls = new PlayerControls();
@@ -118,7 +121,6 @@ public class DualPlayerController : MonoBehaviour
         if (inputDir != Vector2.zero)
         {
             currentCharacterAnimator.SetBool("IsRunning", true);
-            SoundManager.PlaySound(SoundManager.Sound.player2_walk, gameObject.transform.position);
             CancelAttack();
         }
         else
@@ -196,7 +198,7 @@ public class DualPlayerController : MonoBehaviour
             sorcererController.CancelAttack();
     }
 
-    void SwitchToCharacter(CharacterClass characterClass)
+    public void SwitchToCharacter(CharacterClass characterClass)
     {
         if (characterClass == CharacterClass.Pugilist)
         {

@@ -9,7 +9,14 @@ static public class ServiceLocator
 	{
 		if (m_systems.ContainsKey(typeof(T)))
 		{
-			Debug.Log("There is already a type of : " + typeof(T) + " that exists");
+            var name = Get<T>().ToString();
+            if(name == "null")
+            {
+                m_systems.Remove(typeof(T));
+                m_systems.Add(typeof(T), target);
+            }
+            else
+			    Debug.Log("There is already a type of : " + typeof(T) + " that exists");
 		}
 		else
 		{
@@ -19,7 +26,20 @@ static public class ServiceLocator
 		return (T)target;
 	}
 
-	static public T Get<T>()
+    static public bool Deregister<T>()
+    {
+        if(m_systems.ContainsKey(typeof(T)))
+        {
+            return m_systems.Remove(typeof(T));
+        }
+        else
+        {
+            Debug.Log("There isn't a type of : " + typeof(T) + " that exists");
+            return false;
+        }
+    }
+
+    static public T Get<T>()
 	{
 		object ret = null;
 		m_systems.TryGetValue(typeof(T), out ret);
