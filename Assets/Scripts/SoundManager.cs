@@ -42,6 +42,7 @@ public static class SoundManager
                 oneshotGO = new GameObject("One Shot Sound");
                 oneshotAudioSource  = oneshotGO.AddComponent<AudioSource>();
             }
+            oneshotAudioSource.volume = 0.5f;
             oneshotAudioSource.PlayOneShot(GetAudioClip(sound));
         }
     }

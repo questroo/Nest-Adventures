@@ -13,4 +13,9 @@ public class PlayerSounds : MonoBehaviour
     {
         SoundManager.PlaySound(SoundManager.Sound.player2_walk);
     }
+
+    public void PlayMagicSound()
+    {
+        SoundManager.PlaySound(SoundManager.Sound.player2_windup);
+    }
 }

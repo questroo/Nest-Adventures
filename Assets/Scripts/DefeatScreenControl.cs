@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class DefeatScreenControl : MonoBehaviour
@@ -14,8 +13,7 @@ public class DefeatScreenControl : MonoBehaviour
     private DualPlayerController playerController;
 
     public Transform spawnPoint;
-
-    private UnityAction action;
+    public Transform dungeonStart;
 
     private void Start()
     {
@@ -27,6 +25,7 @@ public class DefeatScreenControl : MonoBehaviour
 
     public void Retry()
     {
+        Time.timeScale = 1.0f;
         TurnoffDefeatScreen();
         player.Respawn();
         if(player.reachCheakPoint)
@@ -56,6 +55,7 @@ public class DefeatScreenControl : MonoBehaviour
 
     public void ShowDefeatScreen()
     {
+        Time.timeScale = 0.0f;
         defeatScreen.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -63,6 +63,7 @@ public class DefeatScreenControl : MonoBehaviour
 
     public void TurnoffDefeatScreen()
     {
+        Time.timeScale = 1.0f;
         defeatScreen.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

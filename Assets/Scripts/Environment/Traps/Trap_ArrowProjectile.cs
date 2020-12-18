@@ -49,7 +49,7 @@ public class Trap_ArrowProjectile : MonoBehaviour
 
                 if (playerScript)
                 {
-                    SoundManager.PlaySound(SoundManager.Sound.player2_arrow);
+                    SoundManager.PlaySound(SoundManager.Sound.player2_arrow, gameObject.transform.position);
                     hitEffect.Play();
                     playerScript.TakeDamage(arrowDamage);
                 }
