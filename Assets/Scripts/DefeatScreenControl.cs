@@ -30,6 +30,8 @@ public class DefeatScreenControl : MonoBehaviour
         player.Respawn();
         if(player.reachCheakPoint)
         {
+            if (spawnPoint == null)
+                spawnPoint = dungeonStart;
             fade.TeleportPlayer(spawnPoint);
         }
         else
