@@ -64,11 +64,11 @@ public class PugilistPlayerController : MonoBehaviour
 
     public void CancelAttack()
     {
-        isPugilistAttacking = false;
         attackCount = 0;
         pugilistAnimator.SetBool("PunchOne", false);
         pugilistAnimator.SetBool("PunchTwo", false);
         pugilistAnimator.SetBool("PunchCombo", false);
+        isPugilistAttacking = false;
     }
 
     public void AlertEndOfFirstPunch()

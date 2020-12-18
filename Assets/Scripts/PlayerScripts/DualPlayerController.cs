@@ -19,6 +19,12 @@ public class DualPlayerController : MonoBehaviour
     public float turnSmoothVelocity = 0.0f;
     public float turnSmoothTime = 0.08f;
 
+    Rigidbody rb;
+    Vector3 velocity;
+    Vector3 desiredVelocity;
+    public float maxSpeed = 7.5f;
+    public float maxAcceleration = 10.0f;
+
     [SerializeField] private bool disableInput = false;
     private bool isDodging = false;
     private float speedSmoothVelocity;
@@ -28,6 +34,8 @@ public class DualPlayerController : MonoBehaviour
     private bool hasRollIntoCoroutineBeenCalled = false;
     private bool startRollHasEnded = false;
     private bool endRollHasEnded = false;
+    public Collider regularCollider;
+    public Collider dodgeCollider;
 
     // Attacking control
     private bool isAttacking = false;
@@ -90,12 +98,19 @@ public class DualPlayerController : MonoBehaviour
 
         playerStats = GetComponent<PlayerStats>();
 
+        rb = GetComponent<Rigidbody>();
+
         SwitchToCharacter(currentCharacter);
+        dodgeCollider.enabled = false;
     }
 
     void Update()
     {
         UpdateAttacking();
+    }
+
+    private void FixedUpdate()
+    {
         UpdateMovement();
     }
 
@@ -111,9 +126,13 @@ public class DualPlayerController : MonoBehaviour
     {
         float x = moveDirection.x;
         float z = moveDirection.y;
-        Vector2 inputDir = new Vector2(x, z).normalized;
+        Vector2 inputDir = new Vector2(x, z);
         float targetSpeed = moveSpeed * inputDir.magnitude;
-        Vector3 moveDir;
+
+        if (currentCharacter == CharacterClass.Pugilist)
+            isAttacking = pugilistController.IsPugilistAttacking();
+        else if (currentCharacter == CharacterClass.Sorcerer)
+            isAttacking = sorcererController.IsSorcererAttacking();
 
         if (inputDir != Vector2.zero)
         {
@@ -129,28 +148,44 @@ public class DualPlayerController : MonoBehaviour
         {
             currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedAccelSmoothTime);
 
-            if (inputDir != Vector2.zero)
-            {
-                currentCharacterAnimator.SetFloat("RunningSpeed", targetSpeed * runAnimationDampener);
-                float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.y) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.y) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-                moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                moveDir *= currentSpeed * Time.deltaTime;
+            //moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            //moveDir *= currentSpeed * Time.deltaTime;
 
-                transform.Translate(moveDir, Space.World);
-            }
-            else
+            //transform.Translate(moveDir, Space.World);
+
+            desiredVelocity = new Vector3(inputDir.x, 0, inputDir.y);
+            Debug.Log(desiredVelocity);
+            if (desiredVelocity.magnitude > 0)
             {
-                currentCharacterAnimator.SetFloat("RunningSpeed", 0.0f);
+                desiredVelocity = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward * moveSpeed;
             }
+            velocity = rb.velocity;
+            float maxSpeedChange = maxAcceleration * Time.deltaTime;
+            velocity.x = Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxSpeedChange);
+            velocity.z = Mathf.MoveTowards(velocity.z, desiredVelocity.z, maxSpeedChange);
+            rb.velocity = velocity;
+
+            currentCharacterAnimator.SetFloat("RunningSpeed", desiredVelocity.magnitude * runAnimationDampener);
+            
         }
 
         if (isDodging)
         {
             // While dodging, we want to call the coroutines related to dodging in, or dodging out only once, but still move the character in the correct direction.
-            transform.Translate(new Vector3(dodgeDirection.x, 0.0f, dodgeDirection.z) * dodgeSpeed * Time.deltaTime, Space.World);
+            //transform.Translate(new Vector3(dodgeDirection.x, 0.0f, dodgeDirection.z) * dodgeSpeed * Time.deltaTime, Space.World);
+
+            velocity = rb.velocity;
+            desiredVelocity = new Vector3(dodgeDirection.x, 0f, dodgeDirection.z) * dodgeSpeed;
+
+            velocity.x = Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxAcceleration * Time.deltaTime);
+            velocity.z = Mathf.MoveTowards(velocity.z, desiredVelocity.z, maxAcceleration * Time.deltaTime);
+
+            rb.velocity = velocity;
+
             if (!hasRollIntoCoroutineBeenCalled)
             {
                 StartCoroutine(RollIntoSwitch());
@@ -183,6 +218,9 @@ public class DualPlayerController : MonoBehaviour
             isDodging = true;
             disableInput = true;
             currentCharacterAnimator.SetTrigger("StartRoll");
+            dodgeCollider.enabled = true;
+            regularCollider.enabled = false;
+
             if (moveDirection == Vector2.zero)
                 dodgeDirection = transform.forward;
             else
@@ -275,5 +313,7 @@ public class DualPlayerController : MonoBehaviour
         hasRollIntoCoroutineBeenCalled = false;
         isDodging = false;
         disableInput = false;
+        regularCollider.enabled = true;
+        dodgeCollider.enabled = false;
     }
 }
