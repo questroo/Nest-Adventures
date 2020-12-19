@@ -75,12 +75,14 @@ public class PugilistPlayerController : MonoBehaviour
     {
         pugilistAnimator.SetBool("PunchOne", false);
         LaunchAttack(punchOneDamage);
+        isPugilistAttacking = false;
     }
 
     public void AlertEndOfSecondPunch()
     {
         pugilistAnimator.SetBool("PunchTwo", false);
         LaunchAttack(punchTwoDamage);
+        isPugilistAttacking = false;
     }
 
     public void AlertEndOfPunchCombo()
@@ -88,11 +90,12 @@ public class PugilistPlayerController : MonoBehaviour
         pugilistAnimator.SetBool("PunchCombo", false);
         LaunchAttack(punchComboDamage);
         attackCount = 0;
+        isPugilistAttacking = false;
     }
 
     void LaunchAttack(float damage)
     {
-        Debug.Log("Launching SphereCast");
+        //Debug.Log("Launching SphereCast");
 
         Collider[] hitColliders = Physics.OverlapSphere(attackPosition.position, attackRadius);
         Debug.Log("Hit Collider Count: " + hitColliders.Length);

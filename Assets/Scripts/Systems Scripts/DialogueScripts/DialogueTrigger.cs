@@ -8,18 +8,33 @@ public class DialogueTrigger : MonoBehaviour
 
     public bool isPlayerNear = false;
     public bool hasStarted = false;
+    public bool isInputPressed = false;
 
     DialogueManager dialogueManagerScript;
+    PlayerControls pc;
+
+    private void Start()
+    {
+        pc = ServiceLocator.Get<PlayerControls>();
+        pc.ActionMap.Attack.performed += ctx => KeyIsPressed();
+    }
+
+    void KeyIsPressed()
+    {
+        isInputPressed = true;
+    }
 
     private void Update()
     {
-        if (isPlayerNear && !hasStarted && Input.GetKeyDown(KeyCode.J))
+        if (isPlayerNear && !hasStarted && isInputPressed)
         {
+            isInputPressed = false;
             hasStarted = true;
             Trigger();
         }
-        else if (isPlayerNear && hasStarted && Input.GetKeyDown(KeyCode.J))
+        else if (isPlayerNear && hasStarted && isInputPressed)
         {
+            isInputPressed = false;
             dialogueManagerScript.DisplayNextSentence();
         }
     }
@@ -46,6 +61,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             isPlayerNear = false;
             hasStarted = false;
+            isInputPressed = false;
             dialogueManagerScript.EndDialogue();
         }
     }

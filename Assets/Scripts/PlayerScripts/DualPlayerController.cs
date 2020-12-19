@@ -20,15 +20,13 @@ public class DualPlayerController : MonoBehaviour
     public float turnSmoothTime = 0.08f;
 
     Rigidbody rb;
-    Vector3 velocity;
-    Vector3 desiredVelocity;
+    public Vector3 velocity;
+    public Vector3 desiredVelocity;
     public float maxSpeed = 7.5f;
     public float maxAcceleration = 10.0f;
 
     [SerializeField] private bool disableInput = false;
     private bool isDodging = false;
-    private float speedSmoothVelocity;
-    private float currentSpeed = 0.0f;
 
     // Dodging control
     private bool hasRollIntoCoroutineBeenCalled = false;
@@ -104,7 +102,9 @@ public class DualPlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         SwitchToCharacter(currentCharacter);
+
         dodgeCollider.enabled = false;
+        regularCollider.enabled = true;
     }
 
     void Update()
@@ -130,17 +130,19 @@ public class DualPlayerController : MonoBehaviour
         float x = moveDirection.x;
         float z = moveDirection.y;
         Vector2 inputDir = new Vector2(x, z);
-        float targetSpeed = moveSpeed * inputDir.magnitude;
 
         if (currentCharacter == CharacterClass.Pugilist)
+        {
             isAttacking = pugilistController.IsPugilistAttacking();
+        }
         else if (currentCharacter == CharacterClass.Sorcerer)
+        {
             isAttacking = sorcererController.IsSorcererAttacking();
+        }
 
         if (inputDir != Vector2.zero)
         {
             currentCharacterAnimator.SetBool("IsRunning", true);
-            CancelAttack();
         }
         else
         {
@@ -149,22 +151,15 @@ public class DualPlayerController : MonoBehaviour
 
         if (!disableInput && !isAttacking && !playerStats.CheckIsDead())
         {
-            currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedAccelSmoothTime);
-
             float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.y) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-            //moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            //moveDir *= currentSpeed * Time.deltaTime;
-
-            //transform.Translate(moveDir, Space.World);
 
             desiredVelocity = new Vector3(inputDir.x, 0, inputDir.y);
             Debug.Log(desiredVelocity);
             if (desiredVelocity.magnitude > 0)
             {
                 desiredVelocity = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward * moveSpeed;
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
             }
             velocity = rb.velocity;
             float maxSpeedChange = maxAcceleration * Time.deltaTime;
@@ -173,7 +168,10 @@ public class DualPlayerController : MonoBehaviour
             rb.velocity = velocity;
 
             currentCharacterAnimator.SetFloat("RunningSpeed", desiredVelocity.magnitude * runAnimationDampener);
-            
+        }
+        else if(isAttacking)
+        {
+            desiredVelocity = Vector3.zero;
         }
 
         if (isDodging)
