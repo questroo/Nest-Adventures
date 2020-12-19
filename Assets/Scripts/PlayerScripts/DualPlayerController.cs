@@ -127,10 +127,7 @@ public class DualPlayerController : MonoBehaviour
 
     void UpdateMovement()
     {
-        float x = moveDirection.x;
-        float z = moveDirection.y;
-        Vector2 inputDir = new Vector2(x, z);
-
+        desiredVelocity = Vector3.zero;
         if (currentCharacter == CharacterClass.Pugilist)
         {
             isAttacking = pugilistController.IsPugilistAttacking();
@@ -140,7 +137,7 @@ public class DualPlayerController : MonoBehaviour
             isAttacking = sorcererController.IsSorcererAttacking();
         }
 
-        if (inputDir != Vector2.zero)
+        if (moveDirection != Vector2.zero)
         {
             currentCharacterAnimator.SetBool("IsRunning", true);
         }
@@ -154,7 +151,7 @@ public class DualPlayerController : MonoBehaviour
             float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.y) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
-            desiredVelocity = new Vector3(inputDir.x, 0, inputDir.y);
+            desiredVelocity = new Vector3(moveDirection.x, 0, moveDirection.y);
             Debug.Log(desiredVelocity);
             if (desiredVelocity.magnitude > 0)
             {
@@ -205,10 +202,12 @@ public class DualPlayerController : MonoBehaviour
         if(currentCharacter == CharacterClass.Pugilist)
         {
             pugilistController.SendAttack();
+            rb.velocity = Vector3.zero;
         }
         else if(currentCharacter == CharacterClass.Sorcerer)
         {
             sorcererController.SendAttack(lockedEnemy);
+            rb.velocity = Vector3.zero;
         }
     }
 
@@ -317,5 +316,6 @@ public class DualPlayerController : MonoBehaviour
         disableInput = false;
         regularCollider.enabled = true;
         dodgeCollider.enabled = false;
+        rb.velocity = Vector3.zero;
     }
 }
