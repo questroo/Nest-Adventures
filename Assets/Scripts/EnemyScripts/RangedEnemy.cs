@@ -49,6 +49,9 @@ public class RangedEnemy : MonoBehaviour, IDamageable
     [SerializeField]
     Transform[] patrolPoints;
 
+    [SerializeField]
+    private EnemyHealthBar healthBar;
+
     public float health;
     public void Awake()
     {
@@ -60,6 +63,10 @@ public class RangedEnemy : MonoBehaviour, IDamageable
     private void Start()
     {
         ServiceLocator.Get<EnemyLockController>().RegisterEnemy(gameObject);
+        if (healthBar != null)
+        {
+            healthBar.SetMaxHealth(Health);
+        }
     }
 
     public Transform[] GetPatrolPoints()
@@ -77,6 +84,7 @@ public class RangedEnemy : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         health -= damage;
+        healthBar.SetHealth(health);
         if(health <= 0)
         {
             anim.SetTrigger("Dead");

@@ -39,7 +39,7 @@ public class EnemyStat : MonoBehaviour, IDamageable
     {
         Health -= damage;
         animator.SetTrigger("Hit");
-
+        healthBar.SetHealth(Health);
         if (Health <= 0.0f)
         {
             Health = 0.0f;
