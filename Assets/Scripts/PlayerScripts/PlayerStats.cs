@@ -43,6 +43,9 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private DefeatScreenControl defeatScreen;
 
+
+    DualPlayerController dc;
+
     private void Awake()
     {
         ServiceLocator.Register<PlayerStats>(this);
@@ -56,10 +59,12 @@ public class PlayerStats : MonoBehaviour
 
         currentHealthPotionUses = 0;
         lastHealth = m_Health;
+
+        dc = ServiceLocator.Get<DualPlayerController>();
     }
     public void TakeDamage(float damage)
     {
-        if (!invincible && !isDead)
+        if (!dc.IsInvincible() && !isDead)
         {
             //SoundManager.PlaySound(SoundManager.Sound.player2_get_hit);
             m_Health -= damage;

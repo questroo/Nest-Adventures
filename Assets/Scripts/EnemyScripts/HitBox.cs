@@ -7,7 +7,7 @@ public class HitBox : MonoBehaviour
     public Transform attackPoint;
     private EnemyStat enemyStat;
     private PlayerStats ps;
-    public float attackRange = 0.5f;
+    public float attackRange = 0.1f;
     //public LayerMask playerLayer;
 
     [SerializeField]
@@ -31,8 +31,11 @@ public class HitBox : MonoBehaviour
 
         foreach (Collider player in hitPlayer)
         {
-            SoundManager.PlaySound(SoundManager.Sound.player2_get_hit);
-            ps.TakeDamage(enemyStat.bossDamage);
+            if (player.CompareTag("Player"))
+            {
+                SoundManager.PlaySound(SoundManager.Sound.player2_get_hit);
+                ps.TakeDamage(enemyStat.bossDamage);
+            }
         }
         StartCoroutine(TurnOffParticles());
     }

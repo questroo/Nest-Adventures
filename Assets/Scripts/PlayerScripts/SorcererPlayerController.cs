@@ -34,6 +34,7 @@ public class SorcererPlayerController : MonoBehaviour
     public void CancelAttack()
     {
         sorcererAnimator.SetBool("IsAttacking", false);
+        isAttacking = false;
     }
 
     public bool IsSorcererAttacking()
@@ -50,6 +51,6 @@ public class SorcererPlayerController : MonoBehaviour
     public void AlertLaunchIceBall()
     {
         GameObject ball = Instantiate(iceBall, launchPoint.position, transform.parent.rotation);
-        ball.GetComponent<IceBall>().Init(target);
+        ball.GetComponent<IceBall>().Init(target, iceBallDamage);
     }
 }

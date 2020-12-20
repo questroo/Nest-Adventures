@@ -6,17 +6,18 @@ using UnityEngine.SceneManagement;
 public class IceBall : MonoBehaviour
 {
     public float maxSpeed = 10.0f;
-    public float damage = 20.0f;
+    float damage = 20.0f;
 
     Transform target;
 
     float timing = 0.0f;
     float maxTiming = 10.0f;
 
-    public void Init(Transform _target)
+    public void Init(Transform _target, float _damage)
     {
         // Set up ball parameters within SorcererPlayerController
         target = _target;
+        damage = _damage;
     }
 
     private void Start()

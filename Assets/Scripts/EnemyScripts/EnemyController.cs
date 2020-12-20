@@ -7,7 +7,6 @@ public class EnemyController : MonoBehaviour
 {
     //public float speed;
     public float startWaitTime;
-    public float lookRadius = 6.0f;
     public float alertRadius = 8.0f;
     public float attackRadius = 4.0f;
     public Transform[] moveSpots;
@@ -47,26 +46,24 @@ public class EnemyController : MonoBehaviour
     public void Movement()
     {
         //transform.position = Vector3.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
-        
+
 
         float distance = Vector3.Distance(target.position, animator.transform.position);
         float spotDistance = Vector3.Distance(transform.position, moveSpots[randomSpot].position);
         animator.SetTrigger("Walk");
         //SoundManager.PlaySound(SoundManager.Sound.skeleton_walk, gameObject.transform.position);
-        if (distance >= alertRadius)
+        if (distance > alertRadius)
         {
-            
             LookAtDirection();
             agent.SetDestination(moveSpots[randomSpot].position);
             agent.isStopped = false;
-            if (agent.stoppingDistance <= 3.0f)
+            if (agent.stoppingDistance <= 1.0f)
             {
                 if (waitTime <= 0)
                 {
                     //moveSpots.position = new Vector3(Random.Range(minX, maxX), 0.5f, Random.Range(minZ, maxZ));
                     randomSpot = Random.Range(0, moveSpots.Length);
                     waitTime = startWaitTime;
-                    
                 }
                 else
                 {
@@ -74,19 +71,12 @@ public class EnemyController : MonoBehaviour
                 }
             }
         }
-        else if (distance <= alertRadius)
+        else
         {
             LookAtPlayer();
-            agent.isStopped = true;
-            if (distance <= lookRadius)
-            {
-                agent.SetDestination(target.position);
-                agent.isStopped = false;
-            }
+            agent.SetDestination(target.position);
+            agent.isStopped = false;
         }
-       
-
-
     }
 
     public void LookAtDirection()
@@ -105,9 +95,6 @@ public class EnemyController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, lookRadius);
-
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, alertRadius);
 

@@ -10,20 +10,20 @@ public class DualPlayerController : MonoBehaviour
 
     // Variables
     [Header("Movement Tweaking Variables")]
-    public float moveSpeed = 7.5f;
+    public float maxSpeed = 7.5f;
     public float dodgeSpeed = 6.0f;
-    public float speedAccelSmoothTime = 0.15f;
+    [Tooltip("The max amount that the player can speed up or slow down its movement")]
+    public float maxAcceleration = 10.0f;
     public float runAnimationDampener = 0.2f;
 
-    public float turnSmoothDampener = 100.0f;
     public float turnSmoothVelocity = 0.0f;
     public float turnSmoothTime = 0.08f;
+    private Vector2 moveDirection;
+    private Vector3 dodgeDirection;
 
     Rigidbody rb;
     public Vector3 velocity;
     public Vector3 desiredVelocity;
-    public float maxSpeed = 7.5f;
-    public float maxAcceleration = 10.0f;
 
     [SerializeField] private bool disableInput = false;
     private bool isDodging = false;
@@ -34,14 +34,11 @@ public class DualPlayerController : MonoBehaviour
     private bool endRollHasEnded = false;
     public Collider regularCollider;
     public Collider dodgeCollider;
+    bool isInvincible = false;
+
 
     // Attacking control
-    private bool isAttacking = false;
-
-    // Debug values
-    [Header("Debug Variables")]
-    public Vector2 moveDirection;
-    public Vector3 dodgeDirection;
+    private bool isAttacking = false;    
 
     // Camera variables
     private EnemyLockController lockController;
@@ -152,10 +149,9 @@ public class DualPlayerController : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
             desiredVelocity = new Vector3(moveDirection.x, 0, moveDirection.y);
-            Debug.Log(desiredVelocity);
             if (desiredVelocity.magnitude > 0)
             {
-                desiredVelocity = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward * moveSpeed;
+                desiredVelocity = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward * maxSpeed;
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
             }
             velocity = rb.velocity;
@@ -215,6 +211,7 @@ public class DualPlayerController : MonoBehaviour
     {
         if (!isDodging && !disableInput)
         {
+            CancelAttack();
             SoundManager.PlaySound(SoundManager.Sound.switchPlayer);
             isDodging = true;
             disableInput = true;
@@ -232,8 +229,6 @@ public class DualPlayerController : MonoBehaviour
                 dodgeDirection = moveDir;
             }
             transform.LookAt((transform.position + dodgeDirection));
-
-            CancelAttack();
         }
     }
 
@@ -288,10 +283,19 @@ public class DualPlayerController : MonoBehaviour
         endRollHasEnded = true;
     }
 
+    public bool IsInvincible()
+    {
+        return isInvincible;
+    }
+
     IEnumerator RollIntoSwitch()
     {
+        isInvincible = true;
+
         yield return new WaitUntil(() => startRollHasEnded == true);
         startRollHasEnded = false;
+
+        isInvincible = false;
 
         // SWITCH CHARACTER
         if (currentCharacter == CharacterClass.Pugilist)
