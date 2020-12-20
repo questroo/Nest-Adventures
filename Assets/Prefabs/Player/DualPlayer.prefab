@@ -249,6 +249,8 @@ MonoBehaviour:
   turnSmoothDampener: 100
   turnSmoothVelocity: 0
   turnSmoothTime: 0.08
+  velocity: {x: 0, y: 0, z: 0}
+  desiredVelocity: {x: 0, y: 0, z: 0}
   maxSpeed: 7.5
   maxAcceleration: 30
   disableInput: 0
@@ -257,6 +259,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0}
   dodgeDirection: {x: 0, y: 0, z: 0}
   currentCharacter: 0
+  isReload: 0
 --- !u!114 &2612184637689832983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +281,8 @@ MonoBehaviour:
   healthPotionValue: 25
   healingPotionStrength: 5
   healingPotionDuration: 8
+  reachCheakPoint: 0
+  defeatScreen: {fileID: 0}
 --- !u!54 &939845221950901181
 Rigidbody:
   m_ObjectHideFlags: 0

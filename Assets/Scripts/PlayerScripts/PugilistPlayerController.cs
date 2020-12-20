@@ -22,14 +22,9 @@ public class PugilistPlayerController : MonoBehaviour
     public LayerMask enemyHitLayerMask;
     public Transform attackPosition;
 
-    public ParticleSystem particleDust;
-    public ParticleSystem particleExplosion;
-
     private void Awake()
     {
         ServiceLocator.Register<PugilistPlayerController>(this);
-        particleDust = GetComponentInChildren<ParticleSystem>();
-        particleExplosion = GetComponentInChildren<ParticleSystem>();
     }
 
     private void Start()
