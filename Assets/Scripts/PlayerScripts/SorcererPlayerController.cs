@@ -9,7 +9,7 @@ public class SorcererPlayerController : MonoBehaviour
     public bool isAttacking = false;
 
     [Header("Attack Variables")]
-    public float iceBallDamage = 20.0f;
+    public float iceBallDamage = 30.0f;
     public GameObject iceBall;
     public Transform launchPoint;
     Transform target;

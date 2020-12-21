@@ -14,8 +14,8 @@ public class PugilistPlayerController : MonoBehaviour
     public bool isPugilistAttacking = false;
 
     [Header("Attack Variables")]
-    public float punchOneDamage = 5.0f;
-    public float punchTwoDamage = 10.0f;
+    public float punchOneDamage = 10.0f;
+    public float punchTwoDamage = 15.0f;
     public float punchComboDamage = 30.0f;
     public float attackRadius = 0.8f;
     public float attackDistance = 1.0f;

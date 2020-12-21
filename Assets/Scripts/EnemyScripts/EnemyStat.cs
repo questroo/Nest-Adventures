@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class EnemyStat : MonoBehaviour, IDamageable
 {
-    public float enemyMaxHealth = 100f;
-    public float bossDamage = 5f;
+    public float enemyMaxHealth = 150f;
+    public float bossDamage = 10f;
     private float startStaggerCooldown = 5f;
     private float staggerCooldown;
     // TODO: Implement the health bar
