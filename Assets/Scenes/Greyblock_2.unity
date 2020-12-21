@@ -15314,6 +15314,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2791815222482199845, guid: 723a87b0a914b1f4f9d565b1ec7cb3b8,
+        type: 3}
+      propertyPath: iceBallDamage
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 2980842419339397379, guid: 723a87b0a914b1f4f9d565b1ec7cb3b8,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -15328,6 +15333,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3259410203561323390, guid: 723a87b0a914b1f4f9d565b1ec7cb3b8,
+        type: 3}
+      propertyPath: punchOneDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3259410203561323390, guid: 723a87b0a914b1f4f9d565b1ec7cb3b8,
+        type: 3}
+      propertyPath: punchTwoDamage
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3360264853581310192, guid: 723a87b0a914b1f4f9d565b1ec7cb3b8,
         type: 3}
@@ -45710,6 +45725,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 14.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460147660802188515, guid: 14b637d8443c9ab4490b68030d0cda54,
+        type: 3}
+      propertyPath: enemyMaxHealth
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460147660802188515, guid: 14b637d8443c9ab4490b68030d0cda54,
+        type: 3}
+      propertyPath: bossDamage
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7460147660802188525, guid: 14b637d8443c9ab4490b68030d0cda54,
         type: 3}
