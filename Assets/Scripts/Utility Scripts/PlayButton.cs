@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayButton : MonoBehaviour
 {
-    public int sceneIndex = 2;
+    public int sceneIndex = 1;
     
     public void PlayButtonPressed()
     {

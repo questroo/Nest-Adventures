@@ -106,7 +106,7 @@ public class PugilistPlayerController : MonoBehaviour
 
         foreach (Collider col in hitColliders)
         {
-            if (col.CompareTag("Enemy"))
+            if (col.CompareTag("Enemy") || col.CompareTag("RangedEnemy"))
             {
                 //col.GetComponent<EnemyStat>().TakeDamage(damage);
                 col.GetComponent<IDamageable>().TakeDamage(damage);

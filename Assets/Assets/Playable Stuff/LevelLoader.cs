@@ -12,7 +12,7 @@ public class LevelLoader : MonoBehaviour
 
     void Start()
     {
-        bottomFloor.SetActive(false);
+        //bottomFloor.SetActive(false);
 
     }
 

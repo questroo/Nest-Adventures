@@ -29,7 +29,7 @@ public class IceBall : MonoBehaviour
     {
         if(target != null)
         {
-            transform.LookAt(target.position);
+            transform.LookAt(target.position + Vector3.up / 1.5f);
             Debug.Log("Looking at Target");
         }
 
